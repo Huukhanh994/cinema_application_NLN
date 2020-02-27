@@ -1,5 +1,5 @@
 <?php
-
+require 'admin.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::view('/admin', 'admin.dashboard.index')->name('admin.dashboard');
+Route::view('/admin/login', 'admin.auth.login');    
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
