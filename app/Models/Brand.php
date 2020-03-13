@@ -25,4 +25,9 @@ class Brand extends Model
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function films()
+    {
+        return $this->hasMany(Film::class);
+    }
 }

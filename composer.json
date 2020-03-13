@@ -12,9 +12,11 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "parsedown/laravel": "^1.2"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "laravel/ui": "^1.2",
@@ -60,4 +62,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
+    
 }

@@ -10,4 +10,4 @@
     <link rel="stylesheet" href="{{ asset('assets_client/css/jquery.animatedheadline.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets_client/css/main.css') }} ">
 
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">

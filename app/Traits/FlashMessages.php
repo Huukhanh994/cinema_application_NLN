@@ -3,16 +3,28 @@ namespace App\Traits;
 
 trait FlashMessages
 {
-
+    /**
+     * @var array
+     */
     protected $errorMessages = [];
 
+    /**
+     * @var array
+     */
     protected $infoMessages = [];
 
+    /**
+     * @var array
+     */
     protected $successMessages = [];
 
+    /**
+     * @var array
+     */
     protected $warningMessages = [];
 
-    public function setFlashMessage($message, $type)
+
+    protected function setFlashMessage($message, $type)
     {
         $model = 'infoMessages';
 
@@ -20,38 +32,41 @@ trait FlashMessages
             case 'info':
                 $model = 'infoMessages';
                 break;
-                case 'error':
-                    $model = 'errorMessages';
-                    break;
-                    case 'success':
-                        $model = 'successMessages';
-                        break;
-                        case 'warning':
-                            $model = 'warningMessages';
-                            break;
+            case 'error':
+                $model = 'errorMessages';
+                break;
+            case 'success':
+                $model = 'successMessages';
+                break;
+            case 'warning':
+                $model = 'warningMessages';
+                break;
         }
-
-        if(is_array($message))
-        {
-            foreach($message as $key => $value) {
+        if(is_array($message)){
+            foreach($message as $key => $value)
+            {
                 array_push($this->$model, $value);
             }
-        } else {
-            array_push($this->$model,$message);
+        }else{
+            array_push($this->$model, $message);
         }
     }
 
-    public function getFlashMessage()
+    /**
+     * @return array
+     */
+    protected function getFlashMessage()
     {
         return [
-            'error' => $this->errorMessages,
-            'info'  => $this->infoMessages,
-            'success' => $this->successMessages,
-            'warning'   => $this->warningMessages,
+            'error'     =>  $this->errorMessages,
+            'info'      =>  $this->infoMessages,
+            'success'   =>  $this->successMessages,
+            'warning'   =>  $this->warningMessages,
         ];
     }
 
-    public function showFlashMessages()
+
+    protected function showFlashMessages()
     {
         session()->flash('error', $this->errorMessages);
         session()->flash('info', $this->infoMessages);

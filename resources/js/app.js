@@ -47,6 +47,8 @@ import VueSwal from 'vue-swal';
 Vue.use(VueSwal);
 
 Vue.component('attribute-values', require('./components/AttributeValues.vue').default);
+Vue.component('film-attribute', require('./components/FilmAttribute.vue').default);
+Vue.component('add-seat', require('./components/AddSeat.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

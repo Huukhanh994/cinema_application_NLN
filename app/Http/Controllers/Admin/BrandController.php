@@ -42,4 +42,39 @@ class BrandController extends BaseController
         }
         return $this->responseRedirect('admin.brands.index', 'Brand added successfully' ,'success',false, false);
     }
+
+    public function edit($id)
+    {
+        $brand = $this->brandRepository->findBrandById($id);
+
+        $this->setPageTitle('Brands', 'Edit Brand : '.$brand->name);
+        return view('admin.brands.edit', compact('brand'));
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'name'      =>  'required|max:191',
+            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+        ]);
+
+        $params = $request->except('_token');
+
+        $brand = $this->brandRepository->updateBrand($params);
+
+        if (!$brand) {
+            return $this->responseRedirectBack('Error occurred while updating brand.', 'error', true, true);
+        }
+        return $this->responseRedirectBack('admin.brands.index','Brand updated successfully' ,'success',false, false);
+    }
+
+    public function delete($id)
+    {
+        $brand = $this->brandRepository->deleteBrand($id);
+
+        if (!$brand) {
+            return $this->responseRedirectBack('Error occurred while deleting brand.', 'error', true, true);
+        }
+        return $this->responseRedirect('admin.brands.index', 'Brand deleted successfully' ,'success',false, false);
+    }
 }

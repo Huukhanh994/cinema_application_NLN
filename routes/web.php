@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/admin', 'admin.dashboard.index')->name('admin.dashboard');
-Route::view('/admin/login', 'admin.auth.login');    
+Route::view('/admin/login', 'admin.auth.login')->name('admin.login');    
 
 Auth::routes();
 

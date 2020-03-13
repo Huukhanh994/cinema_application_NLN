@@ -178,6 +178,10 @@ return [
         App\Providers\SettingServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
 
+        Parsedown\Providers\ParsedownServiceProvider::class,
+
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*

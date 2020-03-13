@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/assets/images/favicon.png')}}">
     <title>@yield('title') - {{ config('app.name') }}</title>
     <!-- This page CSS -->
     <!-- This page CSS -->
@@ -23,6 +23,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
     @stack('custom_attribute_css')
+
+    @stack('custom_css')
 </head>
 
 <body class="skin-default fixed-layout">
@@ -91,6 +93,8 @@
     @stack('custom_script')
 
     @stack('scripts_vue')
+    
+    @stack('script_seat_booking')
 </body>
 
 </html>

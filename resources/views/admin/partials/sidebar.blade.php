@@ -7,7 +7,7 @@
                 <div><img src="{{asset('/assets/images/users/2.jpg')}}" alt="user-img" class="img-circle"></div>
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    John Smith<span class="caret"></span></a>
+                    {{ Auth::guard('admin')->user()->name}}<span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
                         <!-- text-->
                         <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
@@ -254,6 +254,30 @@
                     <a class="app-menu__item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
                         <i class="app-menu__icon fa fa-briefcase"></i>
                         <span class="app-menu__label">Brands</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item {{ Route::currentRouteName() == 'admin.rooms.index' ? 'active' : '' }}" href="{{ route('admin.rooms.index') }}">
+                        <i class="app-menu__icon fa fa-building"></i>
+                        <span class="app-menu__label">Rooms</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item {{ Route::currentRouteName() == 'admin.seats.index' ? 'active' : '' }}" href="{{ route('admin.seats.index') }}">
+                        <i class="fas fa-couch"></i>
+                        <span class="app-menu__label">Seats</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item {{ Route::currentRouteName() == 'admin.films.index' ? 'active' : '' }}" href="{{ route('admin.films.index') }}">
+                        <i class="fas fa-film"></i>
+                        <span class="app-menu__label">Film</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item {{ Route::currentRouteName() == 'admin.schedules.index' ? 'active' : '' }}" href="{{ route('admin.schedules.index') }}">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="app-menu__label">Schedules</span>
                     </a>
                 </li>
             </ul>
