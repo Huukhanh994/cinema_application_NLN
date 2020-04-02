@@ -81,8 +81,32 @@ class ScheduleRepository extends BaseRepository implements ScheduleContract
 
         $collection = collect($params)->except('_token');
 
-        $schedule->update($collection->all());
+        $schedule_start = substr($collection->get('schedule_time'), 0, 19);
+        $schedule_end = substr($collection->get('schedule_time'), 22, 19);
+        if (substr($schedule_start, 17, 2) == 'AM') {
+            $start = (date('Y-m-d h:i:s', strtotime($schedule_start)));
+        } else {
+            $start = (date('Y-m-d H:i:s', strtotime($schedule_start)));
+        }
+        if (substr($schedule_end, 17, 2) == 'AM') {
+            $end = (date('Y-m-d h:i:s', strtotime($schedule_end)));
+        } else {
+            $end = (date('Y-m-d H:i:s', strtotime($schedule_end)));
+        }
+        
+        $start_time = $start;
+        $end_time = $end;
+        $merge = $collection->merge(compact('start_time','end_time'));
 
+        $schedule->update($merge->all());
+
+        if($collection->has('film')){
+            $schedule->film()->associate($params['film']);
+        }
+
+        if($collection->has('room')) {
+            $schedule->room()->associate($params['room']);
+        }
         return $schedule;
     }
 

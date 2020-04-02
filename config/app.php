@@ -182,6 +182,9 @@ return [
 
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        // Added
+        App\Providers\ViewComposerServiceProvider::class,
+
     ],
 
     /*

@@ -114,4 +114,13 @@ Route::group(['prefix'  =>  'admin'], function () {
         Route::get('/{id}/delete', 'Admin\SchedulesController@delete')->name('admin.schedules.delete');
     });
 
+    Route::group(['prefix' => 'clusters'], function () {
+        Route::get('/','Admin\ClustersController@index')->name('admin.clusters.index');
+        Route::get('/create','Admin\ClustersController@create')->name('admin.clusters.create');
+        Route::post('/store','Admin\ClustersController@store')->name('admin.clusters.store');
+        Route::get('/{id}/edit','Admin\ClustersController@edit')->name('admin.clusters.edit');
+        Route::post('/update','Admin\ClustersController@update')->name('admin.clusters.update');
+        Route::get('/{id}/delete', 'Admin\ClustersController@delete')->name('admin.clusters.delete');
+    });
+
 });

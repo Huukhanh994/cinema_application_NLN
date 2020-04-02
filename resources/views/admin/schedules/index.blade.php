@@ -54,7 +54,7 @@
                                                     <label for="film_id" class="form-control">Film</label>
                                                     <select name="film_id" id="film_id" class="form-control">
                                                         @foreach ($films as $film)
-                                                            <option value="{{$film->id}}">{{$film->name}}</option>
+                                                            <option value="{{$film->id}}">{{$film->film_name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -62,7 +62,7 @@
                                                     <label for="room_id" class="form-control">Room</label>
                                                     <select name="room_id" id="room_id" class="form-control" >
                                                         @foreach ($rooms as $room)
-                                                            <option value="{{$room->id}}">{{$room->name}}</option>
+                                                            <option value="{{$room->id}}">{{$room->room_name}}({{$room->cluster->cluster_name}})</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -107,10 +107,10 @@
                                         <td>{{$schedule->start_time}}</td>
                                         <td>{{$schedule->end_time}}</td>
                                         <td>
-                                            {{$schedule->film['name']}}
+                                            {{$schedule->film->film_name}}
                                         </td>
                                         <td>
-                                            {{$schedule->room['name']}}
+                                            {{$schedule->room->room_name}} ({{$schedule->room->cluster->cluster_name}})
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.schedules.edit', $schedule->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>

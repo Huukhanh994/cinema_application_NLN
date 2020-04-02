@@ -51,9 +51,9 @@ class RoomRepository extends BaseRepository implements RoomContract
             // dd($room);
             $room->save();
 
-            if($collection->has('cities'))
+            if($collection->has('cluster'))
             {
-                $room->cities()->associate($params['cities']);
+                $room->cluster()->associate($params['cluster']);
             }
 
             return $room;
@@ -66,15 +66,15 @@ class RoomRepository extends BaseRepository implements RoomContract
 
     public function updateRoom(array $params)
     {
-        $room = $this->findRoomById($params['id']);
+        $room = $this->findRoomById($params['room_id']);
 
         $collection = collect($params)->except('_token');
 
         $room->update($collection->all());
 
-        if($collection->has('cities'))
+        if($collection->has('cluster'))
         {
-            $room->cities()->associate($params['cities']);
+            $room->cluster()->associate($params['cluster']);
         }
 
         return $room;

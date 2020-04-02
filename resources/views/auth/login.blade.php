@@ -1,73 +1,127 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<!DOCTYPE html>
+<html lang="en">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+<!-- Mirrored from pixner.net/boleto/demo/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Feb 2020 15:31:27 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <link rel="stylesheet" href="{{ asset('assets_client/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/odometer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/main.css') }}">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    <link rel="shortcut icon" href="{{asset('assets_client/images/favicon.png')}}" type="image/x-icon">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    <title>Boleto  - Online Ticket Booking Website HTML Template</title>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+</head>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<body>
+    <!-- ==========Preloader========== -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <!-- ==========Preloader========== -->
+
+    <!-- ==========Sign-In-Section========== -->
+    <section class="account-section bg_img" data-background="{{asset('assets_client/images/account/account-bg.jpg')}}">
+        <div class="container">
+            <div class="padding-top padding-bottom">
+                <div class="account-area">
+                    <div class="section-header-3">
+                        <span class="cate">hello</span>
+                        <h2 class="title">welcome back</h2>
+                    </div>
+                    <form class="account-form" method="POST" action="{{route('login')}}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">Email<span>*</span></label>
+                            <input type="text" name="email" @error('email') is-valid @enderror placeholder="Enter Your Email" id="email" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password<span>*</span></label>
+                            <input type="password" name="password" @error('password') is-valid @enderror placeholder="Password" id="password" required>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group checkgroup">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
+                            <a href="#0" class="forget-pass">Forget Password</a>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="login">
+                        </div>
+                    </form>
+                    <div class="option">
+                        Don't have an account? <a href="{{ route('register') }}">sign up now</a>
+                    </div>
+                    <div class="or"><span>Or</span></div>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="#0">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#0" class="active">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#0">
+                                <i class="fab fa-google"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Sign-In-Section========== -->
+
+
+    <script src="{{ asset('assets_client/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets_client/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/countdown.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/odometer.min.js') }}"></script>
+    <script src="{{ asset('assets_client/js/viewport.jquery.js') }}"></script>
+    <script src="{{ asset('assets_client/js/nice-select.js') }}"></script>
+    <script src="{{ asset('assets_client/js/main.js') }}"></script>
+</body>
+
+
+<!-- Mirrored from pixner.net/boleto/demo/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Feb 2020 15:31:28 GMT -->
+</html>

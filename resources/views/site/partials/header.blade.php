@@ -3,7 +3,7 @@
         <div class="header-wrapper">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/images/logo/logo.png" alt="logo">
+                    <img src="{{asset('assets_client/images/logo/logo.png')}}" alt="logo">
                 </a>
             </div>
             <ul class="menu">
@@ -22,28 +22,10 @@
                     <a href="#0">movies</a>
                     <ul class="submenu">
                         <li>
-                            <a href="movie-grid.html">Movie Grid</a>
+                            <a href="{{ route('movies.now_showing') }}">Movie Now Showing</a>
                         </li>
                         <li>
-                            <a href="movie-list.html">Movie List</a>
-                        </li>
-                        <li>
-                            <a href="movie-details.html">Movie Details</a>
-                        </li>
-                        <li>
-                            <a href="movie-details-2.html">Movie Details 2</a>
-                        </li>
-                        <li>
-                            <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
-                        </li>
-                        <li>
-                            <a href="movie-seat-plan.html">Movie Seat Plan</a>
-                        </li>
-                        <li>
-                            <a href="movie-checkout.html">Movie Checkout</a>
-                        </li>
-                        <li>
-                            <a href="popcorn.html">Movie Food</a>
+                            <a href="movie-list.html">Movie Coming Soom</a>
                         </li>
                     </ul>
                 </li>
@@ -85,26 +67,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#0">pages</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="about.html">About Us</a>
-                        </li>
-                        <li>
-                            <a href="apps-download.html">Apps Download</a>
-                        </li>
-                        <li>
-                            <a href="sign-in.html">Sign In</a>
-                        </li>
-                        <li>
-                            <a href="sign-up.html">Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="404.html">404</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
                     <a href="#0">blog</a>
                     <ul class="submenu">
                         <li>
@@ -118,9 +80,26 @@
                 <li>
                     <a href="contact.html">contact</a>
                 </li>
+                @guest
                 <li class="header-button pr-0">
-                    <a href="sign-up.html">join us</a>
+                    <a href="{{route('login')}}">login</a>
+                    <a href="{{route('register')}}">sign up</a>
                 </li>
+                @else
+                <li class="header-button pr-0">
+                    <a href="#">{{Auth::user()->name}}</a>
+                    <div class="dropdonw-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a href="{{route('logout')}}" class="dropdown-item" 
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{__('Logout') }}
+                        </a>
+                        <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display:none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                @endguest
+                
             </ul>
             <div class="header-bar d-lg-none">
                 <span></span>

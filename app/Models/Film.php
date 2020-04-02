@@ -10,7 +10,7 @@ class Film extends Model
     protected $table = 'films';
 
     protected $fillable = [
-        'name', 'slug', 'actor', 'producer','author','duration',
+        'film_name', 'slug', 'actor', 'producer','author','duration',
         'date_release', 'describe','rated', 'country','language', 'status','brand_id'
     ];
 
@@ -76,4 +76,10 @@ class Film extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function room_use_pivot_schedules()
+    {
+        return $this->belongsToMany(Room::class,'schedules')->withPivot('id','start_time', 'end_time');  // từ bảng Film truy cập đến bản Room, and sử dụng bảng Schedules pivot
+    }
+
 }

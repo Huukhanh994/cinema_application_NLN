@@ -11,7 +11,7 @@ class FilmImage extends Model
     protected $fillable  = ['full','film_id'];
 
     protected $casts = [
-        'product_id'    => 'integer',
+        'film_id'    => 'integer',
     ];
 
     public function film()

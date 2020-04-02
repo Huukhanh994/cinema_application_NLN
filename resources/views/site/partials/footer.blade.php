@@ -1,7 +1,7 @@
 <footer class="footer-section">
     <div class="newslater-section padding-bottom">
         <div class="container">
-            <div class="newslater-container bg_img" data-background="assets/images/newslater/newslater-bg01.jpg">
+            <div class="newslater-container bg_img" data-background="{{ asset('assets_client/images/newslater/newslater-bg01.jpg') }}">
                 <div class="newslater-wrapper">
                     <h5 class="cate">subscribe to Boleto </h5>
                     <h3 class="title">to get exclusive benifits</h3>
@@ -18,7 +18,7 @@
         <div class="footer-top">
             <div class="logo">
                 <a href="index-1.html">
-                    <img src="assets/images/footer/footer-logo.png" alt="footer">
+                    <img src="{{ asset('assets_client/images/footer/footer-logo.png') }}" alt="footer">
                 </a>
             </div>
             <ul class="social-icons">

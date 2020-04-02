@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Contracts\CategoryContract;
 use App\Http\Controllers\BaseController;
+use App\Models\Category;
 
 /**
  * Class CategoryController
@@ -31,10 +32,12 @@ class CategoryController extends BaseController
      */
     public function index()
     {
+        $category_tree = $this->categoryRepository->treeList();
+
         $categories = $this->categoryRepository->listCategories();
 
         $this->setPageTitle('Categories', 'List of all categories');
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories','category_tree'));
     }
 
     public function create()
@@ -78,7 +81,7 @@ class CategoryController extends BaseController
     public function edit($id)
     {
         $targetCategory = $this->categoryRepository->findCategoryById($id);
-        $categories = $this->categoryRepository->listCategories();
+        $categories = $this->categoryRepository->treeList();
 
         $this->setPageTitle('Categories', 'Edit Category : '.$targetCategory->name);
         return view('admin.categories.edit', compact('categories', 'targetCategory'));

@@ -1944,12 +1944,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "add-seat",
   props: ["roomid"],
@@ -20812,6 +20806,9 @@ var render = function() {
                                   : seat.name
                               },
                               on: {
+                                click: function($event) {
+                                  return _vm.check(seat.name)
+                                },
                                 change: function($event) {
                                   var $$a = seat.name,
                                     $$el = $event.target,
@@ -20853,17 +20850,7 @@ var render = function() {
         }),
         0
       )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      _vm._l(_vm.infoSeat, function(info, index) {
-        return _c("h1", { key: index }, [
-          _vm._v("Checkbox: " + _vm._s(info) + " ")
-        ])
-      }),
-      0
-    )
+    ])
   ])
 }
 var staticRenderFns = [

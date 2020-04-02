@@ -8,8 +8,9 @@ class Room extends Model
 {
     protected $table = 'rooms';
 
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'city_id', 'name', 'notes','qty'
+        'cluster_id','room_name', 'notes','qty'
     ];
 
 
@@ -18,13 +19,33 @@ class Room extends Model
         return $this->hasMany(Seat::class);
     }
 
-    public function city()
+    // public function city()
+    // {
+    //     return $this->belongsTo(City::class);
+    // }
+
+    
+    public function film_using_pivot_schedules()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsToMany(Film::class,'schedules');
     }
 
-    public function schedules()
+    public function cluster()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->belongsTo('App\Models\Cluster','cluster_id','cluster_id');
+    }
+
+
+    // TODO: TỰ CHẾ TỪ HASMANYTRHOUGHT
+    public function cities()
+    {
+        return $this->hasManyThrough(
+            'App\Models\City',
+            'App\Models\Cluster',
+            'city_id',   // FK on cluster
+            'id',       // city_id
+            'id',       // id room
+            'cluster_id' // id cluster
+        );
     }
 }

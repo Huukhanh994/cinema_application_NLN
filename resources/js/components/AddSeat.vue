@@ -24,19 +24,13 @@
                 <td v-if="row.row =='B'">
                 {{row.row}}
                 <span v-for="seat in seats" :key="seat.id">
-                    <input v-if="seat.row == row.row" type="checkbox" :name="seat.name" :id="seat.name" v-model="seat.name"> 
+                    <input v-if="seat.row == row.row" type="checkbox" :name="seat.name" :id="seat.name" v-model="seat.name" @click="check(seat.name)"> 
                 </span>
                 </td>     
             </tr> 
         </tbody>
         
     </table>
-    <div>
-        <h1 v-for="(info,index) in infoSeat" :key="index">Checkbox: {{info}} </h1>
-    </div>
-
-
-
     </div>
 </template>
 

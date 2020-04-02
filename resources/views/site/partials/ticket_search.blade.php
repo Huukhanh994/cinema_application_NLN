@@ -1,6 +1,6 @@
 <section class="search-ticket-section padding-top pt-lg-0">
     <div class="container">
-        <div class="search-tab bg_img" data-background="assets/images/ticket/ticket-bg01.jpg">
+        <div class="search-tab bg_img" data-background="{{asset('assets_client/images/ticket/ticket-bg01.jpg')}}">
             <div class="row align-items-center mb--20">
                 <div class="col-lg-6 mb-20">
                     <div class="search-ticket-header">
@@ -12,19 +12,19 @@
                     <ul class="tab-menu ticket-tab-menu">
                         <li class="active">
                             <div class="tab-thumb">
-                                <img src="assets/images/ticket/ticket-tab01.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/ticket-tab01.png')}}" alt="ticket">
                             </div>
                             <span>movie</span>
                         </li>
                         <li>
                             <div class="tab-thumb">
-                                <img src="assets/images/ticket/ticket-tab02.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/ticket-tab02.png')}}" alt="ticket">
                             </div>
                             <span>events</span>
                         </li>
                         <li>
                             <div class="tab-thumb">
-                                <img src="assets/images/ticket/ticket-tab03.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/ticket-tab03.png')}}" alt="ticket">
                             </div>
                             <span>sports</span>
                         </li>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/city.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/city.png')}}" alt="ticket">
                             </div>
                             <span class="type">city</span>
                             <select class="select-bar">
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/date.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/date.png')}}" alt="ticket">
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/cinema.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/cinema.png')}}" alt="ticket">
                             </div>
                             <span class="type">cinema</span>
                             <select class="select-bar">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/city.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/city.png')}}" alt="ticket">
                             </div>
                             <span class="type">city</span>
                             <select class="select-bar">
@@ -105,7 +105,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/date.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/date.png')}}" alt="ticket">
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
@@ -117,7 +117,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/cinema.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/cinema.png')}}" alt="ticket">
                             </div>
                             <span class="type">event</span>
                             <select class="select-bar">
@@ -140,7 +140,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/city.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/city.png')}}" alt="ticket">
                             </div>
                             <span class="type">city</span>
                             <select class="select-bar">
@@ -155,7 +155,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/date.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/date.png')}}" alt="ticket">
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
@@ -167,7 +167,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="assets/images/ticket/cinema.png" alt="ticket">
+                                <img src="{{asset('assets_client/images/ticket/cinema.png')}}" alt="ticket">
                             </div>
                             <span class="type">sports</span>
                             <select class="select-bar">

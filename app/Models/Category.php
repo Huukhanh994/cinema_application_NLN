@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use TypiCMS\NestableTrait;
 
 class Category extends Model
 {
+    use NestableTrait;
+    
     protected $table = 'categories';
 
     protected $fillable = [
-        'name' , 'slug', 'description', 'parent_id', 'featured','menu','image'
-        
+        'id', 'name' , 'slug', 'description', 'parent_id', 'featured','menu','image'
     ];
 
     protected $casts = [
@@ -40,4 +42,5 @@ class Category extends Model
     {
         return $this->belongsToMany(Film::class,'category_films','category_id','film_id');
     }
+
 }

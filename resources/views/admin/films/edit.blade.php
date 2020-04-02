@@ -5,7 +5,7 @@
 @push('custom_css')
     <!-- page CSS -->
     <link href="{{asset('/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />
-    <link href="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" />
+    {{-- <link href="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" /> --}}
     <!-- Dropzone css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/js/plugins/dropzone.min.css') }}"/>
 @endpush
@@ -47,7 +47,7 @@
                                                 name="name" 
                                                 id="name" class="form-control @error('name') is-valid @enderror" 
                                                 placeholder="Enter attribute name" 
-                                                value="{{old('name',$film->name)}}">
+                                                value="{{old('name',$film->film_name)}}">
                                             </div>
                                             <input type="hidden" name="film_id" value="{{ $film->id }}">
                                             <div class="invalid-feedback active">
@@ -71,7 +71,8 @@
                                         <div class="form-group row">
                                             <label class="control-label text-right col-md-3" for="duration">Duration</label>
                                             <div class="col-md-9">
-                                                <input type="number" name="duration" id="duration" placeholder="Enter film duration" class="form-control @error('duration') is-valid @enderror" value="{{old('duration',$film->duration)}}">
+                                                <input id="duration" type="number" value="90" maxlength="200" name="duration" placeholder="Enter film duration" class="form-control @error('duration') is-valid @enderror" value="{{old('duration',$film->duration)}}">
+                                                {{-- <input type="number" name="duration" maxlength="200" id="duration" > --}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -115,6 +116,18 @@
                                                     @foreach ($categories as $category)
                                                         @php $check = in_array($category->id, $film->categories->pluck('id')->toArray()) ? 'selected' : ''  @endphp
                                                         <option value="{{$category->id}}" {{$check}}>{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3" id="rates">Rated</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control @error('rates') is-valid @enderror custom-select" name="rates[]" id="rates" multiple>
+                                                    <option value="0">Select a rates</option>
+                                                    @foreach ($rates as $rate)
+                                                        @php $check = in_array($rate->id, $film->rates->pluck('id')->toArray()) ? 'selected' : ''  @endphp
+                                                        <option value="{{$rate->id}}" {{$check}}>{{$rate->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -206,15 +219,7 @@
 @push('custom_script')
     <!-- This page plugins -->
     <script src="{{asset('/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
-    <script src="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')}}" type="text/javascript"></script>
-    <script>
-        $(function () {
-            $("input[name='duration']").TouchSpin();
-            $("input[name='duration']").TouchSpin({
-                initval: 40
-            });
-        });
-    </script>
+    {{-- <script src="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')}}" type="text/javascript"></script> --}}
     <!-- Dropzone Plugin JavaScript -->
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>

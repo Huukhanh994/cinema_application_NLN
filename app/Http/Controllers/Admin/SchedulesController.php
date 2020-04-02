@@ -9,6 +9,8 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use App\Models\Cluster;
+use App\Models\Room;
 
 class SchedulesController extends BaseController
 {
@@ -30,12 +32,12 @@ class SchedulesController extends BaseController
 
     public function index()
     {
-        $rooms = $this->roomRepository->listRooms();
+        $rooms = Room::with('cluster')->get();
 
         $films = $this->filmRepository->listFilms();
 
         $schedules = Schedule::with(['film','room'])->get();
-
+        // dd($schedules);
         $this->setPageTitle('Schedule Index','Schedule Index');
 
         return view('admin.schedules.index',compact('schedules','rooms','films'));
@@ -56,10 +58,39 @@ class SchedulesController extends BaseController
 
     public function edit($id)
     {
-        $schedule = $this->scheduleRepository->findScheduleById($id);
+        $film = $this->filmRepository->listFilms();
 
+        $room = Room::with('cluster')->get();
+
+        $schedule = $this->scheduleRepository->findScheduleById($id);
+        if (substr(date('H:i A', strtotime($schedule->start_time)), 0, 2) > 12) {
+            $start = date('m/d/Y h:i A', strtotime($schedule->start_time));
+        } else {
+            $start = date('m/d/Y h:i', strtotime($schedule->start_time)).' AM';
+        }
+        if (substr(date('H:i A', strtotime($schedule->end_time)), 0, 2) > 12) {
+            $end = date('m/d/Y h:i A', strtotime($schedule->end_time));
+        } else {
+            $end = date('m/d/Y h:i', strtotime($schedule->end_time)).' AM';
+        }
+        // dd($end);
+        $schedule_time = $start.' - '.$end;
+        // dd($schedule_time);
         $this->setPageTitle('Edit Schedule','Edit Schedule');
 
-        return view('admin.schedules.edit',compact('schedule'));
+        return view('admin.schedules.edit',compact('schedule','room','film','schedule_time'));
+    }
+
+    public function update(Request $request)
+    {
+        // dd($request->all());
+        $params = $request->except('_token');
+
+        $schedule = $this->scheduleRepository->updateSchedule($params);
+
+        if (!$schedule) {
+            return $this->responseRedirectBack('Error occurred while updating schedule.', 'error', true, true);
+        }
+        return $this->responseRedirectBack('admin.schedules.index','Schedule updated successfully' ,'success',false, false);
     }
 }

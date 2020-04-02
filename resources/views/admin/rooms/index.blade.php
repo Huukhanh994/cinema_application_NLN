@@ -26,20 +26,20 @@
                                             @csrf
                                             <div class="tile-body">
                                                 <div class="form-group">
-                                                    <label class="control-label" for="name">Name <span class="m-l-5 text-danger"> *</span></label>
-                                                    <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name') }}"/>
-                                                    @error('name') {{ $message }} @enderror
+                                                    <label class="control-label" for="room_name">Name <span class="m-l-5 text-danger"> *</span></label>
+                                                    <input class="form-control @error('room_name') is-invalid @enderror" type="text" name="room_name" id="room_name" value="{{ old('room_name') }}"/>
+                                                    @error('room_name') {{ $message }} @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label" for="brand_id">City</label>
-                                                    <select name="city_id" id="city_id" class="form-control @error('city_id') is-invalid @enderror">
-                                                        <option value="0">Select a city</option>
-                                                        @foreach($cities as $city)
-                                                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    <label class="control-label" for="cluster_id">Cluster</label>
+                                                    <select name="cluster_id" id="cluster_id" class="form-control @error('cluster_id') is-invalid @enderror">
+                                                        <option value="0">Select a cluster</option>
+                                                        @foreach($clusters as $cluster)
+                                                            <option value="{{ $cluster->cluster_id }}">{{ $cluster->cluster_name }}</option>
                                                         @endforeach
                                                     </select>
                                                     <div class="invalid-feedback active">
-                                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('brand_id') <span>{{ $message }}</span> @enderror
+                                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('cluster_id') <span>{{ $message }}</span> @enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -77,7 +77,7 @@
                                 <tr>
                                     <th> # </th>
                                     <th> Name </th>
-                                    <th> City </th>
+                                    <th> Cluster </th>
                                     <th> Quantity </th>
                                     <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                                 </tr>
@@ -86,9 +86,9 @@
                                 @foreach($rooms as $room)
                                     <tr>
                                         <td>{{ $room->id }}</td>
-                                        <td>{{ $room->name }}</td>
+                                        <td>{{ $room->room_name }}</td>
                                         <td>
-                                           {{$room->city->name}}
+                                           {{$room->cluster->cluster_name}}
                                         </td>
                                         <td>{{ $room->qty}}</td>
                                         <td class="text-center">

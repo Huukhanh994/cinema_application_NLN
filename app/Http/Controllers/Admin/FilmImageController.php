@@ -21,7 +21,7 @@ class FilmImageController extends Controller
 
     public function upload(Request $request)
     {
-        $film = $this->filmRepository->findFilmById($request->film_id);
+        $film = $this->filmRepository->findFilmById($request->id);
 
         if ($request->has('image')) {
 

@@ -67,14 +67,16 @@ class FilmController extends BaseController
         $brands = $this->brandRepository->listBrands();
         $categories = $this->categoryRepository->listCategories();
         $film = $this->filmRepository->findFilmById($id);
+        $rates = $this->rateRepository->listRates();
 
         $this->setPageTitle('Edit Film','Edit Film');
 
-        return view('admin.films.edit',compact('film','brands','categories'));
+        return view('admin.films.edit',compact('film','brands','categories','rates'));
     }
 
     public function update(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
             'name'  => 'required|max:191',
         ]);

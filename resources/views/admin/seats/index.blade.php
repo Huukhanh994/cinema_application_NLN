@@ -203,7 +203,12 @@
             </div>
           </div>
           <div class="tab-pane" id="values">
-              
+            
+             <ul>
+               @foreach ($result as $item)
+                  <li>Phong: {{$item->room_name}} - So ghe: {{$item->seat_empty}}</li>
+               @endforeach
+             </ul>
           </div>
         </div>
     </div>

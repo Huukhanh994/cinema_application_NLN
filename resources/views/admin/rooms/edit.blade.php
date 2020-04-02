@@ -133,25 +133,25 @@
                         @csrf
                         <div class="tile-body">
                             <div class="form-group">
-                                <label class="control-label" for="name">Name <span class="m-l-5 text-danger"> *</span></label>
-                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name', $room->name) }}"/>
-                                <input type="hidden" name="id" value="{{ $room->id }}">
-                                @error('name') {{ $message }} @enderror
+                                <label class="control-label" for="room_name">Name <span class="m-l-5 text-danger"> *</span></label>
+                                <input class="form-control @error('room_name') is-invalid @enderror" type="text" name="room_name" id="room_name" value="{{ old('room_name', $room->room_name) }}"/>
+                                <input type="hidden" name="room_id" value="{{ $room->id }}">
+                                @error('room_name') {{ $message }} @enderror
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="city_id">City</label>
-                                <select name="city_id" id="city_id" class="form-control @error('city_id') is-invalid @enderror">
-                                    <option value="0">Select a City</option>
-                                    @foreach($city as $item)
-                                        @if ($room->city_id == $item->id)
-                                            <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                <label class="control-label" for="cluster_id">Cluster</label>
+                                <select name="cluster_id" id="cluster_id" class="form-control @error('cluster_id') is-invalid @enderror">
+                                    <option value="0">Select a Cluster</option>
+                                    @foreach($clusters as $cluster)
+                                        @if ($room->cluster_id == $cluster->cluster_id)
+                                            <option value="{{ $cluster->cluster_id }}" selected>{{ $cluster->cluster_name }}</option>
                                         @else
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option value="{{ $cluster->cluster_id }}">{{ $cluster->cluster_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback active">
-                                    <i class="fa fa-exclamation-circle fa-fw"></i> @error('city_id') <span>{{ $message }}</span> @enderror
+                                    <i class="fa fa-exclamation-circle fa-fw"></i> @error('cluster_id') <span>{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group">

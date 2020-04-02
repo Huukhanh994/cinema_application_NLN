@@ -107,6 +107,10 @@ class FilmRepository extends BaseRepository implements FilmContract
             $film->categories()->sync($params['categories']);
         }
 
+        if($collection->has('rates'))
+        {
+            $film->rates()->sync($params['rates']);
+        }
         return $film;
     }
 
@@ -127,10 +131,10 @@ class FilmRepository extends BaseRepository implements FilmContract
      * @param $slug
      * @return mixed
      */
-    // public function findProductBySlug($slug)
-    // {
-    //     $product = Product::where('slug', $slug)->first();
+    public function findFilmBySlug($slug)
+    {
+        $film = Film::where('slug',$slug)->first();
 
-    //     return $product;
-    // }
+        return $film;
+    }
 }

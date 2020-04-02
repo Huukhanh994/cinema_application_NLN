@@ -10,7 +10,7 @@
     {{-- <link href="{{asset('/assets/node_modules/switchery/dist/switchery.min.css')}}" rel="stylesheet" /> --}}
     {{-- <link href="{{asset('/assets/node_modules/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet" /> --}}
     <link href="{{asset('/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />
-    <link href="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" />
+    {{-- <link href="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" /> --}}
     {{-- <link href="{{asset('/assets/node_modules/multiselect/css/multi-select.css')}}" rel="stylesheet" type="text/css" /> --}}
 @endpush
 
@@ -74,7 +74,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Duration set 90 </label>
-                                                        <input id="duration" type="text" value="90" name="duration" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> </div>
+                                                        <input id="duration" type="number" value="90" maxlength="200" name="duration" class="form-control"> </div>
                                                     <div class="form-group">
                                                         <label class="control-label" for="author">Author</label>
                                                         <input
@@ -199,7 +199,7 @@
                                 @foreach ($films as $film)
                                     <tr>
                                         <td>{{$film->id}}</td>
-                                        <td>{{$film->name}}</td>
+                                        <td>{{$film->film_name}}</td>
                                         <td>{{$film->producer}}</td>
                                         <td>{{$film->actor}}</td>
                                         <td>{{$film->duration}}</td>
@@ -239,16 +239,9 @@
     {{-- <script src="{{asset('/assets/node_modules/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script> --}}
     {{-- <script src="{{asset('/assets/node_modules/bootstrap-select/bootstrap-select.min.js')}}" type="text/javascript"></script> --}}
     <script src="{{asset('/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
-    <script src="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')}}" type="text/javascript"></script>
+    {{-- <script src="{{asset('/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')}}" type="text/javascript"></script> --}}
     {{-- <script src="{{asset('/assets/node_modules/dff/dff.js')}}" type="text/javascript"></script> --}}
     {{-- <script type="text/javascript" src="{{asset('/assets/node_modules/multiselect/js/jquery.multi-select.js')}}"></script> --}}
 
-    <script>
-        $(function () {
-            $("input[name='duration']").TouchSpin();
-            $("input[name='duration']").TouchSpin({
-                initval: 40
-            });
-        });
-    </script>
+    
 @endpush

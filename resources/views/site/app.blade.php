@@ -11,9 +11,9 @@
 
     @include('site.partials.css')
 
-    <title>Boleto  - Online Ticket Booking Website HTML Template</title>
+    <title>@yield('title') - {{ config('app.name') }}</title>
 
-
+    @stack('custom_css')
 </head>
 
 <body>
@@ -38,9 +38,14 @@
     <!-- ==========Ticket-Search========== -->
     @include('site.partials.ticket_search')  
     <!-- ==========Ticket-Search========== -->
-
+    <section class="about-section padding-top padding-bottom">
+        <div class="container">
+            @yield('content')
+        </div>
+    </section>
+        
     <!-- ==========Movie-Main-Section========== -->
-    @include('site.partials.movie_main')
+    {{-- @include('site.partials.movie_main') --}}
     <!-- ==========Movie-Main-Section========== -->
 
     <!-- ==========Newslater-Section========== -->
@@ -49,6 +54,8 @@
 
 
    @include('site.partials.js')
+   
+   @stack('custom_js')
 </body>
 
 
