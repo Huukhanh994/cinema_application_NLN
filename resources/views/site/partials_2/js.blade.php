@@ -1,0 +1,13 @@
+<script src="{{asset('assets_client/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/modernizr-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/plugins.js')}}"></script>
+    <script src="{{asset('assets_client/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/magnific-popup.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/wow.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/countdown.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/odometer.min.js')}}"></script>
+    <script src="{{asset('assets_client/js/viewport.jquery.js')}}"></script>
+    <script src="{{asset('assets_client/js/nice-select.js')}}"></script>
+    <script src="{{asset('assets_client/js/main.js')}}"></script>

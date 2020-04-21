@@ -15,7 +15,7 @@ use App\Models\Room;
 use App\Models\Schedule;
 use App\Models\Seat;
 use Carbon;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class MoviesController extends BaseController
 {
@@ -61,19 +61,32 @@ class MoviesController extends BaseController
             //     $query->where('film_id',$filmID);
             // })
             // ->get();
+            // $rooms = City::join('clusters','cities.id','clusters.city_id')
+            // ->join('rooms','clusters.cluster_id','rooms.cluster_id')
+            // ->join('schedules','rooms.id','schedules.room_id')
+            // ->join('films','schedules.film_id','films.id')
+            // ->leftJoin('seats','rooms.id','seats.room_id')
+            // ->select('films.*','schedules.*','clusters.*','cities.*')
+            // ->with('rooms')
+            // ->where([
+            //     ['cities.id',$cityID],
+            //     ['films.id',$filmID],
+            // ])
+            // ->groupBy('cities.id')
+            // ->get();
+        
             $rooms = City::join('clusters','cities.id','clusters.city_id')
             ->join('rooms','clusters.cluster_id','rooms.cluster_id')
             ->join('schedules','rooms.id','schedules.room_id')
             ->join('films','schedules.film_id','films.id')
-            ->leftJoin('seats','rooms.id','seats.room_id')
-            ->select('films.*','schedules.*','clusters.*','cities.*',DB::raw('count(*) as seat_empty, seats.status'))
+            ->whereHas('rooms', function($query) use ($cityID) {
+                $query
+                ->join('schedules','rooms.id','schedules.room_id')
+                ->join('films','schedules.film_id','films.id')
+                ->where('cities.id','=',$cityID);
+            })
+            ->where('films.id','=',$filmID)
             ->with('rooms')
-            ->where([
-                ['cities.id',$cityID],
-                ['films.id',$filmID],
-                ['seats.status','=','normal'],
-            ])
-            ->groupBy('cities.id','seats.status')
             ->get();
 
             $seat_empty = DB::table('seats')
@@ -192,15 +205,19 @@ class MoviesController extends BaseController
 
             $dateCheck = $request->get('date');
 
-            $rooms = City::join('clusters','cities.id','clusters.city_id')
-            ->join('rooms','clusters.cluster_id','rooms.cluster_id')
-            ->join('schedules','rooms.id','schedules.room_id')
-            ->join('films','schedules.film_id','films.id')
-            ->select('films.*','schedules.*','rooms.*','clusters.*','cities.*')
-                ->with('rooms')
-                ->where('films.id',$ID)
-                ->groupBy('cities.id')
-                ->get();
+            // $rooms = City::with('rooms')->whereHas('rooms', function($query) use ($ID){
+            //     $query->where('films.id',$ID);
+            // })
+            // ->join('clusters','cities.id','clusters.city_id')
+            // ->join('rooms','clusters.cluster_id','rooms.cluster_id')
+            // ->join('schedules','rooms.id','schedules.room_id')
+            // ->join('films','schedules.film_id','films.id')
+            // ->select('films.*','schedules.*','clusters.*','rooms.*','cities.*')
+            //     ->where('films.id',$ID)
+            //     ->groupBy('cities.id')
+            //     ->get();
+
+            $rooms = Film::with('room_use_pivot_schedules')->where('films.id','=',$ID)->get();
 
             // TODO: SUCCESFULLY!
             // 0:

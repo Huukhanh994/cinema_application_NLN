@@ -8,12 +8,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('site.partials.css')
 
     <title>@yield('title') - {{ config('app.name') }}</title>
 
     @stack('custom_css')
+    
 </head>
 
 <body>
@@ -38,12 +42,20 @@
     <!-- ==========Ticket-Search========== -->
     @include('site.partials.ticket_search')  
     <!-- ==========Ticket-Search========== -->
-    <section class="about-section padding-top padding-bottom">
-        <div class="container">
-            @yield('content')
-        </div>
-    </section>
-        
+   
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <section class="about-section padding-top padding-bottom">
+            <main class="app-content" id="app">
+                @yield('content')
+            </main>
+        </section>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+    </div>
     <!-- ==========Movie-Main-Section========== -->
     {{-- @include('site.partials.movie_main') --}}
     <!-- ==========Movie-Main-Section========== -->
@@ -56,6 +68,8 @@
    @include('site.partials.js')
    
    @stack('custom_js')
+
+   @stack('custom_vue')
 </body>
 
 

@@ -28,5 +28,6 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer('site.partials.header', function ($view) {
             $view->with('categories', Category::orderByRaw('-name ASC')->get()->nest());
         });
+
     }
 }

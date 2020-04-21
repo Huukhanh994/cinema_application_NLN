@@ -23,6 +23,9 @@ use App\Repositories\RoomRepository;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\SeatRepository;
 use App\Repositories\ClusterRepository;
+use App\Contracts\OrderContract;
+use App\Repositories\OrderRepository;
+
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -37,6 +40,7 @@ class RepositoryServiceProvider extends ServiceProvider
         RateContract::class             =>          RateRepository::class,
         ScheduleContract::class         =>          ScheduleRepository::class,
         ClusterContract::class          =>          ClusterRepository::class,
+        OrderContract::class            =>          OrderRepository::class,
     ];
 
     /**

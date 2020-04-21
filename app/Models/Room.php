@@ -27,7 +27,7 @@ class Room extends Model
     
     public function film_using_pivot_schedules()
     {
-        return $this->belongsToMany(Film::class,'schedules');
+        return $this->belongsToMany(Film::class,'schedules')->withPivot('id','start_time','end_time');
     }
 
     public function cluster()
@@ -47,5 +47,10 @@ class Room extends Model
             'id',       // id room
             'cluster_id' // id cluster
         );
+    }
+
+    public function scopeWithAndWhereHas($query, $relation, $constraint){
+        return $query->whereHas($relation, $constraint)
+                     ->with([$relation => $constraint]);
     }
 }

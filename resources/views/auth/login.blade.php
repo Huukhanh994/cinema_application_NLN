@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="{{ asset('assets_client/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_client/css/all.min.css') }}">
@@ -22,9 +23,8 @@
 
     <link rel="shortcut icon" href="{{asset('assets_client/images/favicon.png')}}" type="image/x-icon">
 
-    <title>Boleto  - Online Ticket Booking Website HTML Template</title>
-
-
+    <title>Sign in</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -75,6 +75,10 @@
                             </label>
                             <a href="#0" class="forget-pass">Forget Password</a>
                         </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LfJJuwUAAAAABA8D8rbOp-tiTymOsqNdsGgFgZC">
+                            </div>
+                        </div>
                         <div class="form-group text-center">
                             <input type="submit" value="login">
                         </div>
@@ -120,6 +124,7 @@
     <script src="{{ asset('assets_client/js/viewport.jquery.js') }}"></script>
     <script src="{{ asset('assets_client/js/nice-select.js') }}"></script>
     <script src="{{ asset('assets_client/js/main.js') }}"></script>
+    
 </body>
 
 

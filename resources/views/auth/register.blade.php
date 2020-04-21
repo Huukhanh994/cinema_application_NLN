@@ -22,7 +22,7 @@
 
     <link rel="shortcut icon" href="{{asset('assets_client/images/favicon.png')}}" type="image/x-icon">
 
-    <title>Boleto  - Online Ticket Booking Website HTML Template</title>
+    <title>Sign up</title>
 
 
 </head>
@@ -51,12 +51,22 @@
                 <form class="account-form" method="POST" action="{{route('register')}}">
                     @csrf
                     <div class="form-group">
-                        <label for="name">Name<span>*</span></label>
-                        <input type="text" name="name" @error('name') is-valid @enderror placeholder="Enter Your Name" id="email" required autocomplete="name" autofocus>
-                        @error('name')
+                        <label for="first_name">First Name<span>*</span></label>
+                        <input type="text" name="first_name" @error('first_name') is-valid @enderror placeholder="Enter Your First Name" id="first_name" required autocomplete="first_name" autofocus>
+                        @error('first_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name<span>*</span></label>
+                        <input type="text" name="last_name" @error('last_name') is-valid @enderror placeholder="Enter Your Last Name" id="last_name" required
+                            autocomplete="last_name" autofocus>
+                        @error('last_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
                     <div class="form-group">

@@ -23,7 +23,9 @@ class CreateSeatsTable extends Migration
                 $table->bigInteger('seat_number')->unsigned();
                 $table->string('name');
                 $table->string('status')->default('normal');
-                $table->decimal('price',8,2)->default(0);
+                
+                $table->bigInteger('cos_id')->unsigned();
+                $table->foreign('cos_id')->references('cos_id')->on('category_of_seats')->onDelete('cascade');
                 $table->timestamps();
             }); 
         }

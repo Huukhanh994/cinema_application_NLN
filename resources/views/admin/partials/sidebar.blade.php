@@ -86,6 +86,13 @@
                         <span class="app-menu__label">Schedules</span>
                     </a>
                 </li>
+                <li>
+                    <a class="app-menu__item {{ Route::currentRouteName() == 'admin.orders.index' ? 'active' : '' }}"
+                        href="{{ route('admin.orders.index') }}">
+                        <i class="fas fa-box-open"></i>
+                        <span class="app-menu__label">Orders</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

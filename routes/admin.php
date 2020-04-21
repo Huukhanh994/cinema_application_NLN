@@ -8,9 +8,7 @@ Route::group(['prefix'  =>  'admin'], function () {
     Route::post('login', 'Admin\LoginController@login')->name('admin.login.post');
     Route::get('logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::group(['middleware' => ['auth:admin']], function () {
-        Route::get('/', function () {
-            return view('admin.dashboard.index');
-        })->name('admin.dashboard');
+        Route::get('/','Admin\OrderController@dashboard')->name('admin.dashboard');
     });
 
     Route::get('/settings', 'Admin\SettingController@index')->name('admin.settings');
@@ -121,6 +119,11 @@ Route::group(['prefix'  =>  'admin'], function () {
         Route::get('/{id}/edit','Admin\ClustersController@edit')->name('admin.clusters.edit');
         Route::post('/update','Admin\ClustersController@update')->name('admin.clusters.update');
         Route::get('/{id}/delete', 'Admin\ClustersController@delete')->name('admin.clusters.delete');
+    });
+
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', 'Admin\OrderController@index')->name('admin.orders.index');
+        Route::get('/{order}/show', 'Admin\OrderController@show')->name('admin.orders.show');
     });
 
 });

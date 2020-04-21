@@ -37,7 +37,7 @@
         /* Add styles to the form container */
         .form-container {
           width: 1500px;
-          height: 864px;
+          height: 250vh;
           max-width: 1500px;
           padding: 10px;
           background-color: white;
@@ -115,7 +115,11 @@
             padding: 20px 0;
         }
         
-        
+        ul.toggle-tabs li:hover{
+            background: black;
+            transition: 0.5s;
+            color: white;
+        }
         ul.toggle-tabs li {
             border: 2px solid #fff;
             border-radius: 5px;
@@ -295,7 +299,7 @@
                                 
                             </div>
                             <div id="show_not_films" style="color:red; display: none">
-                                Xin lỗi không có phim trong ngày này, vui lòng chọn ngày khác.
+                                Not found film on this day. Please choose another!
                             </div>
                             <div id="show_cities" class="row" style="display:none">
                                
@@ -314,7 +318,6 @@
                             </div>
                     </form>
                 </div>
-                  
             </section>
             <!-- ==========Book-Section========== -->
 
@@ -606,21 +609,71 @@
 
    @include('site.partials.js')
    <script>
+    var arrayList = 
+    [   
+        {
+            city_id: 2,
+            city_name: "Hồ Chí Minh",
+            },
+        {
+            city_id: 2,
+            city_name: "Hồ Chí Minh",
+        },
+        {
+            city_id: 3,
+            city_name: "Hà Nội",
+            },
+        {
+            city_id: 3,
+            city_name: "Hà Nội",
+        }
+    ];
+    
+    function setUnique(array) {
+        var flags = [], output = [], l = array.length, i;
+        for( i=0; i<l; i++) {
+            if( flags[array[i].city_name]) continue;
+            flags[array[i].city_name] = true;
+            output.push(array[i]);
+        }
+        return output;
+    }
+    
+    var array_Clusters = [
+        {
+            cluster_id: 2,
+            cluster_name: "CGV Hùng Vương Plaza",
+            room_name: "Cinema 1",
+            room_id: 6
+        },
+        {
+            cluster_id: 2,
+            cluster_name: "CGV Hùng Vương Plaza",
+            room_name: "Cinema 3",
+            room_id: 8
+        },
+    ]
+    function setUniqueCluster(array) {
+        var flags = [], output = [], l = array.length, i;
+        for( i=0; i<l; i++) {
+            if( flags[array[i].cluster_name]) continue;
+            flags[array[i].cluster_name] = true;
+            output.push(array[i]);
+        }
+        return output;
+    }
 
-    // console.log(formatAMPM(new Date));
     function openForm() {
         document.getElementById("myForm").style.display = "block";
         var id = document.getElementById("myAnchor").getAttribute("target");
-        var result;
         // console.log(id);
         $.ajax({
             type: "GET",
             url: "{{route('movies.now_showing_ajax')}}",
             data: {id: id},
             success: function (response) {
-                var resultData = response.film_ajax;
-                result = response.rooms;
-                // console.log(response.rooms);
+                var resultData = response.film_ajax;     
+            
                 // console.log(response.film_ajax);
                 // console.log(response.films[0].start_time);
                 // console.log(response.films[0].end_time);
@@ -692,16 +745,20 @@
                 var list_rooms = "";
                 let list_citys = "<ul class='nav nav-pills mb-3' id='pills-tab' role='tablist'>";
                     response.rooms.forEach(city => {
-                        // console.log(city);  
-                        const listItem = '<li class="nav-item" style="margin: 0 10px;"><input type="hidden" name="filmID" id="filmID" value="'+city.film_id+'"> <a class="nav-link active" id="'+city.city_id+'" onclick="myFunction(this.id)" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">'+city.city_name+'</a> </li>'
-                        list_citys += listItem;
+                        let array_name_city = setUnique(city.room_use_pivot_schedules);
+                        // console.log(array_name_city);
+                        if(array_name_city) {
+                            array_name_city.forEach(citychild => {
+                                const listItem = '<li class="nav-item" style="margin: 0 10px;"><input type="hidden" name="filmID" id="filmID" value="'+citychild.film_id+'"> <a class="nav-link active" id="'+citychild.city_id+'" onclick="myFunction(this.id)" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">'+citychild.city_name+'</a> </li>'
+                                list_citys += listItem;       
+                            })
+                        }
                     })
                 list_citys +="</ul>";
 
                 $('#show_cities').html(list_citys);
-                var url = '{{route('booking.book_tickets',":id")}}';
+                // console.log(response.rooms)
                 $.each(response.rooms,function(index,roomValue){
-                        url = url.replace(':id',roomValue.cluster_id);
                         // console.log(new Date(roomValue.start_time).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"))
                         // TODO: Nếu phòng đó có thành phố thì lặp các thành phố đó ra.
                         list_rooms +=
@@ -709,35 +766,15 @@
                             list_rooms += '<dl>';
                             list_rooms += '<dt>';
                                 list_rooms +="<li class='nav-item'>";
-                                    list_rooms +='<a class="nav-link" href="'+url+'">'+roomValue.cluster_name+'</a>';
+                                    list_rooms +='<a class="nav-link" href="#">'+roomValue.cluster_name+'</a>';
                                     list_rooms +='</li>';
                                     list_rooms += '</dt>';
-                                    // if(roomValue.rooms) {
-                                    //     roomValue.rooms.forEach(room => {
-                                    //         list_rooms += '<dd>';
-                                    //         list_rooms += '<dl>';
-                                    //         list_rooms += '<dt><a class="nav-link" href="#">'+room.room_name+'</a></dt>';
-                                    //         list_rooms += "<dd>";
-                                    //         list_rooms += "<div>";
-                                    //         list_rooms += "<span>"+formatAMPM(new Date(roomValue.start_time))+"</span>";
-                                    //         list_rooms += "<span></span>";
-                                    //         list_rooms += "</div>";
-                                    //         list_rooms += "</dd>";
-                                    //         list_rooms += '</dl>';
-                                    //         list_rooms += '</dd>';
-                                    //     });
-                                    // }
                                     list_rooms += '</dl>';
                                     list_rooms +='</ul>';
                 });
-                // $('#show_rooms').html(list_rooms);
-
-
-                
+                // $('#show_rooms').html(list_rooms);   
             }
         });
-
-        return result;
 
     }
     Date.prototype.addDays = function(days) {
@@ -759,7 +796,6 @@
     var list_date = "";
     var weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     for (i = 0; i < dateArray.length; i ++ ) {
-        // console.log(dateArray[i]);
             list_date += "<ul class='toggle-tabs'>";
                 list_date += "<li>";
                 list_date += '<a href="#" id="'+dateArray[i].getFullYear()+"-"+(dateArray[i].getUTCMonth()+1)+"-"+dateArray[i].getUTCDate()+'" onclick="functionDate(this.id)">';
@@ -773,8 +809,7 @@
                         list_date += "</ul>";
         $('#top_calendar').html(list_date);
     }
- 
-    // let date = new Date();
+    
     function formatAMPM(date) {
         var hours = date.getHours();
         var minutes = date.getMinutes();
@@ -786,18 +821,17 @@
         return strTime;
     }
 
-    openForm(function(result) {
-        console.log(result);
-    })
+    var dateToDay;
     function functionDate(date)
     {
-        var id = document.getElementById("myAnchor").getAttribute("target");
-        const datecheck = date;
+        var id = document.getElementById("myAnchor").getAttribute("target"); // nay la id phim hay id city  // film :)))
+        // ngay de check
+        dateToDay = date;
         
         $.ajax({
             type: "GET",
             url: "{{route('movies.now_showing_ajax')}}",
-            data: {date: datecheck,filmID: id},
+            data: {date: dateToDay,filmID: id},        // truyền ngày check qua bên controller để so sánh có nằm giữa start and end ko?
             success: function (response) {
                 var endDate = new Date(response.max_date.end_time);
                 // console.log(endDate);
@@ -821,8 +855,9 @@
 
                     // console.log(check > from && check < to);
                     if(check > from && check <= to) {
-                        document.getElementById('show_cities').style.display = "block";
+                        document.getElementById('show_cities').style.display = "block";     // hiện thành phố
                         document.getElementById('show_not_films').style.display = "none";
+                        document.getElementById('show_rooms').style.display = "block";
                     }else {
                         document.getElementById('show_not_films').style.display = "block";
                         document.getElementById('show_cities').style.display = "none";
@@ -831,71 +866,65 @@
                     
                 });
             }
+            
         }); 
+       return dateToDay;
     }
+
     function closeForm() {
       document.getElementById("myForm").style.display = "none";
     }
 
-    </script>
-
-    <script>
-        function myFunction(value) {
-            const city_id = value;
-            const filmID = $('#filmID').val();
-            $.ajax({
-                type: "GET",
-                url: "{{ route('movies.now_showing_getRoomAjax') }}",
-                data: {cityID: city_id,filmID: filmID},
-                success: function (response) {
-                    // console.log(response.seat_empty);
-                    const seatEmpty = response.seat_empty;
-                    var url = '{{route('booking.book_tickets',":id")}}';
-
-                    let list_rooms = '<div class="tab-content" id="nav-tabContent">';
+    function myFunction(id) {
+        const city_id = id;
+        const film_id = $('#filmID').val();
+        $.ajax({
+            type: "GET",
+            url: "{{ route('movies.now_showing_getRoomAjax') }}",
+            data: {cityID: city_id,filmID: film_id},
+            success: function (response) {
+                // console.log(response.rooms);
+                const seatEmpty = response.seat_empty;
+                let list_rooms = '<div class="tab-content" id="nav-tabContent">';
                     response.rooms.forEach(room => {
-                        // console.log(room.room_name);
-                        list_rooms +=
-                               "<ul class='nav nav-pills nav-fill' style='margin: 0 10px;'>";
-                               list_rooms += '<dl>';
-                               list_rooms += '<dt>';
-                                list_rooms +="<li class='nav-item'>";
-                                    list_rooms +='<a class="nav-link" href="#">'+room.cluster_name+'</a>';
-                                    list_rooms +='</li>';
-                                    list_rooms += '</dt>';
-                                    if(room.rooms) {
-                                        room.rooms.forEach(roomchild => {
-                                            // console.log(roomchild);
-                                            url = url.replace(':id',roomchild.id);
+                    // console.log(room);
+                    list_rooms +=
+                            "<ul class='nav nav-pills nav-fill' style='margin: 0 10px;'>";
+                            list_rooms += '<dl>';
+                            list_rooms += '<dt>';
+                            list_rooms +="<li class='nav-item'>";
+                                list_rooms +='<a class="nav-link" href="#">'+room.cluster_name+'</a>';
+                                list_rooms +='</li>';
+                                list_rooms += '</dt>';
+                                        let url = '{{route('booking.book_tickets',":id")}}';
+                                        url = url.replace(':id',room.room_id);
+                                        list_rooms += '<dd>';
+                                        list_rooms += '<dl>';
+                                        list_rooms += '<dt><a class="nav-link" href="#">'+room.room_name+ "("+ room.city_name+")"+'</a></dt>';
+                                        list_rooms += "<dd>";
+                                        list_rooms += '<a href="/book_tickets/id=' + room.room_id + "/film="+room.film_id+"/today="+dateToDay+'" style="margin-left: 20px;border: 1px solid black;">';
+                                        list_rooms += "<span style='padding-left:20px; margin-right: 10px'>"+formatAMPM(new Date(room.start_time))+"</span> <br>";
+                                        if(seatEmpty) { 
+                                            seatEmpty.forEach(seat => {
+                                                list_rooms += "<span style='padding-left:20px; margin-right: 10px'>"+seat.seat_empty+" empty seat</span>";
+                                            })
+                                        }
+                                        list_rooms += "</a>";
+                                        list_rooms += "</dd>";
+                                        list_rooms += '</dl>';
+                                        list_rooms += '</dd>';
+                                list_rooms += '</dl>';
+                                list_rooms +='</ul>';
 
-                                            list_rooms += '<dd>';
-                                            list_rooms += '<dl>';
-                                            list_rooms += '<dt><a class="nav-link" href="#">'+roomchild.room_name+'</a></dt>';
-                                            list_rooms += "<dd>";
-                                            list_rooms += '<a href="'+url+'" style="margin-left: 20px;border: 1px solid black;">';
-                                            list_rooms += "<span style='padding-left:20px; margin-right: 10px'>"+formatAMPM(new Date(room.start_time))+"</span> <br>";
-                                            if(seatEmpty) {
-                                                seatEmpty.forEach(seat => {
-                                                    list_rooms += "<span style='padding-left:20px; margin-right: 10px'>"+seat.seat_empty+" ghế trống</span>";
-                                                })
-                                            }
-                                            list_rooms += "</a>";
-                                            list_rooms += "</dd>";
-                                            list_rooms += '</dl>';
-                                            list_rooms += '</dd>';
-                                        });
-                                    }
-                                    list_rooms += '</dl>';
-                                    list_rooms +='</ul>';
+                });
+                list_rooms += '</div>';
 
-                    });
-                    list_rooms += '</div>';
+                $('#show_rooms').html(list_rooms);
+            }
+        });
+    }
 
-                    $('#show_rooms').html(list_rooms);
-                }
-            });
-        }
-    </script>
+   </script>
 </body>
 
 

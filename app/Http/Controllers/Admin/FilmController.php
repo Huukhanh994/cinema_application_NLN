@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\Film;
 use App\Models\Rate;
+use App\Models\City;
+use App\Models\Room;
 
 class FilmController extends BaseController
 {
@@ -36,7 +38,31 @@ class FilmController extends BaseController
     public function index()
     {
         $films = $this->filmRepository->listFilms();
-
+        // dd(Film::whereHas('room_use_pivot_schedules', function($query) {
+        //     $query->join('clusters','rooms.cluster_id','clusters.cluster_id')
+        //     ->join('cities','clusters.city_id','cities.id')
+        //     ->join('seats','rooms.id','seats.room_id')
+        //     ->selectRaw(\DB::raw('count(seats.room_id) as seat_empty, seats.status'))
+        //     ->where([
+        //         ['cities.id','=',3],
+        //         ['seats.status','=','normal']
+        //     ])->groupBy('seats.status');
+        // })
+        // ->with('room_use_pivot_schedules')
+            
+        //     ->where('films.id','=',9)->get());
+        // $cityID = 3;
+        // $filmID = 9;
+       
+        // dd(City::whereHas('rooms', function($query) use ($cityID,$filmID) {
+        //     $query->whereHas('film_using_pivot_schedules', function($query) use ($filmID) {
+        //         $query->where('films.id','=',$filmID);
+        //     })
+        //     ->where('cities.id',$cityID);
+            
+        //  })
+        //  ->with('rooms')
+        //  ->get());
         $brands = $this->brandRepository->listBrands();
 
         $categories = $this->categoryRepository->listCategories();

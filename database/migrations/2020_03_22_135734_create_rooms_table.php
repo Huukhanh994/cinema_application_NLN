@@ -13,16 +13,20 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
-            $table->bigIncrements('room_id');
-            $table->bigInteger('cluster_id')->unsigned();
-            $table->foreign('cluster_id')->references('cluster_id')->on('clusters');
-
-            $table->string('room_name');
-            $table->integer('qty')->nullable();
-            $table->text('notes')->nullable();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('rooms'))
+        {
+            Schema::create('rooms', function (Blueprint $table) {
+                $table->bigIncrements('room_id');
+                $table->bigInteger('cluster_id')->unsigned();
+                $table->foreign('cluster_id')->references('cluster_id')->on('clusters');
+    
+                $table->string('room_name');
+                $table->integer('qty')->nullable();
+                $table->text('notes')->nullable();
+                $table->timestamps();
+            });
+        }
+        
     }
 
     /**

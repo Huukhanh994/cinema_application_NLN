@@ -8,7 +8,7 @@ class City extends Model
 {
     protected $table = 'cities';
 
-    protected $fillable = ['city_name'];
+    protected $fillable = ['id','city_name'];
 
     public function room()
     {
@@ -43,7 +43,11 @@ class City extends Model
             'cluster_id', // Foreign key on rooms table...
             'id', // Local key on cities table...
             'cluster_id' // Local key on clusters table...
-        );
+        )
+        ->join('schedules','rooms.id','schedules.room_id')
+        ->join('films','schedules.film_id','films.id')
+        ->select('schedules.*','rooms.*','clusters.*','films.*');
     }
+
 
 }

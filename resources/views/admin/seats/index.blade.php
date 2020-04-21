@@ -166,7 +166,7 @@
                           <td>{{$row->row}}</td>
                           @foreach ($seats as $seat)
                               @if ($seat->row === $row->row)
-                                <td style="display:inline"><div class="seat available" id="click_seat" data-seat="{{$seat->seat_number}}" name="{{$seat->name}}" value="{{$seat->name}}"></div></td>
+                                <td style="display:inline"><div class="seat available" id="click_seat" data-seat="{{$seat->id}}" name="{{$seat->name}}" value="{{$seat->name}}"></div></td>
                               @endif
                           @endforeach
                         @endif
@@ -179,7 +179,7 @@
                           <td>{{$row->row}}</td>
                           @foreach ($seats as $seat)
                               @if ($seat->row === $row->row)
-                                <td style="display:inline"><div class="seat available" id="click_seat" data-seat="{{$seat->seat_number}}" name="{{$seat->name}}" value="{{$seat->name}}"></div></td>
+                                <td style="display:inline"><div class="seat available" id="click_seat" data-seat="{{$seat->id}}" name="{{$seat->name}}" value="{{$seat->name}}"></div></td>
                               @endif
                           @endforeach
                         @endif
@@ -192,7 +192,7 @@
                           <td>{{$row->row}}</td>
                           @foreach ($seats as $seat)
                               @if ($seat->row === $row->row)
-                                <td style="display:inline"><div class="seat available" id="click_seat" data-seat="{{$seat->seat_number}}" name="{{$seat->name}}" value="{{$seat->name}}"></div></td>
+                                <td style="display:inline"><div class="seat available" id="click_seat" data-seat="{{$seat->id}}" name="{{$seat->name}}" value="{{$seat->name}}"></div></td>
                               @endif
                           @endforeach
                         @endif
@@ -219,23 +219,21 @@
 <script>
   $(function(){
     $('.seat').on('click',function(){ 
-
-
-      if($(this).hasClass( "selected" )){
-        $( this ).removeClass( "selected" );                  
+      if($(this).hasClass("selected")){
+        $( this ).removeClass("selected");                  
       }else{                   
-        $( this ).addClass( "selected" );
+        $( this ).addClass("selected");
       }
 
     });
 
     $('.seat').mouseenter(function(){     
-        $( this ).addClass( "hovering" );
+        $( this ).addClass("hovering");
 
-            $('.seat').mouseleave(function(){ 
-            $( this ).removeClass( "hovering" );
-              
-            });
+          $('.seat').mouseleave(function(){ 
+          $( this ).removeClass("hovering");
+            
+          });
     });
 
 

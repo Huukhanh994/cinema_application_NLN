@@ -40,6 +40,7 @@ class LoginController extends Controller
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|min:6',
+            'g-recaptcha-response' => 'required|recaptcha'
         ]);
 
         if (Auth::guard('admin')->attempt([
@@ -71,6 +72,7 @@ class LoginController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response' => 'required|recaptcha'
         ]);
 
         $admin = new Admin();

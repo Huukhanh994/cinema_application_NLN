@@ -79,7 +79,17 @@ class Film extends Model
 
     public function room_use_pivot_schedules()
     {
-        return $this->belongsToMany(Room::class,'schedules')->withPivot('id','start_time', 'end_time');  // từ bảng Film truy cập đến bản Room, and sử dụng bảng Schedules pivot
+        return $this->belongsToMany(Room::class,'schedules')
+        ->withPivot('id','start_time', 'end_time')
+        ->join('clusters','rooms.cluster_id','clusters.cluster_id')
+        ->join('cities','clusters.city_id','cities.id')
+        ->select('schedules.*','rooms.*','clusters.*','cities.*');
+        // từ bảng Film truy cập đến bản Room, and sử dụng bảng Schedules pivot
+    }
+
+    public function scopeWithAndWhereHas($query, $relation, $constraint){
+        return $query->whereHas($relation, $constraint)
+                     ->with([$relation => $constraint]);
     }
 
 }

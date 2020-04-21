@@ -184,7 +184,9 @@ return [
 
         // Added
         App\Providers\ViewComposerServiceProvider::class,
-
+        Darryldecode\Cart\CartServiceProvider::class,
+        # reCAPCHAT
+        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
     ],
 
     /*
@@ -236,6 +238,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        #
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
     ],
 
 ];

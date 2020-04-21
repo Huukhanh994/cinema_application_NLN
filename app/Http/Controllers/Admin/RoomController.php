@@ -12,6 +12,7 @@ use App\Models\Room;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use App\Contracts\ClusterContract;
+use App\Models\Film;
 
 class RoomController extends BaseController
 {
