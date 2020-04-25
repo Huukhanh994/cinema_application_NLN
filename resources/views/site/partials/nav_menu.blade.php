@@ -56,6 +56,9 @@
     <li>
         <a href="contact.html">contact</a>
     </li>
+    <li>
+        <a href="{{route('cinemas.index')}}">cinemas</a>
+    </li>
     @guest
     <li class="header-button pr-0">
         <a href="{{route('login')}}">login</a>

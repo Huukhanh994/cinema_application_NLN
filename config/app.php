@@ -187,6 +187,8 @@ return [
         Darryldecode\Cart\CartServiceProvider::class,
         # reCAPCHAT
         Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
+        #ratings
+        willvincent\Rateable\RateableServiceProvider::class,
     ],
 
     /*

@@ -52,7 +52,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="email">Email<span>*</span></label>
-                            <input type="text" name="email" @error('email') is-valid @enderror placeholder="Enter Your Email" id="email" required>
+                            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" required autocomplete="email" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password<span>*</span></label>
-                            <input type="password" name="password" @error('password') is-valid @enderror placeholder="Password" id="password" required>
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="password" required autocomplete="current-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

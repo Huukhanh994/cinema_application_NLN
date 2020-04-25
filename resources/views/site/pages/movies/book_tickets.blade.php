@@ -261,27 +261,29 @@
                         <div class="book-item">
                             <span>total price</span>
                             <input class="title" value="0$" readonly="readonly" type="text" id="total"
-                                name="totalPrice"></input>
+                            name="totalPrice">              {{-- TODO: Tổng giá tiền của các vé phim --}}
                         </div>
                         <div class="book-item">
+                            {{-- # PART OF FILM --}}
                             @foreach ($info_film as $film)
                             @foreach ($film->film_using_pivot_schedules as $item)
-                            <input type="hidden" name="filmID" value="{{$item->id}}">
+                                <input type="hidden" name="filmID" value="{{$item->id}}">
                             @endforeach
                             @endforeach
-
                             <input type="hidden" name="roomID" value="{{$roomID}}">
                             <input type="hidden" name="dateToday" value="{{$dateToday}}">
-                            <input type="hidden" name="foodID" id="food_id" value="">
-                            <input type="hidden" name="qty_food" value="">
-                            <input type="hidden" id="total_price_food" name="total_price_food" value="">
+
+                            {{-- # Part of Foods GỌI TỪ JAVASCRIPT Ở JS LÊN--}}
+                            <div id="part_foods">
+
+                            </div>
                             <a href="#" id="addFood" data-toggle="modal" data-target=".bd-example-modal-lg">add food</a>
                             <button type="submit" class="custom-button">proceed</button>
                         </div>
                     </div>
                     <div class="proceed-to-book">
                         <div class="book-item">
-                            <div class="book-item">
+                            {{-- <div class="book-item">
                                 <span>You have Choosed Food:</span>
                                 <span class="title" id="food_choosed"></span>
                                 <ul class="list-group" style="color: black;">
@@ -290,6 +292,14 @@
                                     <li class="list-group-item">Food Price for each food: <p id="food_add_price" style="color: black;"></p></li>
                                     <li class="list-group-item">Total price of foods: <p class="title" id="food_add_totalPrice"> </p></li>                                    
                                 </ul>
+                            </div> --}}
+                            <div class="book-item">
+                                <div id="show_table_foods">
+
+                                </div>
+                                <div id="show_sum_foods">
+
+                                </div>
                             </div>
                         </div>
                         
@@ -349,7 +359,6 @@
                                                             {{-- <input class="cart-plus-minus-box" id="qty_food"
                                                                 type="number" name="qty_food" value="2"> --}} 
                                                             <input type="number" name="qty_food" id="qty_food-{{$food->f_id}}" value="2">
-                                                            <input type="hidden" name="food_price" id="food_price-{{$food->f_id}}" value="{{$food->f_price}}">
                                                         </div>
                                                         @foreach ($info_film as $film)
                                                         @foreach ($film->film_using_pivot_schedules as $item)
@@ -359,11 +368,15 @@
                                                         <input type="hidden" name="roomID" id="room_id" value="{{$roomID}}">
                                                         <input type="hidden" name="dateToday" id="data_today" value="{{$dateToday}}">
                                                         <input type="hidden" name="food_name" value="{{$food->f_name}}">
+
+                                                        {{-- # Food --}}
+                                                        <input type="hidden" name="food_name" id="food_name-{{$food->f_id}}" value="{{$food->f_name}}">
+                                                        <input type="hidden" name="food_price" id="food_price-{{$food->f_id}}" value="{{$food->f_price}}">
                                                         <button type="button" class="tst3 custom-button" id="submit"
                                                             data-food_id="{{$food->f_id}}"
                                                             data-food_name="{{$food->f_name}}"
                                                             data-food_price="{{$food->f_price}}"
-                                                            onclick="addFood(this)">
+                                                            onclick="addFood(this); addEachFood(this);">
                                                             add
                                                         </button>
                                                     </form>
@@ -474,6 +487,159 @@
         var array_food_names = [];
         var array_food_qty = [];
         var array_food_price_each = [];
+       
+        // # array save foods
+        var foods = [];
+        // NEWS: thêm nhìu thức ăn nc uống Object in array
+        function addEachFood(d)
+        {
+            // # object of each foods such as: drink, food
+            var ob_food = {
+                id: "",
+                food_name: "",
+                qty: "",
+                price: "",
+            };
+            // # save all of values of foods
+            var foodID = d.getAttribute("data-food_id");
+            const foodName = document.getElementById('food_name-'+foodID).value;
+            const foodQty = document.getElementById('qty_food-'+foodID).value;
+            const foodPrice = document.getElementById('food_price-'+foodID).value;
+
+            // # DONT USE
+            array_food_names.push(foodName);
+            array_food_qty.push(foodQty);
+            var totalQty = 0;
+            for(var i = 0; i < array_food_qty.length; i++)
+            {
+                totalQty += parseInt(array_food_qty[i]);    
+            }
+            
+            ob_food["id"] = foodID;
+            ob_food["food_name"] = foodName;
+            ob_food["qty"] = foodQty;
+            ob_food["price"] = foodPrice;
+            foods.push(ob_food);
+            
+            var render_foods = "<table class='table table-striped' style='background-color: white;'>";
+                                render_foods += "<thead>";
+                                    render_foods +="<tr>";
+                                    render_foods +="<th scope='col'>#</th>";
+                                    render_foods +="<th scope='col'>Food Name</th>";
+                                    render_foods +="<th scope='col'>Food Qty</th>";
+                                    render_foods +="<th scope='col'>Each price</th>";
+                                    render_foods +="<th scope='col'>Total price</th>";
+                                    render_foods +="<th scope='col'>Action</th>";
+                                    render_foods +="</tr>";
+                                render_foods +="</thead>";
+                                render_foods +="<tbody>";
+                foods.forEach(foodChild => {
+                render_foods +="<tr>";
+                    render_foods +="<th scope='row'>"+foodChild.id+"</th>";
+                    render_foods +="<td>"+foodChild.food_name+"</td>";
+                    render_foods +="<td>"+foodChild.qty+"</td>";
+                    render_foods +="<td>@"+foodChild.price+"</td>";
+                    render_foods +="<td>#"+(parseFloat(foodChild.qty) * parseFloat(foodChild.price)).toFixed(1)+"</td>";
+                    render_foods +='<td><a href="#" id="'+foodChild.id+'" onclick="removeFoodChild(this.id)"><i class="fas fa-trash-alt"></i></a></td>';
+                    render_foods +="</tr>"
+                });
+                render_foods += "</tbody>";
+                render_foods += "</table>";
+                
+                $('#show_table_foods').html(render_foods);
+
+
+            //  truy cập đến field food_name in object into array JS
+            let resultFoodName = foods.map( ({ food_name }) => food_name);
+            // console.log(resultFoodName);
+            let resultQtyFood = foods.map(  ({ qty }) => qty)
+            // console.log(resultQtyFood);
+            let result = foods.map(({ id, food_name, qty, price }) => ({id,food_name, qty, price}));
+            // console.log(result);
+
+            var amout_payment = 0.0;
+            var total_price = 0.0;
+            var totalQty = 0;
+            var array_foodID = [];
+            var array_name = [];
+            // var render_sum_foods = '<ul class="list-group" style="color: black;">'
+            for(var j = 0; j < result.length; j++)
+            {
+                // console.log(result[j].price);
+                // console.log(total_price += parseFloat(result[j].price));
+                
+                array_name.push(result[j].food_name);
+                totalQty += parseInt(result[j].qty);
+                total_price += parseFloat(result[j].price);
+                amout_payment += parseFloat(result[j].qty) * parseFloat(result[j].price);
+                array_foodID += result[j].id + ",";
+                // console.log(amout_payment);
+                // render_sum_foods += '<li class="list-group-item">Food name: <p id="food_add_name" style="color: black;">'+array_name+'</p>';
+                //     render_sum_foods +='</li>';
+                // render_sum_foods +='<li class="list-group-item">Food quantity: <p id="food_add_qty" style="color: black;">'+totalQty+'</p>';
+                //     render_sum_foods +='</li>';
+                // render_sum_foods +='<li class="list-group-item">Total price of foods: <p class="title">'+total_price+'</p>';
+                //     render_sum_foods +='</li>';
+            }
+            // render_sum_foods += '</ul>';
+            // $('#show_sum_foods').html(render_sum_foods);
+            var foodID = array_foodID.toString();
+            // console.log(test.replace(/,\s*$/, ""));
+            var render_sum_foods = '<ul class="list-group" style="color: black;">'
+                render_sum_foods += '<li class="list-group-item">Food name: <p id="food_add_name" style="color: black;">'+array_name+'</p>';
+                    render_sum_foods +='</li>';
+                render_sum_foods +='<li class="list-group-item">Food quantity: <p style="color: black;">'+totalQty+'</p>';
+                    render_sum_foods +='</li>';
+                render_sum_foods +='<li class="list-group-item">Amout payment: <p class="title">'+amout_payment.toFixed(1)+'</p>';
+                    render_sum_foods +='</li>';
+            render_sum_foods += '</ul>';
+
+            $('#show_sum_foods').html(render_sum_foods);
+                
+            
+            var part_food = '<input type="hidden" name="foodID[]" id="food_id" value="'+foodID.replace(/,\s*$/, "")+'">'
+                part_food += '<input type="hidden" name="foodName[]" id="food_name" value="'+array_name+'">';
+                part_food +='<input type="hidden" name="qty_food" value="'+totalQty+'">';
+                part_food +='<input type="hidden" id="total_price_food" name="total_price_food" value="'+amout_payment+'">';
+           
+            $('#part_foods').html(part_food);
+        }
+       // # remove foods after you select food on top
+       function removeFoodChild(food_id)
+        {
+            foods = foods.slice(0, foods.length - 1);       // foods.pop() remove last element from array
+            // foods.splice(food_id, 1);        // remove this position of array
+                var render_foods = "<table class='table table-striped' style='background-color: white;'>";
+                    render_foods += "<thead>";
+                        render_foods +="<tr>";
+                            render_foods +="<th scope='col'>#</th>";
+                            render_foods +="<th scope='col'>Food Name</th>";
+                            render_foods +="<th scope='col'>Food Qty</th>";
+                            render_foods +="<th scope='col'>Each price</th>";
+                            render_foods +="<th scope='col'>Total price</th>";
+                            render_foods +="<th scope='col'>Action</th>";
+                            render_foods +="</tr>";
+                        render_foods +="</thead>";
+                    render_foods +="<tbody>";
+
+
+                        foods.forEach(foodChild => {
+                        render_foods +="<tr>";
+                            render_foods +="<th scope='row'>"+foodChild.id+"</th>";
+                            render_foods +="<td>"+foodChild.food_name+"</td>";
+                            render_foods +="<td>"+foodChild.qty+"</td>";
+                            render_foods +="<td>@"+foodChild.price+"</td>";
+                            render_foods +="<td>#"+(parseFloat(foodChild.qty) * parseFloat(foodChild.price)).toFixed(1)+"</td>";
+                            render_foods +='<td><a href="#" id="'+foodChild.id+'" onclick="removeFoodChild(this.id)"><i class="fas fa-trash-alt"></i></a></td>';
+                            render_foods +="</tr>"
+                        });
+                        render_foods += "</tbody>";
+                    render_foods += "</table>";
+
+                $('#show_table_foods').html(render_foods);
+            return false;
+        }
+        // OLD: 
         function addFood(d) {   
             // ID Food
             var foodID = d.getAttribute("data-food_id");
@@ -495,17 +661,17 @@
 
 
             // # VIEW render to show client
-            document.getElementById('food_add_name').innerHTML = foodName;
-            document.getElementById('food_add_qty').innerHTML = qtyFood;
-            document.getElementById('food_add_price').innerHTML = foodPrice;
-            document.getElementById('food_add_totalPrice').innerHTML = totalPriceFood;
-            document.getElementById('food_choosed').innerHTML = foodName + "-" + foodPrice + "-" + qtyFood;
+            // document.getElementById('food_add_name').innerHTML = foodName;
+            // document.getElementById('food_add_qty').innerHTML = qtyFood;
+            // document.getElementById('food_add_price').innerHTML = foodPrice;
+            // document.getElementById('food_add_totalPrice').innerHTML = totalPriceFood;
+            // document.getElementById('food_choosed').innerHTML = foodName + "-" + foodPrice + "-" + qtyFood;
             
 
             // # pass into input hidden to controller get to handle
-            document.querySelector('input[name=foodID]').value = foodID;
-            document.querySelector('input[name="qty_food"]').value = qtyFood;
-            document.querySelector('input[name="total_price_food"]').value = totalPriceFood;
+            // document.querySelector('input[name=foodID]').value = foodID;
+            // document.querySelector('input[name="qty_food"]').value = qtyFood;
+            // document.querySelector('input[name="total_price_food"]').value = totalPriceFood;
         }
     
     </script>

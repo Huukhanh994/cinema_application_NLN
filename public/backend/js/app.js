@@ -33853,7 +33853,8 @@ if (token) {
 Vue.use(vue_swal__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.component('attribute-values', __webpack_require__(/*! ./components/AttributeValues.vue */ "./resources/js/components/AttributeValues.vue")["default"]);
 Vue.component('film-attribute', __webpack_require__(/*! ./components/FilmAttribute.vue */ "./resources/js/components/FilmAttribute.vue")["default"]);
-Vue.component('add-seat', __webpack_require__(/*! ./components/AddSeat.vue */ "./resources/js/components/AddSeat.vue")["default"]);
+Vue.component('add-seat', __webpack_require__(/*! ./components/AddSeat.vue */ "./resources/js/components/AddSeat.vue")["default"]); // Vue.component('language-switcher', require('./components/LanguageSwitcher.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

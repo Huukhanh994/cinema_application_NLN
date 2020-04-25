@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "parsedown/laravel": "^1.2",
         "paypal/rest-api-sdk-php": "*",
-        "typicms/nestablecollection": "^1.1"
+        "typicms/nestablecollection": "^1.1",
+        "willvincent/laravel-rateable": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

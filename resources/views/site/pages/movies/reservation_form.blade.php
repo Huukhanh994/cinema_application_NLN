@@ -184,17 +184,19 @@
         </ul>
         <ul class="side-shape">
             <li>
-                @forelse ($foods as $food)
-                <h6 class="subtitle"><span>{{$food->categoryfood->cof_name}}</span><span
+               
+                <h6 class="subtitle"><span>food & bevarage</span><span
                         id="totalPriceFood">{{$totalPriceFood}}</span></h6>
 
-                <span class="info"><span>{{$food->f_name}} </span></span>
-                @empty
-                <p>No food not found</p>
-                @endforelse
-            </li>
-            <li>
-                <h6 class="subtitle"><span>food & bevarage</span></h6>
+                <span class="info">
+                    @if (isset($food_names))
+                        @foreach ($food_names as $item)
+                            <span>{{$item}}</span>
+                        @endforeach
+                    @else
+                        <span>No food Name</span>
+                    @endif
+                </span>
             </li>
         </ul>
         @endforeach
@@ -207,6 +209,7 @@
 
 <script>
     var totalPrice = document.getElementById('totalPriceSeat').innerHTML;
+    var totalPriceFood = document.getElementById('totalPriceFood').innerHTML;
     if(totalPriceFood == null || totalPriceFood == "")
     {
         totalPriceFood = 0;
@@ -217,8 +220,6 @@
         
         document.querySelector('input[name="total_price"]').value = (parseFloat(totalPrice) + parseFloat(totalPriceFood));
     }else {
-        var totalPriceFood = document.getElementById('totalPriceFood').innerHTML;
-
         var totalPrice = totalPrice.replace('$','');
 
         document.getElementById('price').innerHTML = (parseFloat(totalPrice) + parseFloat(totalPriceFood));
