@@ -19,9 +19,7 @@
         "parsedown/laravel": "^1.2",
         "paypal/rest-api-sdk-php": "*",
         "typicms/nestablecollection": "^1.1",
-        "willvincent/laravel-rateable": "^2.1"
-    },
-    "require-dev": {
+        "willvincent/laravel-rateable": "^2.1",
         "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
@@ -29,6 +27,9 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
+    },
+    "require-dev": {
+        
     },
     "config": {
         "optimize-autoloader": true,
