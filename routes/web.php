@@ -42,8 +42,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
 });
 
-Route::get('/account/orders','Site\AccountOrdersController@getOrders')->name('account.orders');
-Route::get('/account/orders/details','Site\AccountOrdersController@getOrdersDetail')->name('account.orders_details');
+Route::group(['prefix' => 'account'], function () {
+    Route::get('orders', 'Site\AccountOrdersController@getOrders')->name('account.orders');
+    Route::get('orders/details', 'Site\AccountOrdersController@getOrdersDetail')->name('account.orders_details');
+});
 
 
 Route::group(['prefix' => 'cinemas'], function () {

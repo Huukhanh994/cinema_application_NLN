@@ -23,5 +23,20 @@
 				"label": "whereHas and with of Model"
 			}
 		]
+	},
+	{
+		"path": "$ROOTPATH$\\resources\\views\\site\\pages\\account\\orders.blade.php",
+		"bookmarks": [
+			{
+				"line": 53,
+				"column": 17,
+				"label": "Use Vue follow kind of Global on index.html"
+			},
+			{
+				"line": 71,
+				"column": 17,
+				"label": "Use Vue follow kind of Local in index.html"
+			}
+		]
 	}
 ]
