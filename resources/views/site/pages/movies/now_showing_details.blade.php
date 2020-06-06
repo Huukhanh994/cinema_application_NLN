@@ -6,7 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    @include('site.partials.css')
+   {{-- <link rel="stylesheet" href="{{ asset('assets_client/css/bootstrap.min.css') }}"> --}}
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ asset('assets_client/css/all.min.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/animate.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/flaticon.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/magnific-popup.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/odometer.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/owl.carousel.min.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/owl.theme.default.min.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/nice-select.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/jquery.animatedheadline.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/main.css') }} ">
+    
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
 
     <title>Details</title>
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" /> --}}
@@ -16,6 +29,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {{-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -442,6 +458,36 @@
                                                 @endforeach
                                             </div>
                                         </div>
+                                        <br>
+                                        <br>
+                                        @auth
+                                        <form action="{{ route('movies.post_ratings') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <div class="card">
+                                                <div class="container-fliud">
+                                                    <div class="wrapper row">
+                                                        <div class="details col-md-6">
+                                                            <h3 class="product-title"></h3>
+                                                            <div class="rating">
+                                                                <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5"
+                                                                    data-step="1" value="{{ $film->userAverageRating }}" data-size="xs">
+                                                                <input type="hidden" name="id" required="" value="{{ $film->id }}">
+                                                                <span class="review-no">422 reviews</span>
+                                                                <br />
+                                                                <button class="btn btn-success">Submit Review</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>  
+                                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+                                            data-numposts="5" data-width=""></div>  
+                                        <div id="fb-root"></div>
+                                        <script async defer crossorigin="anonymous"
+                                            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=1044383589264310&autoLogAppEvents=1">
+                                        </script>
+                                        @endauth
                                         <div class="tab-item">
                                             <div class="movie-review-item">
                                                 <div class="author">

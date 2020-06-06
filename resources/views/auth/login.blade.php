@@ -54,6 +54,7 @@
                             <label for="email">Email<span>*</span></label>
                             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
                                 id="email" required autocomplete="email" autofocus>
+
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -65,6 +66,7 @@
                             <input type="password" name="password"
                                 class="form-control @error('password') is-invalid @enderror" id="password" required
                                 autocomplete="current-password">
+
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

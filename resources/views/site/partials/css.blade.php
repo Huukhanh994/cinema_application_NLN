@@ -1,4 +1,5 @@
-    <link rel="stylesheet" href="{{ asset('assets_client/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_client/css/bootstrap.min.css') }}">   
+    {{-- change this for{{-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"> --}} --}}
     <link rel="stylesheet" href="{{ asset('assets_client/css/all.min.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets_client/css/animate.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets_client/css/flaticon.css') }} ">

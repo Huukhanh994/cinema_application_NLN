@@ -268,12 +268,13 @@
                             <span>total price</span>
                             <input class="title" value="0$" readonly="readonly" type="text" id="total"
                                 name="totalPrice"> {{-- TODO: Tổng giá tiền của các vé phim --}}
+
                         </div>
                         <div class="book-item">
                             {{-- # PART OF FILM --}}
                             @foreach ($info_film as $film)
                             @foreach ($film->film_using_pivot_schedules as $item)
-                            <input type="hidden" name="filmID" value="{{$item->id}}">
+                                <input type="hidden" name="filmID" value="{{$item->id}}">
                             @endforeach
                             @endforeach
                             <input type="hidden" name="roomID" value="{{$roomID}}">
@@ -366,6 +367,7 @@
                                                                 type="number" name="qty_food" value="2"> --}}
                                                             <input type="number" name="qty_food"
                                                                 id="qty_food-{{$food->f_id}}" value="2">
+
                                                         </div>
                                                         @foreach ($info_film as $film)
                                                         @foreach ($film->film_using_pivot_schedules as $item)
@@ -384,6 +386,7 @@
                                                             id="food_name-{{$food->f_id}}" value="{{$food->f_name}}">
                                                         <input type="hidden" name="food_price"
                                                             id="food_price-{{$food->f_id}}" value="{{$food->f_price}}">
+
                                                         <button type="button" class="tst3 custom-button" id="submit"
                                                             data-food_id="{{$food->f_id}}"
                                                             data-food_name="{{$food->f_name}}"

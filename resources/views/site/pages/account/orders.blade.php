@@ -40,4 +40,34 @@
             </div>
         </div>
         <!-- Column -->
+        {{-- TODO: Use Vue follow kind of Global Vue in index.html --}}
+        {{-- <div id="app">
+            <tdc-component></tdc-component>
+        </div>
+       <script src="https://unpkg.com/vue@2.4.2" type="text/javascript"></script>
+        <script type="text/javascript">
+            Vue.component('tdc-component', {
+                template: '<h1>Test</h1>'
+            });
+            var app = new Vue({
+                el: '#app'
+            })
+        </script> --}}
+
+        {{-- TODO: Use Vue follow kind of Local Vue in index.html --}}
+        {{-- <div id="app">
+           <hello-sir></hello-sir>
+        </div>
+        <script src="https://unpkg.com/vue@2.4.2" type="text/javascript"></script>
+        <script type="text/javascript">
+            var temp = {
+                template: '<h1>Hello Vue on this page!</h1>'
+            };
+            var app = new Vue({
+                el: '#app',
+                components: {
+                    'hello-sir': temp
+                }
+            })
+        </script> --}}
 @endsection

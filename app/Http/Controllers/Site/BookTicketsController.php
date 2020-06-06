@@ -106,7 +106,7 @@ class BookTicketsController extends BaseController
 
         # id thức ăn đã chọn
         $food_id = $request->input('foodID');
-
+        
         # tổng giá sau khi nhân với số lượng suất của món ăn đó
         $totalPriceFood = $request->get('total_price_food');
 

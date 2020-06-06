@@ -144,6 +144,7 @@
                     </form>
                     <div class="option">
                         Already have an account? <a href="{{route('login')}}">Login</a>
+
                     </div>
                     <div class="or"><span>Or</span></div>
                     <ul class="social-icons">

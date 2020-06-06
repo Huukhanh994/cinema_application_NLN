@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use willvincent\Rateable\Rateable;
 
 class Film extends Model
 {
+    use Rateable;
     protected $table = 'films';
 
     protected $fillable = [
@@ -67,6 +69,7 @@ class Film extends Model
         return str_limit(strip_tags($this->bodyHtml()),$length);
     }
 
+    # Short content of long content
     private function bodyHtml()
     {
         return \Parsedown::instance()->text($this->describe);
@@ -87,6 +90,7 @@ class Film extends Model
         // từ bảng Film truy cập đến bản Room, and sử dụng bảng Schedules pivot
     }
 
+    // # whereHas and with of Model
     public function scopeWithAndWhereHas($query, $relation, $constraint){
         return $query->whereHas($relation, $constraint)
                      ->with([$relation => $constraint]);

@@ -291,4 +291,17 @@ class MoviesController extends BaseController
             ]);
         }
     }
+
+    // Post Ratings
+    public function postRatings(Request $request)
+    {
+        request()->validate(['rate' => 'required']);
+        $post = Film::find($request->id);
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rate;
+        $rating->user_id = auth()->user()->id;
+        $post->ratings()->save($rating);
+
+        return redirect()->route("movies.now_showing");
+    }
 }

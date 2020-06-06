@@ -1,0 +1,42 @@
+[
+	{
+		"path": "$ROOTPATH$\\resources\\views\\site\\pages\\movies\\book_tickets.blade.php",
+		"bookmarks": [
+			{
+				"line": 534,
+				"column": 39,
+				"label": "Get value of field of Object into Array Javascript"
+			}
+		]
+	},
+	{
+		"path": "$ROOTPATH$\\app\\Models\\Film.php",
+		"bookmarks": [
+			{
+				"line": 73,
+				"column": 5,
+				"label": "Short content of long content"
+			},
+			{
+				"line": 93,
+				"column": 5,
+				"label": "whereHas and with of Model"
+			}
+		]
+	},
+	{
+		"path": "$ROOTPATH$\\resources\\views\\site\\pages\\account\\orders.blade.php",
+		"bookmarks": [
+			{
+				"line": 53,
+				"column": 17,
+				"label": "Use Vue follow kind of Global on index.html"
+			},
+			{
+				"line": 71,
+				"column": 17,
+				"label": "Use Vue follow kind of Local in index.html"
+			}
+		]
+	}
+]

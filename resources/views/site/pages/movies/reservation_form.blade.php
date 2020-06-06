@@ -197,6 +197,7 @@
                     @endforeach
                     @else
                     <span>No food Name</span>
+
                     @endif
                 </span>
             </li>
