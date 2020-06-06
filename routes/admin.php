@@ -3,9 +3,14 @@
 
 Route::group(['prefix'  =>  'admin'], function () {
     Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+
+    // GITHUB LOGIN SOCIALTE
+    Route::get('login/github', 'Admin\LoginController@redirectToProvider');
+    Route::get('login/github/callback', 'Admin\LoginController@handleProviderCallback');
+
     Route::get('register','Admin\LoginController@showRegisterForm')->name('admin.register');
     Route::post('register','Admin\LoginController@storeRegister')->name('admin.auth.store.register');
-    Route::post('login', 'Admin\LoginController@login')->name('admin.login.post');
+    Route::post('login_post', 'Admin\LoginController@storeLogin')->name('admin.login_post');
     Route::get('logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/','Admin\OrderController@dashboard')->name('admin.dashboard');

@@ -8,6 +8,7 @@ window._ = require('lodash');
 
 window.Vue = require('vue');
 
+import store from './store/index'
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -15,7 +16,7 @@ window.Vue = require('vue');
  */
 
 window.axios = require('axios');
-
+window.Pusher = require('pusher-js');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -50,6 +51,9 @@ Vue.component('attribute-values', require('./components/AttributeValues.vue').de
 Vue.component('film-attribute', require('./components/FilmAttribute.vue').default);
 Vue.component('add-seat', require('./components/AddSeat.vue').default);
 // Vue.component('language-switcher', require('./components/LanguageSwitcher.vue').default);
+Vue.component('comments', require('./components/Comments.vue').default);
+Vue.component('comment',require('./components/Comment.vue').default);
+Vue.component('new-comment',require('./components/NewComment.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -57,5 +61,6 @@ Vue.component('add-seat', require('./components/AddSeat.vue').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });
