@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Socialite;
+
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
@@ -34,13 +36,12 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
-    public function login(Request $request)
+    public function storeLogin(Request $request)
     {
         // dd($request->all());
         $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-            'g-recaptcha-response' => 'required|recaptcha'
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
         if (Auth::guard('admin')->attempt([
@@ -85,5 +86,43 @@ class LoginController extends Controller
 
         return redirect()->route('admin.login');
 
+    }
+
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $githubUser = Socialite::driver('github')->user();
+
+        $user = Admin::where('provider_id', $githubUser->getId())->first();
+
+        if (!$user) {
+            // add user to database
+            $user = Admin::create([
+                'email' => $githubUser->getEmail(),
+                'name' => $githubUser->getName(),
+                'provider_id' => $githubUser->getId(),
+            ]);
+        }
+
+        // login the user
+        Auth::login($user, true);
+
+        return redirect()->intended(route('admin.orders.index'));
+        
     }
 }

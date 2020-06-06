@@ -103,23 +103,24 @@ class BookTicketsController extends BaseController
 
         # tổng giá của các vé phim
         $totalPrice = $request->get('totalPrice');
-
+        
         # id thức ăn đã chọn
         $food_id = $request->input('foodID');
         
         # tổng giá sau khi nhân với số lượng suất của món ăn đó
         $totalPriceFood = $request->get('total_price_food');
-
+        
         # tên của 1 or Many thức ăn nc uống
         $food_names = $request->input('foodName');
 
         $foods = Food::with(['categoryfood', 'combos'])->where('f_id', $food_id)->get();
-
+        
+        # Đếm số lượng thức ăn đã đặt
         $qty_food = $request->get('qty_food');
-
+        
         # danh sách tên số vé đã đặt
         $list_seatname = $request->input('seat');
-
+        // dd($list_seatname);
         // dd(count(collect($request->input('seat'))));
         $filmID = $request->get('filmID');
 
@@ -143,6 +144,6 @@ class BookTicketsController extends BaseController
             ->where('id', $roomID)
             ->get();
 
-        return view('site.pages.movies.reservation_form', compact('totalPrice', 'list_seatname', 'info_film', 'list_times', 'today', 'qty_food', 'food_names', 'foods', 'totalPriceFood'));
+        return view('site.pages.movies.reservation_form', compact('totalPrice', 'list_seatname', 'info_film', 'list_times', 'today', 'qty_food', 'food_names', 'foods', 'totalPriceFood','roomID'));
     }
 }

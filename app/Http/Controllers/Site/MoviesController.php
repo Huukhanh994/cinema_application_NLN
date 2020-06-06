@@ -9,13 +9,16 @@ use App\Contracts\RateContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\City;
+use App\Models\Comment;
 use App\Models\Film;
 use App\Models\Rate;
+use App\Models\Rating;
 use App\Models\Room;
 use App\Models\Schedule;
 use App\Models\Seat;
 use Carbon;
 use DB;
+use DataTables;
 
 class MoviesController extends BaseController
 {
@@ -42,8 +45,8 @@ class MoviesController extends BaseController
 
     public function getNowShowing()
     {
-        $films = Film::with(['brand','images','attributes','categories','rates','schedule_film'])->get();
-        // dd($films);
+        $films = Film::with(['brand','images','attributes','categories','rates','schedule_film'])->paginate(6);
+
         $this->setPageTitle('Now Showing','Now Showing');
 
         return view('site.pages.movies.now_showing',compact('films'));
@@ -150,12 +153,27 @@ class MoviesController extends BaseController
     public function show($slug)
     {
         $film = $this->filmRepository->findFilmBySlug($slug);
-
+        
         $list_actor = explode(', ', $film->actor);
 
         $this->setPageTitle('Now Showing Details','Now Showing Details');
         // dd($film);
-        return view('site.pages.movies.now_showing_details',compact('film','list_actor'));
+        $comments = Comment::with(['user','film'])->whereHas('film',function($q) use ($slug){
+            $q->where('slug',$slug);
+        })
+        ->get();
+        // dd($comments);
+        $count_comment = Comment::with('film')->whereHas('film', function ($q) use ($slug) {
+            $q->where('slug', $slug);
+        })
+        ->count();
+
+        $rating_film = Rating::with(['user','film'])->whereHas('film', function ($q) use ($slug) {
+            $q->where('slug', $slug);
+        })
+        ->get();
+
+        return view('site.pages.movies.now_showing_details',compact('film','list_actor','comments','count_comment','rating_film'));
     }
 
     public function getAjax(Request $request)

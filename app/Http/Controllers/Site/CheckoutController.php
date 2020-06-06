@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Contracts\OrderContract;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderShipped;
 use App\Models\Film;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -11,7 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\PayPalService;
 use App\Models\Seat;
-
+use Mail;
 class CheckoutController extends Controller
 {
     protected $orderRepository;
@@ -27,11 +28,16 @@ class CheckoutController extends Controller
     {
         // # Danh sách các tên ghế và đổi trạng thái của nó lại booked!
         $list_seats_name = $request->input('seat_name');
+        // TODO: ERROR. PHẢI CHECK THÊM PHÒNG NỮA .
         foreach ($list_seats_name as $seatname) {
             // $seatname = A1 (one seatname of array list_seat_name)
-            $seatchange = Seat::where('name', $seatname)->first();
+            $seatchange = Seat::where([
+                ['name', '=', $seatname],
+                ['room_id','=',$request->get('roomID')]
+            ])->first();
+            
             $seatchange->status = 'booked';
-            $seatchange->save();
+            $seatchange->update();
         }
         $order = Order::create([
             'order_number'            =>  'ORD-' . strtoupper(uniqid()),
@@ -43,6 +49,7 @@ class CheckoutController extends Controller
             'order_payment_method'    =>  null,
             'order_first_name'        =>  $request->get('first_name'),
             'order_last_name'         =>  $request->get('last_name'),
+            'order_email'             =>  $request->get('email'),
             'order_address'           =>  $request->get('address'),
             'order_city'              =>  $request->get('city'),
             'order_country'           =>  $request->get('country'),
@@ -53,14 +60,33 @@ class CheckoutController extends Controller
 
         if ($order) {
             $film = Film::where('id',$request->get('filmID'))->first();
-
+            
             $orderItem = new OrderItem([
                 'order_id'  => $order->id,
                 'film_id'    =>  $film->id,
+                'order_item_quantity_food' => $request->get('quantity_food'),
+                'order_item_price_food'    => $request->get('total_price_foods'),
                 'order_item_quantity'      =>  $request->get('seat_tickets_count'),
                 'order_item_price'         =>  $request->get('total_price')
             ]);
-
+            // dd($order->order_email);
+            // TODO: SEND EMAIL
+            if (isset($order->order_email)) {
+                Mail::to($order->order_email)->send(new OrderShipped(
+                    $order->order_first_name,
+                    $order->order_last_name,
+                    $order->order_email,
+                    $order->order_address,
+                    $order->order_city,
+                    $order->order_country,
+                    $order->order_phone_number,
+                    $orderItem->order_item_quantity,
+                    $orderItem->order_item_price,
+                    $list_seats_name,
+                    $film->film_name,
+                ));
+            }
+            // dd("send email success");
             $orderItem->save();
             $this->payPal->processPayment($order);
         }

@@ -80,7 +80,7 @@ class FilmController extends BaseController
         $params = $request->except('_token');
 
         $film = $this->filmRepository->createFilm($params);
-
+        // dd($film);
         if (!$film) {
             return $this->responseRedirectBack('Error occurred while creating film.', 'error', true, true);
         }
@@ -104,7 +104,7 @@ class FilmController extends BaseController
     {
         // dd($request->all());
         $this->validate($request, [
-            'name'  => 'required|max:191',
+            'film_name'  => 'required|max:191',
         ]);
 
         $params = $request->except('_token');

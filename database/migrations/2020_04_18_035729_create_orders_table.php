@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_payment_method')->nullable();
             $table->string('order_first_name');
             $table->string('order_last_name');
+            $table->string('order_email');
             $table->text('order_address');
             $table->string('order_city');
             $table->string('order_country');

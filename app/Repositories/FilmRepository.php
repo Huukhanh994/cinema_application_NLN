@@ -71,7 +71,7 @@ class FilmRepository extends BaseRepository implements FilmContract
             $merge = $collection->merge(compact('status'));
 
             $film = new Film($merge->all());
-
+            
             $film->save();
 
             if ($collection->has('categories')) {
@@ -102,7 +102,7 @@ class FilmRepository extends BaseRepository implements FilmContract
         $merge = $collection->merge(compact('status'));
 
         $film->update($merge->all());
-
+        
         if ($collection->has('categories')) {
             $film->categories()->sync($params['categories']);
         }

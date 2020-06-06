@@ -189,6 +189,8 @@ return [
         Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
         #ratings
         willvincent\Rateable\RateableServiceProvider::class,
+        # Yajra
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ],
 
     /*
@@ -244,6 +246,11 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+
+        # Yajra
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        
     ],
 
 ];

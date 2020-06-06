@@ -25,7 +25,7 @@ class Film extends Model
 
     public function setNameAttribute($value)
     {
-        $this->attributes['name'] = $value;
+        $this->attributes['film_name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
 
@@ -96,4 +96,13 @@ class Film extends Model
                      ->with([$relation => $constraint]);
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comments');
+    }
+
+    public function rating()
+    {
+        return $this->hasMany('App\Models\Rating');
+    }
 }
