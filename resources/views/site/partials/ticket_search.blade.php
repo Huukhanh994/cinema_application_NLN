@@ -33,52 +33,11 @@
             </div>
             <div class="tab-area">
                 <div class="tab-item active">
-                    <form class="ticket-search-form">
+                    <form class="ticket-search-form" action="{{route('search.search_get')}}" method="GET">
+                        @csrf
                         <div class="form-group large">
-                            <input type="text" placeholder="Search for Movies">
+                            <input type="text" placeholder="Search for Movies" name="key">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="{{asset('assets_client/images/ticket/city.png')}}" alt="ticket">
-                            </div>
-                            <span class="type">city</span>
-                            <select class="select-bar">
-                                <option value="london">London</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="{{asset('assets_client/images/ticket/date.png')}}" alt="ticket">
-                            </div>
-                            <span class="type">date</span>
-                            <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="{{asset('assets_client/images/ticket/cinema.png')}}" alt="ticket">
-                            </div>
-                            <span class="type">cinema</span>
-                            <select class="select-bar">
-                                <option value="Awaken">Awaken</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
                         </div>
                     </form>
                 </div>

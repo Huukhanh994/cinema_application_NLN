@@ -1,12 +1,15 @@
 <ul class="menu">
     <li>
-        <a href="#0" class="active">Home</a>
+        <a href="#0" class="active">Theaters</a>
         <ul class="submenu">
             <li>
-                <a href="#0" class="active">Home One</a>
+                <a href="{{route('cinemas.index')}}" class="active">All CGV Cinemas</a>
             </li>
             <li>
-                <a href="index-2.html">Home Two</a>
+                <a href="index-2.html">Special Cinemas</a>
+            </li>
+            <li>
+                <a href="index-2.html">Opening Soon</a>
             </li>
         </ul>
     </li>
@@ -14,62 +17,61 @@
         <a href="#0">movies</a>
         <ul class="submenu">
             <li>
-                <a href="{{ route('movies.now_showing') }}">Movie Now Showing</a>
+                <a href="{{ route('movies.now_showing') }}">Now Showing</a>
             </li>
             <li>
-                <a href="movie-list.html">Movie Coming Soom</a>
+                <a href="movie-list.html">Coming Soom</a>
             </li>
         </ul>
     </li>
+    @if (!Auth::check())
+        <li>
+            <a href="#0">Membership</a>
+            <ul class="submenu">
+                <li>
+                    <a href="events.html">My CGV</a>
+                </li>
+                <li>
+                    <a href="event-details.html">Member Benefits</a>
+                </li>
+            </ul>
+        </li>
+    @endif
     <li>
-        <a href="#0">events</a>
+        <a href="#0">Cultureplex</a>
         <ul class="submenu">
             <li>
-                <a href="events.html">Events</a>
+                <a href="{{route('cultureplex.online_store')}}">Online Store</a>
             </li>
             <li>
-                <a href="event-details.html">Event Details</a>
+                <a href="{{route('cultureplex.group_sale')}}">Group Sales</a>
             </li>
             <li>
-                <a href="event-speaker.html">Event Speaker</a>
+                <a href="{{route('cultureplex.e_cgv')}}">E-CGV</a>
             </li>
             <li>
-                <a href="event-ticket.html">Event Ticket</a>
+                <a href="{{route('cultureplex.cgv_restaurant')}}">CGV Restaurant</a>
             </li>
             <li>
-                <a href="event-checkout.html">Event Checkout</a>
-            </li>
-        </ul>
-    </li>
-
-    <li>
-        <a href="#0">blog</a>
-        <ul class="submenu">
-            <li>
-                <a href="blog.html">Blog</a>
-            </li>
-            <li>
-                <a href="blog-details.html">Blog Single</a>
+                <a href="{{route('cultureplex.gift_card')}}">Gift Card</a>
             </li>
         </ul>
     </li>
     <li>
-        <a href="contact.html">contact</a>
+    <a href="{{route('contact.index')}}">contact</a>
     </li>
-    <li>
-        <a href="{{route('cinemas.index')}}">cinemas</a>
-    </li>
+   
     @guest
     <li class="header-button pr-0">
-        <a href="{{route('login')}}">login</a>
-        <a href="{{route('register')}}">sign up</a>
+        <a href="{{route('login')}}">join us</a>
+        {{-- <a href="{{route('register')}}">sign up</a> --}}
     </li>
     @else
     <li>
         <a href="#0">{{Auth::user()->getFullNameAttribute()}}</a>
         <ul class="submenu">
             <li>
-                <a href="#">Profile</a>
+                <a href="{{route('account.profile')}}">Profile</a>
             </li>
             <li>
                 <a href="{{route('account.orders')}}">Orders</a>

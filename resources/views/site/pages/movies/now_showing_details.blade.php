@@ -180,6 +180,7 @@
         }
     </style>
     <script src="{{asset('assets_client/js/moment.js')}}"></script>
+    
 </head>
 
 <body>
@@ -204,12 +205,12 @@
                     <div class="details-banner-wrapper">
                         <div class="details-banner-thumb">
                             @if ($film->images->count() > 0)
-                                <img src="{{ asset('storage/'. $film->images->first()->full) }}" alt="movie">
+                                <img src="{{ asset('storage/'. $film->images->first()->full) }}" alt="movie" width="255px" height="367px">
                                 <a href="https://www.youtube.com/embed/KGeBMAgc46E" class="video-popup">
                                     <img src="{{asset('assets_client/images/movie/video-button.png')}}" alt="movie">
                                 </a>
                             @else
-                                <img src="https://via.placeholder.com/176" alt="movie">
+                                <img src="https://via.placeholder.com/176" alt="movie" width="255px" height="367px">
                                 <a href="https://www.youtube.com/embed/KGeBMAgc46E" class="video-popup">
                                     <img src="{{asset('assets_client/images/movie/video-button.png')}}" alt="movie">
                                 </a>
@@ -217,15 +218,20 @@
                             
                         </div>
                         <div class="details-banner-content offset-lg-3">
-                            <h3 class="title">{{$film->film_name}}</h3>
-                            <div class="tags">
+                            <h3 class="title" 
+                                style="position: relative;
+                                    left: 275px;">{{$film->film_name}}</h3>
+                            <div class="tags" 
+                                style="position: relative;
+                                        left: 275px;">
                                 @foreach ($film->categories as $category)
                                     <a href="#0">{{$category->name}}</a>
                                 @endforeach
                             </div>
-                            <a href="#0" class="button">horror</a>
                             <div class="social-and-duration">
-                                <div class="duration-area">
+                                <div class="duration-area" 
+                                    style="position: relative;
+                                            left: 275px;">
                                     <div class="item">
                                         <i class="fas fa-calendar-alt"></i><span>{{$film->date_release}}</span>
                                     </div>
@@ -277,29 +283,25 @@
                             </div>
                             <div class="item">
                                 <div class="item-header">
-                                    <h5 class="title">4.5</h5>
-                                    <div class="rated">
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                    </div>
+                                    @forelse ($rating_film as $rating)
+                                        <h5 class="title">{{$rating->rating}}</h5>
+                                        <div class="rated">
+                                            @for ($i = 0; $i < $rating->rating; $i++)
+                                                <i class="fas fa-heart"></i>
+                                            @endfor
+                                        </div>
+                                    @empty
+                                        <h5 class="title">0.0</h5>
+                                        <div class="rated rate-it">
+                                            <i class="fas fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                    @endforelse
                                 </div>
                                 <p>Users Rating</p>
-                            </div>
-                            <div class="item">
-                                <div class="item-header">
-                                    <div class="rated rate-it">
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                    </div>
-                                    <h5 class="title">0.0</h5>
-                                </div>
-                                <p><a href="#0">Rate It</a></p>
                             </div>
                         </div>
                         <a href="#" class="custom-button" onclick="openForm()">book tickets</a>
@@ -430,7 +432,7 @@
                                             summery
                                         </li>
                                         <li>
-                                            user review <span>147</span>
+                                            user review <span>{{$count_comment}}</span>
                                         </li>
                                     </ul>
                                     <div class="tab-area">
@@ -457,185 +459,51 @@
                                                     <p>{{$rate->name}}</p>
                                                 @endforeach
                                             </div>
-                                        </div>
-                                        <br>
-                                        <br>
-                                        @auth
-                                        <form action="{{ route('movies.post_ratings') }}" method="POST">
-                                            {{ csrf_field() }}
-                                            <div class="card">
-                                                <div class="container-fliud">
-                                                    <div class="wrapper row">
-                                                        <div class="details col-md-6">
-                                                            <h3 class="product-title"></h3>
-                                                            <div class="rating">
-                                                                <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5"
-                                                                    data-step="1" value="{{ $film->userAverageRating }}" data-size="xs">
-                                                                <input type="hidden" name="id" required="" value="{{ $film->id }}">
-                                                                <span class="review-no">422 reviews</span>
-                                                                <br />
-                                                                <button class="btn btn-success">Submit Review</button>
+                                            @auth
+                                            <form action="{{ route('movies.post_ratings') }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <div class="card">
+                                                    <div class="container-fliud">
+                                                        <div class="wrapper row">
+                                                            <div class="details col-md-6">
+                                                                <h3 class="product-title"></h3>
+                                                                <div class="rating">
+                                                                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5"
+                                                                        data-step="1" value="{{ $film->userAverageRating }}" data-size="xs">
+                                                                    <input type="hidden" name="id" required="" value="{{ $film->id }}">
+                                                                    <span class="review-no">422 reviews</span>
+                                                                    <br />
+                                                                    <button class="btn btn-success">Submit Review</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </form>  
-                                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-                                            data-numposts="5" data-width=""></div>  
-                                        <div id="fb-root"></div>
-                                        <script async defer crossorigin="anonymous"
-                                            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=1044383589264310&autoLogAppEvents=1">
-                                        </script>
-                                        @endauth
-                                        <div class="tab-item">
-                                            <div class="movie-review-item">
-                                                <div class="author">
-                                                    <div class="thumb">
-                                                        <a href="#0">
-                                                            <img src="{{asset('assets_client/images/cast/cast02.jpg')}}" alt="cast">
-                                                        </a>
-                                                    </div>
-                                                    <div class="movie-review-info">
-                                                        <span class="reply-date">13 Days Ago</span>
-                                                        <h6 class="subtitle"><a href="#0">minkuk seo</a></h6>
-                                                        <span><i class="fas fa-check"></i> verified review</span>
-                                                    </div>
-                                                </div>
-                                                <div class="movie-review-content">
-                                                    <div class="review">
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                    </div>
-                                                    <h6 class="cont-title">Awesome Movie</h6>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                                    <div class="review-meta">
-                                                        <a href="#0">
-                                                            <i class="flaticon-hand"></i><span>8</span>
-                                                        </a>
-                                                        <a href="#0" class="dislike">
-                                                            <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                                        </a>
-                                                        <a href="#0">
-                                                            Report Abuse
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="movie-review-item">
-                                                <div class="author">
-                                                    <div class="thumb">
-                                                        <a href="#0">
-                                                            <img src="{{asset('assets_client/images/cast/cast04.jpg')}}" alt="cast">
-                                                        </a>
-                                                    </div>
-                                                    <div class="movie-review-info">
-                                                        <span class="reply-date">13 Days Ago</span>
-                                                        <h6 class="subtitle"><a href="#0">rudra rai</a></h6>
-                                                        <span><i class="fas fa-check"></i> verified review</span>
-                                                    </div>
-                                                </div>
-                                                <div class="movie-review-content">
-                                                    <div class="review">
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                    </div>
-                                                    <h6 class="cont-title">Awesome Movie</h6>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                                    <div class="review-meta">
-                                                        <a href="#0">
-                                                            <i class="flaticon-hand"></i><span>8</span>
-                                                        </a>
-                                                        <a href="#0" class="dislike">
-                                                            <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                                        </a>
-                                                        <a href="#0">
-                                                            Report Abuse
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="movie-review-item">
-                                                <div class="author">
-                                                    <div class="thumb">
-                                                        <a href="#0">
-                                                            <img src="{{asset('assets_client/images/cast/cast01.jpg')}}" alt="cast">
-                                                        </a>
-                                                    </div>
-                                                    <div class="movie-review-info">
-                                                        <span class="reply-date">13 Days Ago</span>
-                                                        <h6 class="subtitle"><a href="#0">rafuj</a></h6>
-                                                        <span><i class="fas fa-check"></i> verified review</span>
-                                                    </div>
-                                                </div>
-                                                <div class="movie-review-content">
-                                                    <div class="review">
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                    </div>
-                                                    <h6 class="cont-title">Awesome Movie</h6>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                                    <div class="review-meta">
-                                                        <a href="#0">
-                                                            <i class="flaticon-hand"></i><span>8</span>
-                                                        </a>
-                                                        <a href="#0" class="dislike">
-                                                            <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                                        </a>
-                                                        <a href="#0">
-                                                            Report Abuse
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="movie-review-item">
-                                                <div class="author">
-                                                    <div class="thumb">
-                                                        <a href="#0">
-                                                            <img src="{{asset('assets_client/images/cast/cast03.jpg')}}" alt="cast">
-                                                        </a>
-                                                    </div>
-                                                    <div class="movie-review-info">
-                                                        <span class="reply-date">13 Days Ago</span>
-                                                        <h6 class="subtitle"><a href="#0">bela bose</a></h6>
-                                                        <span><i class="fas fa-check"></i> verified review</span>
-                                                    </div>
-                                                </div>
-                                                <div class="movie-review-content">
-                                                    <div class="review">
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                        <i class="flaticon-favorite-heart-button"></i>
-                                                    </div>
-                                                    <h6 class="cont-title">Awesome Movie</h6>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                                    <div class="review-meta">
-                                                        <a href="#0">
-                                                            <i class="flaticon-hand"></i><span>8</span>
-                                                        </a>
-                                                        <a href="#0" class="dislike">
-                                                            <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                                        </a>
-                                                        <a href="#0">
-                                                            Report Abuse
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="load-more text-center">
-                                                <a href="#0" class="custom-button transparent">load more</a>
-                                            </div>
+                                            </form>
+                                            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+                                                data-numposts="5" data-width=""></div>
+                                            <div id="fb-root"></div>
+                                            <script async defer crossorigin="anonymous"
+                                                src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=1044383589264310&autoLogAppEvents=1">
+                                            </script>
+                                            @endauth
+                                        </div>
+                                        <br>
+                                        <br>
+                                
+                                        <div class="tab-item" id="app">
+                                            @if (isset($comments[0]->film_id))
+                                                @if ($film->id === $comments[0]->film_id)
+                                                    <comments :film_id="{{$film->id}}"></comments>
+                                                @else
+                                                    Not comment on this film!
+                                                @endif
+                                            @else
+                                                Not comment to show!
+                                            @endif
+                                            @if (Auth::check())
+                                                <new-comment :film_id="{{$film->id}}"></new-comment>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -952,6 +820,7 @@
                                         list_rooms += "<span style='padding-left:20px; margin-right: 10px'>"+formatAMPM(new Date(room.start_time))+"</span> <br>";
                                         if(seatEmpty) { 
                                             seatEmpty.forEach(seat => {
+                                                console.log(seat);
                                                 list_rooms += "<span style='padding-left:20px; margin-right: 10px'>"+seat.seat_empty+" empty seat</span>";
                                             })
                                         }
@@ -971,8 +840,11 @@
     }
 
    </script>
+    
+    <script src="{{ asset('backend/js/app.js') }}"></script>
 </body>
 
 
 <!-- Mirrored from pixner.net/boleto/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Feb 2020 15:22:02 GMT -->
 </html>
+

@@ -67,8 +67,7 @@
         .selected {
             background-color: red;
         }
-
-        label.booked {
+        label.booked{
             background: red;
         }
     </style>
@@ -93,13 +92,13 @@
             <div class="details-banner-wrapper">
                 <div class="details-banner-content style-two">
                     @foreach ($info_film as $room)
-                    @foreach ($room->film_using_pivot_schedules as $film)
-                    <h3 class="title">{{$film->film_name}}</h3>
-                    <div class="tags">
-                        <a href="#0">{{$film->duration}} mins</a>
-                        <a href="#0">{{$film->language}}</a>
-                    </div>
-                    @endforeach
+                        @foreach ($room->film_using_pivot_schedules as $film)
+                            <h3 class="title">{{$film->film_name}}</h3>
+                            <div class="tags">
+                                <a href="#0">{{$film->duration}} mins</a>
+                                <a href="#0">{{$film->language}}</a>
+                            </div>
+                        @endforeach
 
                     @endforeach
                 </div>
@@ -130,20 +129,20 @@
                         {{date('m', strtotime($dateToday))}} year {{date('Y', strtotime($dateToday))}}</span>
                     <select class="select-bar">
                         @foreach ($list_times as $schedules)
-                        @foreach ($schedules->schedule_film as $time)
+                            @foreach ($schedules->schedule_film as $time)
 
-                        @foreach ($info_film as $film)
-                        @foreach ($film->film_using_pivot_schedules as $schedule)
-                        @if ($schedule->pivot->start_time == $time->start_time)
-                        <option value="sc1" selected>{{date('d/m/Y h:i A', strtotime($time->start_time)) }}</option>
-                        @else
-                        <option value="sc1">{{date('d/m/Y h:i A', strtotime($time->start_time)) }}</option>
-                        @endif
-                        @endforeach
-                        @endforeach
+                                @foreach ($info_film as $film)
+                                    @foreach ($film->film_using_pivot_schedules as $schedule)
+                                        @if ($schedule->pivot->start_time == $time->start_time)
+                                            <option value="sc1" selected>{{date('d/m/Y h:i A', strtotime($time->start_time)) }}</option>
+                                        @else
+                                            <option value="sc1">{{date('d/m/Y h:i A', strtotime($time->start_time)) }}</option>
+                                        @endif
+                                    @endforeach
+                                @endforeach
 
 
-                        @endforeach
+                            @endforeach
                         @endforeach
                     </select>
                 </div>
@@ -180,8 +179,7 @@
                                             @if ($seat->row == 'A')
                                             <li class="single-seat seat-free">
                                                 <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
-                                                    data-price="{{$seat->categoryseat->cos_price}}" class="seat-select"
-                                                    <?php if($seat->status == 'booked') echo 'disabled'; ?>
+                                                    data-price="{{$seat->categoryseat->cos_price}}" class="seat-select" <?php if($seat->status == 'booked') echo 'disabled'; ?>
                                                     type="checkbox" name="seat[]" value="{{$seat->name}}"
                                                     type="checkbox" onclick="totalIt()" />
                                                 <label for="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
@@ -194,7 +192,9 @@
                                 </ul>
                             </li>
                             <li class="seat-line">
-                                <span>{{$film->seats[12]->row}}</span>
+                                @if (isset($film->seats[12]->row))
+                                    <span>{{$film->seats[12]->row}}</span>
+                                @endif
                                 <ul class="seat--area">
                                     <li class="front-seat">
                                         <ul>
@@ -204,8 +204,7 @@
                                                 {{-- <img src="/assets_client/images/movie/seat01-free.png" alt="seat" data-seat="{{$seat->name}}"
                                                 data-price="{{$seat->categoryseat->cos_price}}">
                                                 <span class="sit-num">{{$seat->name}}</span> --}}
-                                                <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
-                                                    <?php if($seat->status == 'booked') echo 'disabled'; ?>
+                                                <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}" <?php if($seat->status == 'booked') echo 'disabled'; ?>
                                                     data-price="{{$seat->categoryseat->cos_price}}" class="seat-select"
                                                     type="checkbox" name="seat[]" value="{{$seat->name}}"
                                                     type="checkbox" onclick="totalIt()" />
@@ -226,34 +225,32 @@
                     <h5 class="subtitle">couple plus</h5>
                     <div class="screen-wrapper">
                         <ul class="seat-area couple">
-                            @foreach ($seat_couple as $film)
-                            <li class="seat-line">
-                                <span>J</span>
-                                <ul class="seat--area">
-                                    <li class="front-seat">
-                                        <ul>
-                                            @foreach ($film->seats as $seat)
-                                            @if ($seat->row == 'J')
-                                            <li class="single-seat seat-free">
-                                                <input id="seat-{{$seat->id}}" data-index="{{$seat->seat_number}}"
-                                                    data-seat="{{$seat->name}}"
-                                                    data-price="{{$seat->categoryseat->cos_price}}-{{$seat->seat_number}}"
-                                                    class="seat-select"
-                                                    <?php if($seat->status == 'booked') echo 'disabled'; ?>
-                                                    type="checkbox" name="seat[]" value="{{$seat->name}}"
-                                                    type="checkbox" onclick="totalIt(this); coupleFunction(this)" />
-                                                <label for="seat-{{$seat->id}}" data-index="{{$seat->seat_number}}"
-                                                    data-seat="{{$seat->name}}"
-                                                    class="seat <?php if($seat->status == 'booked') echo 'booked'; ?>">{{$seat->name}}</label>
-                                            </li>
-                                            @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <span>J</span>
-                            </li>
-                            @endforeach
+                            @if (isset($seat_couple))
+                                @foreach ($seat_couple as $film)
+                                <li class="seat-line">
+                                    <span>J</span>
+                                    <ul class="seat--area">
+                                        <li class="front-seat">
+                                            <ul>
+                                                @foreach ($film->seats as $seat)
+                                                @if ($seat->row == 'J')
+                                                <li class="single-seat seat-free">
+                                                    <input id="seat-{{$seat->id}}" data-index="{{$seat->seat_number}}" data-seat="{{$seat->name}}"
+                                                        data-price="{{$seat->categoryseat->cos_price}}-{{$seat->seat_number}}" class="seat-select"
+                                                        <?php if($seat->status == 'booked') echo 'disabled'; ?> type="checkbox" name="seat[]"
+                                                        value="{{$seat->name}}" type="checkbox" onclick="totalIt(this); coupleFunction(this)" />
+                                                    <label for="seat-{{$seat->id}}" data-index="{{$seat->seat_number}}" data-seat="{{$seat->name}}"
+                                                        class="seat <?php if($seat->status == 'booked') echo 'booked'; ?>">{{$seat->name}}</label>
+                                                </li>
+                                                @endif
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <span>J</span>
+                                </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -266,9 +263,8 @@
                         </div>
                         <div class="book-item">
                             <span>total price</span>
-                            <input class="title" value="0$" readonly="readonly" type="text" id="total"
-                                name="totalPrice"> {{-- TODO: Tổng giá tiền của các vé phim --}}
-
+                            <input class="title" value="0" readonly="readonly" type="text" id="total"
+                            name="totalPrice">              {{-- TODO: Tổng giá tiền của các vé phim --}}
                         </div>
                         <div class="book-item">
                             {{-- # PART OF FILM --}}
@@ -309,11 +305,12 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
             </form>
         </div>
+        {{-- ADD FOOD --}}
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg"
@@ -361,32 +358,24 @@
                                                             {{$food->f_name}}
                                                         </a>
                                                     </h5>
-                                                    <form class="cart-button">
+                                                    <form  class="cart-button">
                                                         <div class="cart-plus-minus">
                                                             {{-- <input class="cart-plus-minus-box" id="qty_food"
-                                                                type="number" name="qty_food" value="2"> --}}
-                                                            <input type="number" name="qty_food"
-                                                                id="qty_food-{{$food->f_id}}" value="2">
-
+                                                                type="number" name="qty_food" value="2"> --}} 
+                                                            <input type="number" name="qty_food" id="qty_food-{{$food->f_id}}" value="2">
                                                         </div>
                                                         @foreach ($info_film as $film)
                                                         @foreach ($film->film_using_pivot_schedules as $item)
-                                                        <input type="hidden" name="filmID" id="film_id"
-                                                            value="{{$item->id}}">
+                                                        <input type="hidden" name="filmID" id="film_id" value="{{$item->id}}">
                                                         @endforeach
                                                         @endforeach
-                                                        <input type="hidden" name="roomID" id="room_id"
-                                                            value="{{$roomID}}">
-                                                        <input type="hidden" name="dateToday" id="data_today"
-                                                            value="{{$dateToday}}">
+                                                        <input type="hidden" name="roomID" id="room_id" value="{{$roomID}}">
+                                                        <input type="hidden" name="dateToday" id="data_today" value="{{$dateToday}}">
                                                         <input type="hidden" name="food_name" value="{{$food->f_name}}">
 
                                                         {{-- # Food --}}
-                                                        <input type="hidden" name="food_name"
-                                                            id="food_name-{{$food->f_id}}" value="{{$food->f_name}}">
-                                                        <input type="hidden" name="food_price"
-                                                            id="food_price-{{$food->f_id}}" value="{{$food->f_price}}">
-
+                                                        <input type="hidden" name="food_name" id="food_name-{{$food->f_id}}" value="{{$food->f_name}}">
+                                                        <input type="hidden" name="food_price" id="food_price-{{$food->f_id}}" value="{{$food->f_price}}">
                                                         <button type="button" class="tst3 custom-button" id="submit"
                                                             data-food_id="{{$food->f_id}}"
                                                             data-food_name="{{$food->f_name}}"
@@ -404,7 +393,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-
+                                
                             </div>
                         </div>
                     </div>
@@ -431,10 +420,11 @@
                         total += parseFloat(input[i].getAttribute('data-price'));
                     }
                 }
-                document.getElementById('total').value = total.toFixed(1) + "$";
+                document.getElementById('total').value = total.toFixed(1);
                 return total_temp = total.toFixed(1);
             }
             
+            // TODO: XỬ LÝ GHẾ COUPLE KHI CLICK
             function coupleFunction(d)
             {
                 const seatID = d.getAttribute("data-index");   

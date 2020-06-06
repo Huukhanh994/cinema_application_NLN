@@ -22,13 +22,13 @@
                                 <th>Order date</th>
                                 <th>Amount</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-center">Tracking Number</th>
+                                <th class="text-center">Payment Method</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($orders as $order)
                                 <tr>
-                                    <td><a href="javascript:void(0)" class="link"> Order #{{$order->order_number}}</a></td>
+                                    <td><a href="{{route('admin.orders.show',$order->order_number)}}" class="link"> Order #{{$order->order_number}}</a></td>
                                     <td>{{$order->user->fullName}}</td>
                                     <td><span class="text-muted"><i class="fa fa-clock-o"></i> {{date("d/m/Y H:i:s",strtotime($order->created_at))}}</span></td>
                                     <td>${{number_format($order->order_grand_total, 2, '.', ',')}}</td>
@@ -53,7 +53,13 @@
                                             <div class="label label-table label-success">{{$order->order_status}}</div>
                                     @endswitch
                                     </td>
-                                    <td class="text-center"><i class="fa fa-plane"></i> CGX0089734531</td>
+                                    <td class="text-center">
+                                        @if (empty($order->order_payment_method))
+                                            <i>Not payment</i>
+                                        @else
+                                            {{$order->order_payment_method}}
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 

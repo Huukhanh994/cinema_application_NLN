@@ -12,7 +12,7 @@
 
     @include('site.partials_2.title')
 
-
+    <title>@yield('title') - {{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -51,6 +51,7 @@
 
 
     @include('site.partials_2.js')
+    @stack('scripts')
 </body>
 
 

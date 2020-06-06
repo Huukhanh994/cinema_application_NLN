@@ -58,16 +58,24 @@
                     <article>
                         <div class="post-item">
                             <div class="post-thumb">
-                                <a href="blog-details.html">
+                                <div class="owl-carousel owl-theme blog-slider">
+                                    <img src="assets/images/blog/blog02.jpg" alt="blog">
+                                    <img src="assets/images/blog/blog03.jpg" alt="blog">
+                                    <img src="assets/images/blog/blog04.jpg" alt="blog">
                                     <img src="assets/images/blog/blog01.jpg" alt="blog">
-                                </a>
+                                </div>
+                                <div class="blog-prev">
+                                    <i class="flaticon-double-right-arrows-angles"></i>
+                                </div>
+                                <div class="blog-next active">
+                                    <i class="flaticon-double-right-arrows-angles"></i>
+                                </div>
                             </div>
                             <div class="post-content">
                                 <div class="post-header">
                                     <h4 class="title">
                                         <a href="blog-details.html">
-                                            Increase Event Ticket Sales For Film Production With the Right Advertising
-                                            Strategies
+                                            Factors To Take Into Consideration When You Want To Buy Tickets Online
                                         </a>
                                     </h4>
                                     <div class="meta-post">
@@ -95,24 +103,16 @@
                         </div>
                         <div class="post-item">
                             <div class="post-thumb">
-                                <div class="owl-carousel owl-theme blog-slider">
-                                    <img src="assets/images/blog/blog02.jpg" alt="blog">
-                                    <img src="assets/images/blog/blog03.jpg" alt="blog">
-                                    <img src="assets/images/blog/blog04.jpg" alt="blog">
+                                <a href="blog-details.html">
                                     <img src="assets/images/blog/blog01.jpg" alt="blog">
-                                </div>
-                                <div class="blog-prev">
-                                    <i class="flaticon-double-right-arrows-angles"></i>
-                                </div>
-                                <div class="blog-next active">
-                                    <i class="flaticon-double-right-arrows-angles"></i>
-                                </div>
+                                </a>
                             </div>
                             <div class="post-content">
                                 <div class="post-header">
                                     <h4 class="title">
                                         <a href="blog-details.html">
-                                            Factors To Take Into Consideration When You Want To Buy Tickets Online
+                                            Increase Event Ticket Sales For Film Production With the Right Advertising
+                                            Strategies
                                         </a>
                                     </h4>
                                     <div class="meta-post">

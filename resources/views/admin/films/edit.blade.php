@@ -41,17 +41,17 @@
                                     @csrf
                                     <div class="form-body">
                                         <div class="form-group row">
-                                            <label class="control-label text-right col-md-3" for="name">Name</label>
+                                            <label class="control-label text-right col-md-3" for="film_name">Name</label>
                                             <div class="col-md-9">
                                                 <input type="text" 
-                                                name="name" 
-                                                id="name" class="form-control @error('name') is-valid @enderror" 
+                                                name="film_name" 
+                                                id="film_name" class="form-control @error('film_name') is-valid @enderror" 
                                                 placeholder="Enter attribute name" 
-                                                value="{{old('name',$film->film_name)}}">
+                                                value="{{old('film_name',$film->film_name)}}">
                                             </div>
                                             <input type="hidden" name="film_id" value="{{ $film->id }}">
                                             <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('name') <span>{{ $message }}</span> @enderror
+                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('film_name') <span>{{ $message }}</span> @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -176,8 +176,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <form action="" class="dropzone" id="dropzone" style="border: 2px dashed rgba(0,0,0,0.3)">
-                                        <input type="hidden" name="film_id" value="{{ $film->id }}">
-                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{ $film->id }}">
+                                        @csrf
                                     </form>
                                 </div>
                             </div>

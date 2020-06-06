@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrapper">
             <div class="logo">
-                <a href="index.html">
+                <a href="http://127.0.0.1:8000/">
                 <img src="{{asset('assets_client/images/logo/logo.png')}}" alt="logo">
                 </a>
             </div>

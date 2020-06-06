@@ -46,14 +46,14 @@
                                                 <hr>
                                                 <div class="tile-body">
                                                     <div class="form-group">
-                                                        <label class="control-label" for="name">Name</label>
+                                                        <label class="control-label" for="film_name">Name</label>
                                                         <input
                                                             class="form-control"
                                                             type="text"
                                                             placeholder="Enter attribute name"
-                                                            id="name"
-                                                            name="name"
-                                                            value="{{ old('name') }}"
+                                                            id="film_name"
+                                                            name="film_name"
+                                                            value="{{ old('film_name') }}"
                                                         />
                                                     </div>
                                                     <div class="form-group">

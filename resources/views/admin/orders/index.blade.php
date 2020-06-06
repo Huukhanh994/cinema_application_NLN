@@ -33,14 +33,24 @@
                             </td>
                             <td class="text-center">{{ $order->order_item_count }}</td>
                             <td class="text-center">
-                                @if ($order->payment_status == 1)
+                                @if ($order->order_payment_status == 1)
                                 <span class="badge badge-success">Completed</span>
                                 @else
                                 <span class="badge badge-danger">Not Completed</span>
                                 @endif
                             </td>
                             <td class="text-center">
-                                <span class="badge badge-success">{{ $order->order_status }}</span>
+                                
+                                @switch($order->order_status)
+                                    @case('pending')
+                                        <span class="badge badge-info">{{ $order->order_status }}</span>
+                                        @break
+                                    @case('processing')
+                                        <span class="badge badge-success">{{ $order->order_status }}</span>
+                                        @break
+                                    @default
+                                        <span class="badge badge-light">{{ $order->order_status }}</span>
+                                @endswitch
                             </td>
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="Second group">

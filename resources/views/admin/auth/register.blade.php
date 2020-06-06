@@ -10,7 +10,7 @@
                     <h3 class="text-center m-b-20">Sign Up</h3>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input name="name" class="form-control @error('name') is-valid @enderror" type="text" required="" placeholder="Name" value="{{old('name')}}" required autocomplete="name">
+                            <input type="text" class="form-control @error('name') is-valid @enderror" name="name"  placeholder="Name" value="{{old('name')}}" required autocomplete="name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input name="email" class="form-control @error('email') is-valid @enderror" type="text" required="" placeholder="Email" value="{{old('email')}}" required autocomplete="email">
+                            <input type="email" class="form-control @error('email') is-valid @enderror" name="email" placeholder="Email" value="{{old('email')}}" required autocomplete="email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input name="password" class="form-control @error('password') is-valid @enderror" type="password" required="" placeholder="Password" value="{{old('password')}}" required autocomplete="new-password">
+                            <input type="password" class="form-control @error('password') is-valid @enderror" name="password" placeholder="Password" value="{{old('password')}}" required autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" name="password_confirmation" type="password" required="" placeholder="Confirm Password" required autocomplete="new-password">
+                            <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                         </div>
                     </div>
                     <div class="form-group row">

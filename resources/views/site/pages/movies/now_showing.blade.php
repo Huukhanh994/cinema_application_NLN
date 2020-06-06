@@ -2,6 +2,15 @@
 
 @section('title','Now Showing')
 
+@push('custom_css')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> --}}
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+@endpush
+
 @section('content')
 
 <!-- ==========Movie-Section========== -->
@@ -35,66 +44,56 @@
                     {{-- Show and Sort --}}
                     <div class="filter-area">
                         <div class="filter-main">
-                            <div class="left">
-                                <div class="item">
-                                    <span class="show">Show :</span>
-                                    <select class="select-bar">
-                                        <option value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="18">18</option>
-                                        <option value="21">21</option>
-                                        <option value="24">24</option>
-                                        <option value="27">27</option>
-                                        <option value="30">30</option>
-                                    </select>
-                                </div>
-                                <div class="item">
-                                    <span class="show">Sort By :</span>
-                                    <select class="select-bar">
-                                        <option value="showing">now showing</option>
-                                        <option value="exclusive">exclusive</option>
-                                        <option value="trending">trending</option>
-                                        <option value="most-view">most view</option>
-                                    </select>
-                                </div>
-                            </div>
                             <ul class="grid-button tab-menu">
                                 <li class="active">
                                     <i class="fas fa-th"></i>
-                                </li>                            
+                                </li>
                                 <li>
                                     <i class="fas fa-bars"></i>
-                                </li>                            
+                                </li>
                             </ul>
+                            <div class="left">
+                                <div class="item">
+                                    <form class="ticket-search-form" action="{{route('search.search_get')}}" method="GET">
+                                        @csrf
+                                        <div class="form-group large">
+                                            <input type="text" placeholder="Search for Movies" name="key">
+                                            <button type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {{-- Show and Sort --}}
                     <div class="tab-area">
                         {{-- Movies Grid --}}
                         <div class="tab-item active">
-                            <div class="row mb-10 justify-content-center">
-                                @forelse ($films as $film)
+                            @if (isset($film_result))
+                                <div class="row mb-10 justify-content-center">
+                                    @forelse ($film_result as $film)
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="movie-grid">
                                             <div class="movie-thumb c-thumb">
                                                 @if ($film->images->count() > 0)
-                                                    <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
-                                                        <img src="{{ asset('storage/'.$film->images->first()->full) }}" alt="movie"  width="255px" height="375px">
-                                                    </a>
+                                                <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
+                                                    <img src="{{ asset('storage/'.$film->images->first()->full) }}" alt="movie" width="255px"
+                                                        height="375px">
+                                                </a>
                                                 @else
-                                                    <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
-                                                        <img src="https://via.placeholder.com/176" alt="movie" width="255px" height="375px">
-                                                    </a>
+                                                <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
+                                                    <img src="https://via.placeholder.com/176" alt="movie" width="255px" height="375px">
+                                                </a>
                                                 @endif
-                                                
+                                
                                             </div>
                                             <div class="movie-content bg-one">
                                                 <h5 class="title m-0">
                                                     <a href="{{ route('movies.now_showing_slug',$film->slug) }}">{{ $film->film_name }}</a>
                                                 </h5>
-                                                <p>Category: 
+                                                <p>Category:
                                                     @foreach ($film->categories as $category)
-                                                        <span class="badge badge-info">{{ $category->name }}</span>
+                                                    <span class="badge badge-info">{{ $category->name }}</span>
                                                     @endforeach
                                                 </p>
                                                 <p>
@@ -120,11 +119,65 @@
                                             </div>
                                         </div>
                                     </div>
-                                @empty
-                                    <p>No Film found in {{ $film->film_name }}.</p>
-                                @endforelse
+                                    @empty
+                                        <p>No film not found</p>
+                                    @endforelse
+                                </div>
+                            @else
+                                <div class="row mb-10 justify-content-center">
+                                    @forelse ($films as $film)
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="movie-grid">
+                                            <div class="movie-thumb c-thumb">
+                                                @if ($film->images->count() > 0)
+                                                <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
+                                                    <img src="{{ asset('storage/'.$film->images->first()->full) }}" alt="movie" width="255px"
+                                                        height="375px">
+                                                </a>
+                                                @else
+                                                <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
+                                                    <img src="https://via.placeholder.com/176" alt="movie" width="255px" height="375px">
+                                                </a>
+                                                @endif
                                 
-                            </div>
+                                            </div>
+                                            <div class="movie-content bg-one">
+                                                <h5 class="title m-0">
+                                                    <a href="{{ route('movies.now_showing_slug',$film->slug) }}">{{ $film->film_name }}</a>
+                                                </h5>
+                                                <p>Category:
+                                                    @foreach ($film->categories as $category)
+                                                    <span class="badge badge-info">{{ $category->name }}</span>
+                                                    @endforeach
+                                                </p>
+                                                <p>
+                                                    Duration: {{$film->duration}} minutes
+                                                </p>
+                                                <p>
+                                                    Date Release {{$film->date_release}}
+                                                </p>
+                                                <ul class="movie-rating-percent">
+                                                    <li>
+                                                        <div class="thumb">
+                                                            <img src="{{asset('assets_client/images/movie/tomato.png')}}" alt="movie">
+                                                        </div>
+                                                        <span class="content">88%</span>
+                                                    </li>
+                                                    <li>
+                                                        <div class="thumb">
+                                                            <img src="{{asset('assets_client/images/movie/cake.png')}}" alt="movie">
+                                                        </div>
+                                                        <span class="content">88%</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @empty
+                                    <p>No film not found</p>
+                                    @endforelse
+                                </div>
+                            @endif
                         </div>
                         {{-- Movies List --}}
                         <div class="tab-item">
@@ -180,7 +233,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="react-item mr-auto">
-                                                    <a href="#0">
+                                                    <a href="{{route('movies.now_showing_slug',$film->slug)}}">
                                                         <div class="thumb">
                                                         <img src="{{asset('assets_client/images/icons/book.png')}}" alt="icons">
                                                         </div>
@@ -200,19 +253,14 @@
                                     </div>
                                 </div>
                                 @empty
-                                    <p>No Film found in {{ $film->film_name }}.</p>
+                                    <p>No film not found</p>
                                 @endforelse
                             </div>
                         </div>
                     </div>
-                    <div class="pagination-area text-center">
-                        <a href="#0"><i class="fas fa-angle-double-left"></i><span>Prev</span></a>
-                        <a href="#0">1</a>
-                        <a href="#0">2</a>
-                        <a href="#0" class="active">3</a>
-                        <a href="#0">4</a>
-                        <a href="#0">5</a>
-                        <a href="#0"><span>Next</span><i class="fas fa-angle-double-right"></i></a>
+                    <div class="pagination-area text-center" style="position: relative;
+    left: 80%;">
+                        {{ $films->links() }}
                     </div>
                 </div>
             </div>
