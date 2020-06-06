@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 
 <!-- Mirrored from pixner.net/boleto/demo/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Feb 2020 15:31:27 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,24 +52,28 @@
                         @csrf
                         <div class="form-group">
                             <label for="email">Email<span>*</span></label>
-                            <input type="text" name="email" @error('email') is-valid @enderror placeholder="Enter Your Email" id="email" required>
+                            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email" required autocomplete="email" autofocus>
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="password">Password<span>*</span></label>
-                            <input type="password" name="password" @error('password') is-valid @enderror placeholder="Password" id="password" required>
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror" id="password" required
+                                autocomplete="current-password">
                             @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="form-group checkgroup">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                {{ old('remember') ? 'checked' : '' }}>
                             <label class="form-check-label" for="remember">
                                 {{ __('Remember Me') }}
                             </label>
@@ -124,9 +128,10 @@
     <script src="{{ asset('assets_client/js/viewport.jquery.js') }}"></script>
     <script src="{{ asset('assets_client/js/nice-select.js') }}"></script>
     <script src="{{ asset('assets_client/js/main.js') }}"></script>
-    
+
 </body>
 
 
 <!-- Mirrored from pixner.net/boleto/demo/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Feb 2020 15:31:28 GMT -->
+
 </html>

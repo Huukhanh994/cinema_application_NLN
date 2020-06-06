@@ -83,7 +83,8 @@
                 <input type="text" name="last_name" placeholder="Last Name">
             </div>
             <div class="form-group">
-            <input type="text" name="email" placeholder="Enter your Mail" value="{{ auth()->user()->email }}" disabled>
+                <input type="text" name="email" placeholder="Enter your Mail" value="{{ auth()->user()->email }}"
+                    disabled>
             </div>
             <div class="form-group">
                 <input type="text" name="tel" placeholder="Enter your Phone Number ">
@@ -107,13 +108,14 @@
                 <input type="hidden" name="total_price" id="total_price" value="">
                 @foreach ($info_film as $row)
                 @foreach ($row->film_using_pivot_schedules as $film)
-                    <input type="hidden" name="filmID" id="filmID" value="{{$film->id}}">
+                <input type="hidden" name="filmID" id="filmID" value="{{$film->id}}">
                 @endforeach
                 @endforeach
                 @foreach ($list_seatname as $item)
-                    <input type="hidden" name="seat_name[]" value="{{$item}}">
+                <input type="hidden" name="seat_name[]" value="{{$item}}">
                 @endforeach
-                <input type="hidden" name="seat_tickets_count" id="seat_tickets_count" value="{{count(collect($list_seatname))}}">
+                <input type="hidden" name="seat_tickets_count" id="seat_tickets_count"
+                    value="{{count(collect($list_seatname))}}">
                 <input type="submit" class="custom-button" value="make payment">
             </div>
             <!-- Set up a container element for the button -->
@@ -177,24 +179,26 @@
             <li>
                 <h6 class="subtitle mb-0"><span>List Seat Name:</span>
                     @foreach ($list_seatname as $item)
-                        <span>{{$item}}</span>
+                    <span>{{$item}}</span>
                     @endforeach
                 </h6>
             </li>
         </ul>
         <ul class="side-shape">
             <li>
-                @forelse ($foods as $food)
-                <h6 class="subtitle"><span>{{$food->categoryfood->cof_name}}</span><span
-                        id="totalPriceFood">{{$totalPriceFood}}</span></h6>
 
-                <span class="info"><span>{{$food->f_name}} </span></span>
-                @empty
-                <p>No food not found</p>
-                @endforelse
-            </li>
-            <li>
-                <h6 class="subtitle"><span>food & bevarage</span></h6>
+                <h6 class="subtitle"><span>food & bevarage</span><span id="totalPriceFood">{{$totalPriceFood}}</span>
+                </h6>
+
+                <span class="info">
+                    @if (isset($food_names))
+                    @foreach ($food_names as $item)
+                    <span>{{$item}}</span>
+                    @endforeach
+                    @else
+                    <span>No food Name</span>
+                    @endif
+                </span>
             </li>
         </ul>
         @endforeach
@@ -207,6 +211,7 @@
 
 <script>
     var totalPrice = document.getElementById('totalPriceSeat').innerHTML;
+    var totalPriceFood = document.getElementById('totalPriceFood').innerHTML;
     if(totalPriceFood == null || totalPriceFood == "")
     {
         totalPriceFood = 0;
@@ -217,8 +222,6 @@
         
         document.querySelector('input[name="total_price"]').value = (parseFloat(totalPrice) + parseFloat(totalPriceFood));
     }else {
-        var totalPriceFood = document.getElementById('totalPriceFood').innerHTML;
-
         var totalPrice = totalPrice.replace('$','');
 
         document.getElementById('price').innerHTML = (parseFloat(totalPrice) + parseFloat(totalPriceFood));
