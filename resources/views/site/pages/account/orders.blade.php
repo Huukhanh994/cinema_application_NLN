@@ -7,8 +7,8 @@
                 <div class="card-body">
                     <h5 class="card-title" style="color: black">ORDER STATUS</h5>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="table-responsive" style="color: black">
+                    <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                             <tr>
                                 <th>Order No</th>
@@ -22,14 +22,25 @@
                         <tbody>
                             @forelse ($orders as $order)
                                 <tr>
-                                    <td><a href="{{route('account.orders_details')}}" class="link"> Order #{{$order->order_number}}</a></td>
+                                    <td><a href="{{route('account.orders_details',$order->id)}}" class="link"> Order #{{$order->order_number}}</a></td>
                                     <td>{{$order->order_first_name}}</td>
                                     <td><span class="text-muted">{{$order->order_last_name}}</span></td>
                                     <td>{{ config('settings.currency_symbol') }}{{ round($order->order_grand_total, 2) }}</td>
                                     <td class="text-center">
                                         <div class="label label-table label-success">{{ $order->order_item_count }}</div>
                                     </td>
-                                    <td class="text-center">{{ strtoupper($order->order_status) }}</td>
+                                    <td class="text-center">
+                                        @switch($order->order_status)
+                                            @case('pending')
+                                                <span class="badge badge-info">{{ strtoupper($order->order_status) }}</span>
+                                                @break
+                                            @case('processing')
+                                                <span class="badge badge-success">{{ strtoupper($order->order_status) }}</span>
+                                                @break
+                                            @default
+                                                <span class="badge badge-info">{{ strtoupper($order->order_status) }}</span>
+                                        @endswitch
+                                    </td>
                                 </tr>
                             @empty
                                 <p class="alert alert-warning">No orders to display.</p>
@@ -71,3 +82,11 @@
             })
         </script> --}}
 @endsection
+
+@push('scripts')
+<script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+<script type="text/javascript">
+    $('#sampleTable').DataTable();
+</script>
+@endpush
