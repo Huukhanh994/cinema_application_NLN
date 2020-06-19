@@ -22,7 +22,7 @@
 
     <link rel="shortcut icon" href="{{asset('assets_client/images/favicon.png')}}" type="image/x-icon">
 
-    <title>Account Profile</title>
+    <title>Gift Card</title>
 
 
 </head>

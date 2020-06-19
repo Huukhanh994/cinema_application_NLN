@@ -18,8 +18,10 @@ class CreateOrderItemsTable extends Migration
 
             $table->unsignedBigInteger('order_id')->unsigned();
             $table->unsignedBigInteger('film_id')->unsigned();
+            $table->unsignedBigInteger('food_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');
+            $table->foreign('food_id')->references('f_id')->on('foods')->onDelete('cascade');
             $table->unsignedInteger('order_item_quantity_food')->nullable();
             $table->decimal('order_item_price_food',20,6)->nullable();
             $table->unsignedInteger('order_item_quantity');

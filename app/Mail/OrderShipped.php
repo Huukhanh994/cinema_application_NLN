@@ -21,12 +21,14 @@ class OrderShipped extends Mailable
     public $order_item_price;
     public $list_name;
     public $film_name;
+    public $dateChoosen;
+    public $clusterName;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($f,$l,$e,$a,$ci,$co, $t, $o_item_qty,$o_item_price,$li,$filmName)
+    public function __construct($f,$l,$e,$a,$ci,$co, $t, $o_item_qty,$o_item_price,$li,$filmName,$date,$cluster)
     {
         $this->f_name = $f;
         $this->l_name = $l;
@@ -39,6 +41,8 @@ class OrderShipped extends Mailable
         $this->order_item_price = $o_item_price;
         $this->list_name = $li;
         $this->film_name = $filmName;
+        $this->dateChoosen = $date;
+        $this->clusterName = $cluster;
     }
 
     /**
@@ -72,6 +76,8 @@ class OrderShipped extends Mailable
             'send_order_item_price'  => $this->order_item_price,
             'send_list_seats_name'  => $this->list_name,
             'send_film_name'  => $this->film_name,
+            'send_dateChoosen'  => $this->dateChoosen,
+            'send_clusterName'  => $this->clusterName
         ]);
     }
 }

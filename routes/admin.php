@@ -131,4 +131,12 @@ Route::group(['prefix'  =>  'admin'], function () {
         Route::get('/{order}/show', 'Admin\OrderController@show')->name('admin.orders.show');
     });
 
+    Route::group(['prefix' => 'charts'], function () {
+        Route::get('/','Admin\ChartController@index')->name('admin.charts.index');
+    });
+
+    Route::group(['prefix' => 'members'], function () {
+        Route::get('/','Admin\MemberController@index')->name('admin.members.index');
+        Route::get('/{id}/delete', 'Admin\MemberController@delete')->name('admin.members.delete');
+    });
 });

@@ -32,8 +32,20 @@ class BookTicketsController extends BaseController
             ->where('id', $id)
             ->get();
 
-        // dd($info_film);
+        //  TODO: Lấy ra chỉ 1 tên trong nhiều tên ghế giống nhau của phòng. VD phòng 9 có 10 ghế hàng A + 6 ghế hàng B thì lọc ra được RESULT là A + B
+        $seats = Room::withCount('seats')
+        ->withAndWhereHas('seats', function ($query) {
+            $query->with('categoryseat')
+            ->groupBy('seats.row')
+            ->orderBy('seats.row');
+        })
+        ->withAndWhereHas('film_using_pivot_schedules', function ($query) use ($filmID) {             // withAndWhereHas from Room Model function
+            $query->where('films.id', $filmID);
+        })
+        ->where('id', $id)
+        ->get();
 
+        
         $seat_couple = Room::withCount('seats')
             ->withAndWhereHas('seats', function ($query) {
                 $query->withAndWhereHas('categoryseat', function ($q) {
@@ -52,10 +64,10 @@ class BookTicketsController extends BaseController
         $dateToday = $today;
 
         $roomID = $id;
-
+        
         $foods = Food::with(['categoryfood', 'combos'])->get();
 
-        return view('site.pages.movies.book_tickets', compact('info_film', 'dateToday', 'list_times', 'seat_couple', 'roomID', 'foods'));
+        return view('site.pages.movies.book_tickets', compact('info_film', 'dateToday', 'list_times', 'seat_couple', 'roomID', 'foods','seats'));
     }
 
 
@@ -128,7 +140,7 @@ class BookTicketsController extends BaseController
 
         # ngày đã đặt là ngày mấy
         $today = $request->get('dateToday');
-
+        
         $list_times = Film::withAndWhereHas('schedule_film', function ($query) use ($filmID) {             // withAndWhereHas from Room Model function
             $query->where('film_id', $filmID);
         })->get();
@@ -144,6 +156,6 @@ class BookTicketsController extends BaseController
             ->where('id', $roomID)
             ->get();
 
-        return view('site.pages.movies.reservation_form', compact('totalPrice', 'list_seatname', 'info_film', 'list_times', 'today', 'qty_food', 'food_names', 'foods', 'totalPriceFood','roomID'));
+        return view('site.pages.movies.reservation_form', compact('totalPrice', 'list_seatname', 'info_film', 'list_times', 'today', 'qty_food', 'food_names', 'foods', 'totalPriceFood','roomID','food_id'));
     }
 }

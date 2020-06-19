@@ -8,6 +8,7 @@ use App\Mail\OrderShipped;
 use App\Models\Film;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\PayPalService;
@@ -28,6 +29,13 @@ class CheckoutController extends Controller
     {
         // # Danh sách các tên ghế và đổi trạng thái của nó lại booked!
         $list_seats_name = $request->input('seat_name');
+        // Ngày chọn để đặt vé
+        $date_choosen = $request->get('dateToday');
+
+        $clusterNameOfRoom = Room::with('cluster')->where('id',$request->get('roomID'))->get();
+        
+        // TODO: INSERT FOOD_ID VÀO ORDER_ITEMS, VẤN ĐỀ Ở ĐÂY LÀ ĐẶT 1 MẢNG THỨC ĂN THÌ PHẢI LẶP MẢNG THỨC ĂN NÀY R MỚI INSERT ORDERITEM
+        $foodID = $request->input('foodID');
         // TODO: ERROR. PHẢI CHECK THÊM PHÒNG NỮA .
         foreach ($list_seats_name as $seatname) {
             // $seatname = A1 (one seatname of array list_seat_name)
@@ -84,6 +92,8 @@ class CheckoutController extends Controller
                     $orderItem->order_item_price,
                     $list_seats_name,
                     $film->film_name,
+                    $date_choosen,
+                    $clusterNameOfRoom,
                 ));
             }
             // dd("send email success");
@@ -96,7 +106,7 @@ class CheckoutController extends Controller
 
     public function processPayment($order)
     {
-
+        
         // Add shipping amount if you want to charge for shipping
         $shipping = sprintf('%0.2f', 0);
         // Add any tax amount if you want to apply any tax rule

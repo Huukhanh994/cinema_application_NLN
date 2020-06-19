@@ -11,6 +11,7 @@
         "php": "^7.2",
         "barryvdh/laravel-debugbar": "^3.2",
         "biscolab/laravel-recaptcha": "^4.1",
+        "consoletvs/charts": "6.*",
         "darryldecode/cart": "~4.0",
         "facade/ignition": "^1.4",
         "fideloper/proxy": "^4.0",

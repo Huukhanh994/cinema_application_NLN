@@ -77,7 +77,7 @@
                                             <div class="movie-thumb c-thumb">
                                                 @if ($film->images->count() > 0)
                                                 <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
-                                                    <img src="{{ asset('storage/'.$film->images->first()->full) }}" alt="movie" width="255px"
+                                                    <img src="{{ $film->images->first()->full }}" alt="movie" width="255px"
                                                         height="375px">
                                                 </a>
                                                 @else
@@ -131,7 +131,7 @@
                                             <div class="movie-thumb c-thumb">
                                                 @if ($film->images->count() > 0)
                                                 <a href="{{ route('movies.now_showing_slug',$film->slug) }}">
-                                                    <img src="{{ asset('storage/'.$film->images->first()->full) }}" alt="movie" width="255px"
+                                                    <img src="{{$film->images->first()->full }}" alt="movie" width="255px"
                                                         height="375px">
                                                 </a>
                                                 @else
@@ -186,8 +186,8 @@
                                 <div class="movie-list">
                                     <div class="movie-thumb c-thumb">
                                         @if ($film->images->count() > 0)
-                                        <a href="{{route('movies.now_showing_slug',$film->slug)}}" class="w-100 bg_img h-100" data-background="{{ asset('storage/'.$film->images->first()->full) }}">
-                                            <img class="d-sm-none" src="{{ asset('storage/'.$film->images->first()->full) }}" alt="movie">
+                                        <a href="{{route('movies.now_showing_slug',$film->slug)}}" class="w-100 bg_img h-100" data-background="{{ $film->images->first()->full }}">
+                                            <img class="d-sm-none" src="{{ $film->images->first()->full }}" alt="movie">
                                         </a>
                                         @else
                                         <a href="{{route('movies.now_showing_slug',$film->slug)}}" class="w-100 bg_img h-100" data-background="https://via.placeholder.com/176">

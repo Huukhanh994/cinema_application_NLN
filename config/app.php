@@ -191,6 +191,8 @@ return [
         willvincent\Rateable\RateableServiceProvider::class,
         # Yajra
         Yajra\DataTables\DataTablesServiceProvider::class,
+        # Chart
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*

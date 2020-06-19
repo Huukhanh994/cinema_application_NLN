@@ -68,10 +68,16 @@
                     </table>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="card rounded">
+                    <div class="card-body py-3 px-3">
+                        {!! $ordersChart->container() !!}
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Column -->
     </div>
-
 @endsection
 
 @push('custom_script')

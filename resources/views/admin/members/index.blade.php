@@ -14,55 +14,35 @@
     <div class="col-md-12">
         <div class="tile">
             <div class="tile-body">
-                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0"
-                    width="100%">
+                <table id="example23" class="display nowrap table table-hover table-striped table-bordered"
+                    cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th> Order Number </th>
-                            <th> Placed By </th>
-                            <th class="text-center"> Total Amount </th>
-                            <th class="text-center"> Items Qty </th>
-                            <th class="text-center"> Payment Status </th>
-                            <th class="text-center"> Status </th>
+                            <th> # </th>
+                            <th class="text-center"> Full Name </th>
+                            <th class="text-center"> Email </th>
+                            <th class="text-center"> Phone Number </th>
+                            <th class="text-center"> Address </th>
+                            <th class="text-center"> City </th>
+                            <th class="text-center"> Country </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i
                                     class="fa fa-bolt"> </i></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($orders as $order)
-                        <tr>
-                            <td>{{ $order->order_number }}</td>
-                            <td>{{ $order->user->fullName }}</td>
-                            <td class="text-center">{{ config('settings.currency_symbol') }}{{ $order->order_grand_total }}
-                            </td>
-                            <td class="text-center">{{ $order->order_item_count }}</td>
-                            <td class="text-center">
-                                @if ($order->order_payment_status == 1)
-                                <span class="badge badge-success">Completed</span>
-                                @else
-                                <span class="badge badge-danger">Not Completed</span>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                
-                                @switch($order->order_status)
-                                    @case('pending')
-                                        <span class="badge badge-info">{{ $order->order_status }}</span>
-                                        @break
-                                    @case('processing')
-                                        <span class="badge badge-success">{{ $order->order_status }}</span>
-                                        @break
-                                    @default
-                                        <span class="badge badge-light">{{ $order->order_status }}</span>
-                                @endswitch
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group" aria-label="Second group">
-                                    <a href="{{ route('admin.orders.show', $order->order_number) }}"
-                                        class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->getFullNameAttribute()}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->tel}}</td>
+                                <td>{{$user->address}}</td>
+                                <td>{{$user->city}}</td>
+                                <td>{{$user->country}}</td>
+                                <td>
+                                    <a href="{{ route('admin.members.delete', $user->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

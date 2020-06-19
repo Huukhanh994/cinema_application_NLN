@@ -25,6 +25,8 @@
     @stack('custom_attribute_css')
 
     @stack('custom_css')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8">
+    </script>
 </head>
 
 <body class="skin-default fixed-layout">
@@ -98,5 +100,7 @@
     
     @stack('script_seat_booking')
 </body>
-
+@if(isset($ordersChart))
+    {!! $ordersChart->script() !!}
+@endif
 </html>

@@ -217,8 +217,8 @@
                     <aside>
                         <div class="widget widget-search">
                             <h5 class="title">search</h5>
-                            <form class="search-form">
-                                <input type="text" placeholder="Enter your Search Content" required>
+                            <form class="search-form" action="{{route('search.search_get')}}" method="GET">
+                                <input type="text" placeholder="Enter your Search Content" name="key" required>
                                 <button type="submit"><i class="flaticon-loupe"></i>Search</button>
                             </form>
                         </div>

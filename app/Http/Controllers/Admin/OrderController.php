@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Contracts\OrderContract;
 use App\Http\Controllers\BaseController;
 use App\Models\Order;
-
+use App\Charts\OrderChart;
 class OrderController extends BaseController
 {
     protected $orderRepository;
@@ -20,8 +20,11 @@ class OrderController extends BaseController
     public function dashboard()
     {
         $orders = $this->orderRepository->listOrders();
+        $ordersChart = new OrderChart;
+        $ordersChart->labels(['Jan', 'Feb', 'Mar']);
+        $ordersChart->dataset('Users by trimester', 'line', [10, 25, 13]);
         $this->setPageTitle('Orders', 'List of all orders');
-        return view('admin.dashboard.index', compact('orders'));
+        return view('admin.dashboard.index', compact('orders','ordersChart'));
     }
 
 

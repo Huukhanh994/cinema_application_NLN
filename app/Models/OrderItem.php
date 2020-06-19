@@ -9,7 +9,7 @@ class OrderItem extends Model
     //
     protected $table = 'order_items';
 
-    protected $fillable = ['order_id', 'film_id', 'order_item_quantity','order_item_quantity_food','order_item_price_food','order_item_price'];
+    protected $fillable = ['order_id', 'film_id', 'food_id','order_item_quantity','order_item_quantity_food','order_item_price_food','order_item_price'];
 
     public function film()
     {

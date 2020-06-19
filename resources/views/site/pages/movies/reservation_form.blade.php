@@ -39,15 +39,17 @@
 @endsection
     @section('content')
     <div class="col-lg-8">
-        <div class="checkout-widget d-flex flex-wrap align-items-center justify-cotent-between">
-            <div class="title-area">
-                <h5 class="title">Already a Boleto Member?</h5>
-                <p>Sign in to earn points and make booking easier!</p>
+        @guest
+            <div class="checkout-widget d-flex flex-wrap align-items-center justify-cotent-between">
+                <div class="title-area">
+                    <h5 class="title">Already a Boleto Member?</h5>
+                    <p>Sign in to earn points and make booking easier!</p>
+                </div>
+                <a href="{{route('register')}}" class="sign-in-area">
+                    <i class="fas fa-user"></i><span>Sign in</span>
+                </a>
             </div>
-            <a href="{{route('register')}}" class="sign-in-area">
-                <i class="fas fa-user"></i><span>Sign in</span>
-            </a>
-        </div>
+        @endguest
         <div class="checkout-widget checkout-card mb-0">
             <h5 class="title">Share your Contact Details </h5>
         </div>
@@ -133,10 +135,12 @@
                 <div class="form-group">
                     <input type="hidden" name="total_price" id="total_price" value="">
                     @foreach ($info_film as $row)
-                    @foreach ($row->film_using_pivot_schedules as $film)
-                        <input type="hidden" name="filmID" id="filmID" value="{{$film->id}}">
+                        @foreach ($row->film_using_pivot_schedules as $film)
+                            <input type="hidden" name="filmID" id="filmID" value="{{$film->id}}">
+                        @endforeach
                     @endforeach
-                    @endforeach
+                    {{-- Ngày đẫ chọn để đặt vé --}}
+                    <input type="hidden" name="dateToday" value="{{$today}}">
                     {{-- TODO: Danh sách tên những ghế đã đặt --}}
                     @foreach ($list_seatname as $item)
                         <input type="hidden" name="seat_name[]" value="{{$item}}">
@@ -147,16 +151,19 @@
                     <input type="hidden" name="seat_tickets_count" id="seat_tickets_count" value="{{count(collect($list_seatname))}}">
                     <input type="hidden" name="totalPriceMovie" value="{{$totalPrice}}">
                     {{-- TODO: Gía và số lượn thức ăn đã đặt --}}
+                    @if (isset($food_id))
+                        @foreach ($food_id as $item)
+                            <input type="hidden" name="foodID[]" id="food_id" value="{{$item}}">
+                        @endforeach
+                    @endif
                     <input type="hidden" name="quantity_food" value="{{$qty_food}}">
                     <input type="hidden" name="total_price_foods" value="{{$totalPriceFood}}">
                     <input type="submit" class="custom-button" value="make payment">
                 </div>
                 <!-- Set up a container element for the button -->
                 <div id="paypal-button-container"></div>
-
                 <!-- Include the PayPal JavaScript SDK -->
                 <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
-
                 <script>
                     // Render the PayPal button into #paypal-button-container
                         paypal.Buttons({
@@ -193,48 +200,48 @@
         <div class="booking-summery bg-one">
             <h4 class="title">booking summery</h4>
             @foreach ($info_film as $row)
-            @foreach ($row->film_using_pivot_schedules as $film)
-            <ul>
-                <li>
-                    <h6 class="subtitle">{{$film->film_name}}</h6>
-                    <span class="info">{{$film->language}}</span>
-                </li>
-                <li>
-                    <h6 class="subtitle"><span>{{$film->brand->name}}</span><span>0{{count(collect($list_seatname))}}</span>
-                    </h6>
-                    <div class="info"><span>{{date('d/m/Y h:i A', strtotime($today)) }}</span> <span>Tickets</span></div>
+                @foreach ($row->film_using_pivot_schedules as $film)
+                    <ul>
+                        <li>
+                            <h6 class="subtitle">{{$film->film_name}}</h6>
+                            <span class="info">{{$film->language}}</span>
+                        </li>
+                        <li>
+                            <h6 class="subtitle"><span>{{$film->brand->name}}</span><span>0{{count(collect($list_seatname))}}</span>
+                            </h6>
+                            <div class="info"><span>{{date('d/m/Y h:i A', strtotime($today)) }}</span> <span>Tickets</span></div>
 
-                </li>
-                <li>
-                    <h6 class="subtitle mb-0"><span>Tickets Price</span><span id="totalPriceSeat">{{$totalPrice}}</span>
-                    </h6>
-                </li>
-                <li>
-                    <h6 class="subtitle mb-0"><span>List Seat Name:</span>
-                        @foreach ($list_seatname as $item)
-                            <span>{{$item}}</span>
-                        @endforeach
-                    </h6>
-                </li>
-            </ul>
-            <ul class="side-shape">
-                <li>
-                
-                    <h6 class="subtitle"><span>food & bevarage</span><span
-                            id="totalPriceFood">@convert($totalPriceFood)</span></h6>
+                        </li>
+                        <li>
+                            <h6 class="subtitle mb-0"><span>Tickets Price</span><span id="totalPriceSeat">{{$totalPrice}}</span>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="subtitle mb-0"><span>List Seat Name:</span>
+                                @foreach ($list_seatname as $item)
+                                    <span>{{$item}}</span>
+                                @endforeach
+                            </h6>
+                        </li>
+                    </ul>
+                    <ul class="side-shape">
+                        <li>
+                        
+                            <h6 class="subtitle"><span>food & bevarage</span><span
+                                    id="totalPriceFood">@convert($totalPriceFood)</span></h6>
 
-                    <span class="info">
-                        @if (isset($food_names))
-                            @foreach ($food_names as $item)
-                                <span>{{$item}}</span>
-                            @endforeach
-                        @else
-                            <span>No food Name</span>
-                        @endif
-                    </span>
-                </li>
-            </ul>
-            @endforeach
+                            <span class="info">
+                                @if (isset($food_names))
+                                    @foreach ($food_names as $item)
+                                        <span>{{$item}}</span>
+                                    @endforeach
+                                @else
+                                    <span>No food Name</span>
+                                @endif
+                            </span>
+                        </li>
+                    </ul>
+                @endforeach
             @endforeach
         </div>
         <div class="proceed-area  text-center">
@@ -244,6 +251,7 @@
 
     <script>
         var totalPrice = document.getElementById('totalPriceSeat').innerHTML;
+        
         var totalPriceFood = document.getElementById('totalPriceFood').innerHTML;
         if(totalPriceFood == null || totalPriceFood == "")
         {

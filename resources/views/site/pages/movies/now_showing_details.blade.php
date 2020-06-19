@@ -205,7 +205,7 @@
                     <div class="details-banner-wrapper">
                         <div class="details-banner-thumb">
                             @if ($film->images->count() > 0)
-                                <img src="{{ asset('storage/'. $film->images->first()->full) }}" alt="movie" width="255px" height="367px">
+                                <img src="{{ $film->images->first()->full }}" alt="movie" width="255px" height="367px">
                                 <a href="https://www.youtube.com/embed/KGeBMAgc46E" class="video-popup">
                                     <img src="{{asset('assets_client/images/movie/video-button.png')}}" alt="movie">
                                 </a>
@@ -412,8 +412,8 @@
                                     @if ($film->images->count() > 0)
                                         @foreach ($film->images as $image)
                                         <div class="thumb">
-                                            <a href="{{asset('storage/'.$film->images->first()->full)}}" class="img-pop">
-                                                <img src="{{asset('storage/'.$film->images->first()->full)}}" alt="movie">
+                                            <a href="{{$film->images->first()->full}}" class="img-pop">
+                                                <img src="{{$film->images->first()->full}}" alt="movie">
                                             </a>
                                         </div>
                                         @endforeach
@@ -487,6 +487,7 @@
                                                 src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=1044383589264310&autoLogAppEvents=1">
                                             </script>
                                             @endauth
+                                            
                                         </div>
                                         <br>
                                         <br>
@@ -505,6 +506,16 @@
                                                 <new-comment :film_id="{{$film->id}}"></new-comment>
                                             @endif
                                         </div>
+                                        @guest
+                                            <div class="checkout-widget d-flex flex-wrap align-items-center justify-cotent-between">
+                                                <div class="title-area">
+                                                    <h5 class="title">Sign in to rate and comment for this film?</h5>
+                                                </div>
+                                                <a href="http://127.0.0.1:8000/login" class="sign-in-area">
+                                                    <i class="fas fa-user"></i><span>Sign in</span>
+                                                </a>
+                                            </div>    
+                                            @endguest
                                     </div>
                                 </div>
                             </div>

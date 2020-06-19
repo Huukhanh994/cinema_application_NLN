@@ -7,8 +7,8 @@
                 <div><img src="{{asset('/assets/images/users/2.jpg')}}" alt="user-img" class="img-circle"></div>
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    @if (Auth::guard('admin')->user()->name)
-                        {{ Auth::guard('admin')->user()->name }}
+                    @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->name)
+                        {{ Auth::guard('admin')->user()->name }}  
                     @endif
                         <span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
@@ -94,6 +94,13 @@
                         href="{{ route('admin.orders.index') }}">
                         <i class="fas fa-box-open"></i>
                         <span class="app-menu__label">Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item {{ Route::currentRouteName() == 'admin.members.index' ? 'active' : '' }}"
+                        href="{{ route('admin.members.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span class="app-menu__label">Members</span>
                     </a>
                 </li>
             </ul>

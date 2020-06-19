@@ -70,6 +70,30 @@
         label.booked{
             background: red;
         }
+        .smallBox::before
+        {
+        content:".";
+        width:15px;
+        height:15px;
+        float:left;
+        margin-right:10px;
+        }
+        .greenBox::before
+        {
+        content:"";
+        background:#F44336;
+        }
+        .redBox::before
+        {
+        content:"";
+        background:red;
+        }
+        .emptyBox::before
+        {
+        content:"";
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        background-color:#4CAF50;
+        }
     </style>
 </head>
 
@@ -158,7 +182,7 @@
     <!-- ==========Movie-Section========== -->
     <div class="seat-plan-section padding-bottom padding-top">
         <div class="container">
-            <form name="myForm" action="{{route('booking.book_tickets_post')}}" method="post" onsubmit="validate()">
+            <form name="myForm" action="{{route('booking.book_tickets_post')}}" method="post">
                 @csrf
                 <div class="screen-area">
                     <h4 class="screen">screen</h4>
@@ -166,61 +190,81 @@
                         <img src="{{asset('assets_client/images/movie/screen-thumb.png')}}" alt="movie">
                     </div>
                     <h5 class="subtitle">single plus</h5>
-                    <div class="screen-wrapper">
-                        <ul class="seat-area">
-                            @foreach ($info_film as $film)
-                            @if ($film->seats[0]->row)
-                            <li class="seat-line">
-                                <span>{{$film->seats[0]->row}}</span>
-                                <ul class="seat--area">
-                                    <li class="front-seat">
-                                        <ul>
-                                            @foreach ($film->seats as $seat)
-                                            @if ($seat->row == 'A')
-                                            <li class="single-seat seat-free">
-                                                <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
-                                                    data-price="{{$seat->categoryseat->cos_price}}" class="seat-select" <?php if($seat->status == 'booked') echo 'disabled'; ?>
-                                                    type="checkbox" name="seat[]" value="{{$seat->name}}"
-                                                    type="checkbox" onclick="totalIt()" />
-                                                <label for="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
-                                                    class="seat <?php if($seat->status == 'booked') echo 'booked'; ?>">{{$seat->name}}</label>
-                                            </li>
-                                            @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="seat-line">
-                                @if (isset($film->seats[12]->row))
-                                    <span>{{$film->seats[12]->row}}</span>
-                                @endif
-                                <ul class="seat--area">
-                                    <li class="front-seat">
-                                        <ul>
-                                            @foreach ($film->seats as $seat)
-                                            @if ($seat->row == 'B')
-                                            <li class="single-seat seat-free">
-                                                {{-- <img src="/assets_client/images/movie/seat01-free.png" alt="seat" data-seat="{{$seat->name}}"
-                                                data-price="{{$seat->categoryseat->cos_price}}">
-                                                <span class="sit-num">{{$seat->name}}</span> --}}
-                                                <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}" <?php if($seat->status == 'booked') echo 'disabled'; ?>
-                                                    data-price="{{$seat->categoryseat->cos_price}}" class="seat-select"
-                                                    type="checkbox" name="seat[]" value="{{$seat->name}}"
-                                                    type="checkbox" onclick="totalIt()" />
-                                                <label for="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
-                                                    class="seat <?php if($seat->status == 'booked') echo 'booked'; ?>">{{$seat->name}}</label>
-                                            </li>
-                                            @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            @endif
-                            @endforeach
-                        </ul>
-
+                    <div class="row">
+                        <div class="screen-wrapper col-md-10" style="position: relative; left: 7%;">
+                            <ul class="seat-area">
+                                @foreach ($info_film as $film)
+                        
+                                <li class="seat-line">
+                                    @foreach ($seats as $item)
+                                    @foreach ($item->seats as $seat)
+                                    @if ($seat->row === 'A')
+                                    <span>{{$seat->row}}</span>
+                                    @endif
+                                    @endforeach
+                                    @endforeach
+                        
+                                    <ul class="seat--area">
+                                        <li class="front-seat">
+                                            <ul>
+                                                @foreach ($film->seats as $seat)
+                                                @if ($seat->row == 'A')
+                                                <li class="single-seat seat-free">
+                                                    <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
+                                                        data-price="{{$seat->categoryseat->cos_price}}" class="seat-select"
+                                                        <?php if($seat->status == 'booked') echo 'disabled'; ?> type="checkbox" name="seat[]"
+                                                        value="{{$seat->name}}" type="checkbox" onclick="totalIt()" />
+                                                    <label for="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
+                                                        class="seat <?php if($seat->status == 'booked') echo 'booked'; ?>">{{$seat->name}}</label>
+                                                </li>
+                                                @endif
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="seat-line">
+                                    @foreach ($seats as $item)
+                                    @foreach ($item->seats as $seat)
+                                    @if ($seat->row === 'B')
+                                    <span>{{$seat->row}}</span>
+                                    @endif
+                                    @endforeach
+                                    @endforeach
+                                    <ul class="seat--area">
+                                        <li class="front-seat">
+                                            <ul>
+                                                @foreach ($film->seats as $seat)
+                                                @if ($seat->row == 'B')
+                                                <li class="single-seat seat-free">
+                                                    {{-- <img src="/assets_client/images/movie/seat01-free.png" alt="seat" data-seat="{{$seat->name}}"
+                                                    data-price="{{$seat->categoryseat->cos_price}}">
+                                                    <span class="sit-num">{{$seat->name}}</span> --}}
+                                                    <input id="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
+                                                        <?php if($seat->status == 'booked') echo 'disabled'; ?>
+                                                        data-price="{{$seat->categoryseat->cos_price}}" class="seat-select" type="checkbox"
+                                                        name="seat[]" value="{{$seat->name}}" type="checkbox" onclick="totalIt()" />
+                                                    <label for="seat-{{$seat->id}}" data-seat="{{$seat->name}}"
+                                                        class="seat <?php if($seat->status == 'booked') echo 'booked'; ?>">{{$seat->name}}</label>
+                                                </li>
+                                                @endif
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                        
+                                @endforeach
+                            </ul>
+                        
+                        </div>
+                        <div class="col-md-2">
+                            <td rowspan="20">
+                                <div class="smallBox greenBox">Selected Seat</div> <br />
+                                <div class="smallBox redBox">Reserved Seat</div><br />
+                                <div class="smallBox emptyBox">Empty Seat</div><br />
+                            </td>
+                        </div>
                     </div>
                     <h5 class="subtitle">couple plus</h5>
                     <div class="screen-wrapper">
@@ -228,7 +272,13 @@
                             @if (isset($seat_couple))
                                 @foreach ($seat_couple as $film)
                                 <li class="seat-line">
-                                    <span>J</span>
+                                    @foreach ($seats as $item)
+                                        @foreach ($item->seats as $seat)
+                                            @if ($seat->row === 'J')
+                                                <span>{{$seat->row}}</span>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
                                     <ul class="seat--area">
                                         <li class="front-seat">
                                             <ul>
@@ -273,7 +323,13 @@
                                 <input type="hidden" name="filmID" value="{{$item->id}}">
                             @endforeach
                             @endforeach
+                            {{-- Rạp của phim đang chiếu --}}
+                            {{-- @foreach ($clusterNameOfRoom as $room)
+                                <input type="hidden" name="clusterName" value="{{$room->cluster->cluster_name}}">
+                            @endforeach --}}
+                            {{-- Phòng của phim --}}
                             <input type="hidden" name="roomID" value="{{$roomID}}">
+                            {{-- Ngày chọn để đặt vé --}}
                             <input type="hidden" name="dateToday" value="{{$dateToday}}">
 
                             {{-- # Part of Foods GỌI TỪ JAVASCRIPT Ở JS LÊN--}}
