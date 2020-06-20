@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d46bf614f20671c8db4fb6a5a1ef465",
+    "content-hash": "091129fe1153588cd1c06868c308e01c",
     "packages": [
+        {
+            "name": "balping/json-raw-encoder",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/balping/json-raw-encoder.git",
+                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/balping%2Fjson-raw-encoder/repository/archive.zip?sha=e2b0ab888342b0716f1f0628e2fa13b345c5f276",
+                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Balping\\JsonRaw\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Balázs Dura-Kovács"
+                }
+            ],
+            "description": "Encode arrays to json with raw JS objects (eg. callbacks) in them",
+            "keywords": [
+                "callback",
+                "encode",
+                "json"
+            ],
+            "time": "2020-06-06T16:24:31+00:00"
+        },
         {
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.3.3",
@@ -139,6 +182,52 @@
                 "validation"
             ],
             "time": "2020-03-06T23:25:41+00:00"
+        },
+        {
+            "name": "consoletvs/charts",
+            "version": "6.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ConsoleTVs/Charts.git",
+                "reference": "524257b5d525666385bd2e91b06e376994a7b683"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/524257b5d525666385bd2e91b06e376994a7b683",
+                "reference": "524257b5d525666385bd2e91b06e376994a7b683",
+                "shasum": ""
+            },
+            "require": {
+                "balping/json-raw-encoder": "^1.0",
+                "illuminate/console": "^5.0|^6.0|^7.0",
+                "illuminate/support": "^5.0|^6.0|^7.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ConsoleTVs\\Charts\\ChartsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ConsoleTVs\\Charts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Èrik Campobadal Forés",
+                    "email": "soc@erik.cat"
+                }
+            ],
+            "description": "The laravel charting package",
+            "time": "2020-03-03T23:16:14+00:00"
         },
         {
             "name": "darryldecode/cart",
@@ -839,7 +928,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.6-dev"
-
                 }
             },
             "autoload": {
@@ -853,7 +941,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Filipe Dobreira",
                     "homepage": "https://github.com/filp",
                     "role": "Developer"
@@ -892,19 +979,16 @@
                 "ext-intl": "*",
                 "phpunit/phpunit": "^4.8.35 || ^5.7",
                 "squizlabs/php_codesniffer": "^2.9.2"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.9-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Faker\\": "src/Faker/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -952,14 +1036,11 @@
             },
             "suggest": {
                 "psr/log": "Required for using the Log middleware"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "6.5-dev"
-
                 }
             },
             "autoload": {
@@ -969,7 +1050,6 @@
                 "files": [
                     "src/functions_include.php"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -977,7 +1057,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
@@ -1258,16 +1337,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.18.18",
+            "version": "v6.18.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9e5226ecc28f960cba1bd38b6d1d82a52e072dc3"
+                "reference": "69321afec31f4a908112e5dc8995fc91024fd971"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9e5226ecc28f960cba1bd38b6d1d82a52e072dc3",
-                "reference": "9e5226ecc28f960cba1bd38b6d1d82a52e072dc3",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/69321afec31f4a908112e5dc8995fc91024fd971",
+                "reference": "69321afec31f4a908112e5dc8995fc91024fd971",
                 "shasum": ""
             },
             "require": {
@@ -1347,7 +1426,6 @@
                 "symfony/cache": "^4.3.4"
             },
             "suggest": {
-
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
@@ -1370,7 +1448,6 @@
                 "symfony/cache": "Required to PSR-6 cache bridge (^4.3.4).",
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.2).",
                 "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
-
             },
             "type": "library",
             "extra": {
@@ -1403,8 +1480,7 @@
                 "framework",
                 "laravel"
             ],
-
-            "time": "2020-06-02T22:32:07+00:00"
+            "time": "2020-06-09T13:59:34+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -1426,24 +1502,20 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
                 "files": [
                     "src/helpers.php"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-
                 "MIT"
             ],
             "authors": [
@@ -1508,7 +1580,6 @@
             "autoload": {
                 "psr-4": {
                     "Laravel\\Socialite\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1572,7 +1643,6 @@
             "autoload": {
                 "psr-4": {
                     "Laravel\\Tinker\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1581,7 +1651,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Taylor Otwell",
                     "email": "taylor@laravel.com"
                 }
@@ -1690,14 +1759,11 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.4-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "League\\CommonMark\\": "src"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1706,7 +1772,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Colin O'Dell",
                     "email": "colinodell@gmail.com",
                     "homepage": "https://www.colinodell.com",
@@ -1767,12 +1832,10 @@
                 "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
                 "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
                 "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.1-dev"
                 }
             },
@@ -1780,7 +1843,6 @@
                 "psr-4": {
                     "League\\Flysystem\\": "src/"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1788,7 +1850,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Frank de Jonge",
                     "email": "info@frenky.net"
                 }
@@ -1837,21 +1898,16 @@
                 "mockery/mockery": "^0.9",
                 "phpunit/phpunit": "^4.0",
                 "squizlabs/php_codesniffer": "^2.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.0-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "League\\OAuth1\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1860,7 +1916,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Ben Corlett",
                     "email": "bencorlett@me.com",
                     "homepage": "http://www.webcomm.com.au",
@@ -1915,14 +1970,11 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.16-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "DebugBar\\": "src/DebugBar/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1972,19 +2024,16 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0.0 || ^9.0.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
                     "Mockery": "library/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2068,21 +2117,16 @@
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.x-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Monolog\\": "src/Monolog"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2091,7 +2135,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Jordi Boggiano",
                     "email": "j.boggiano@seld.be",
                     "homepage": "http://seld.be"
@@ -2130,24 +2173,20 @@
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
                 "phpunit/phpunit": "^7.1"
-
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-
                     "DeepCopy\\": "src/DeepCopy/"
                 },
                 "files": [
                     "src/DeepCopy/deep_copy.php"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-
             "description": "Create deep copies (clones) of your objects",
             "keywords": [
                 "clone",
@@ -2186,7 +2225,6 @@
                 "phpstan/phpstan": "^0.11",
                 "phpunit/phpunit": "^7.5 || ^8.0",
                 "squizlabs/php_codesniffer": "^3.4"
-
             },
             "bin": [
                 "bin/carbon"
@@ -2194,7 +2232,6 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.x-dev",
                     "dev-3.x": "3.x-dev"
                 },
@@ -2207,7 +2244,6 @@
             "autoload": {
                 "psr-4": {
                     "Carbon\\": "src/Carbon/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2216,7 +2252,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Brian Nesbitt",
                     "email": "brian@nesbot.com",
                     "homepage": "http://nesbot.com"
@@ -2256,7 +2291,6 @@
             "require-dev": {
                 "ircmaxell/php-yacc": "0.0.5",
                 "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
-
             },
             "bin": [
                 "bin/php-parse"
@@ -2264,16 +2298,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.3-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "PhpParser\\": "lib/PhpParser"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2282,7 +2312,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Nikita Popov"
                 }
             ],
@@ -2326,20 +2355,16 @@
                         "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
                     ]
                 }
-
             },
             "autoload": {
                 "psr-4": {
-
                     "NunoMaduro\\Collision\\": "src/"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-
             "authors": [
                 {
                     "name": "Nuno Maduro",
@@ -2363,16 +2388,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.5.3",
+            "version": "3.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "cac47092144043d5d676e2e7cf8d0d2f83fc89ca"
+                "reference": "1d0deef692f66dae5d70663caee2867d0971306b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/cac47092144043d5d676e2e7cf8d0d2f83fc89ca",
-                "reference": "cac47092144043d5d676e2e7cf8d0d2f83fc89ca",
+                "url": "https://api.github.com/repos/opis/closure/zipball/1d0deef692f66dae5d70663caee2867d0971306b",
+                "reference": "1d0deef692f66dae5d70663caee2867d0971306b",
                 "shasum": ""
             },
             "require": {
@@ -2386,18 +2411,15 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.5.x-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Opis\\Closure\\": "src/"
                 },
                 "files": [
                     "functions.php"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2405,7 +2427,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Marius Sarca",
                     "email": "marius.sarca@gmail.com"
                 },
@@ -2424,7 +2445,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2020-05-25T09:32:45+00:00"
+            "time": "2020-06-07T11:41:29+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2575,26 +2596,21 @@
                 "orchestra/testbench": "^3.8",
                 "php": ">=7.2",
                 "phpunit/phpunit": "^8.3"
-
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-
                         "Parsedown\\Providers\\ParsedownServiceProvider"
-
                     ]
                 }
             },
             "autoload": {
-
                 "files": [
                     "src/Support/helpers.php"
                 ],
                 "psr-4": {
                     "Parsedown\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2603,7 +2619,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Eduardo Agostini",
                     "email": "edu.agostini@gmail.com"
                 }
@@ -2685,19 +2700,16 @@
                 "ext-phar": "*",
                 "phar-io/version": "^2.0",
                 "php": "^5.6 || ^7.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
                 "classmap": [
                     "src/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2706,7 +2718,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Arne Blankerts",
                     "email": "arne@blankerts.de",
                     "role": "Developer"
@@ -2747,7 +2758,6 @@
                 "classmap": [
                     "src/"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2755,7 +2765,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Arne Blankerts",
                     "email": "arne@blankerts.de",
                     "role": "Developer"
@@ -2795,14 +2804,11 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.x-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "phpDocumentor\\Reflection\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2860,7 +2866,6 @@
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Reflection\\": "src"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2869,7 +2874,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Mike van Riel",
                     "email": "me@mikevanriel.com"
                 },
@@ -2902,12 +2906,10 @@
             "require-dev": {
                 "ext-tokenizer": "^7.2",
                 "mockery/mockery": "~1"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.x-dev"
                 }
             },
@@ -2915,7 +2917,6 @@
                 "psr-4": {
                     "phpDocumentor\\Reflection\\": "src"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2923,7 +2924,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Mike van Riel",
                     "email": "me@mikevanriel.com"
                 }
@@ -2933,16 +2933,16 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.7.3",
+            "version": "1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "4acfd6a4b33a509d8c88f50e5222f734b6aeebae"
+                "reference": "b2ada2ad5d8a32b89088b8adc31ecd2e3a13baf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/4acfd6a4b33a509d8c88f50e5222f734b6aeebae",
-                "reference": "4acfd6a4b33a509d8c88f50e5222f734b6aeebae",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/b2ada2ad5d8a32b89088b8adc31ecd2e3a13baf3",
+                "reference": "b2ada2ad5d8a32b89088b8adc31ecd2e3a13baf3",
                 "shasum": ""
             },
             "require": {
@@ -2984,7 +2984,7 @@
                 "php",
                 "type"
             ],
-            "time": "2020-03-21T18:07:53+00:00"
+            "time": "2020-06-07T10:40:07+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -3010,21 +3010,16 @@
             "require-dev": {
                 "phpspec/phpspec": "^2.5 || ^3.2",
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5 || ^7.1"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.10.x-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Prophecy\\": "src/Prophecy"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3033,7 +3028,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Konstantin Kudryashov",
                     "email": "ever.zet@gmail.com",
                     "homepage": "http://everzet.com"
@@ -3086,12 +3080,10 @@
             },
             "suggest": {
                 "ext-xdebug": "^2.7.2"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "7.0-dev"
                 }
             },
@@ -3099,7 +3091,6 @@
                 "classmap": [
                     "src/"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3107,7 +3098,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de",
                     "role": "lead"
@@ -3141,12 +3131,10 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.1"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.0.x-dev"
                 }
             },
@@ -3154,7 +3142,6 @@
                 "classmap": [
                     "src/"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3162,7 +3149,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de",
                     "role": "lead"
@@ -3236,12 +3222,10 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.1-dev"
                 }
             },
@@ -3249,7 +3233,6 @@
                 "classmap": [
                     "src/"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3257,7 +3240,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de",
                     "role": "lead"
@@ -3290,14 +3272,11 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.1-dev"
-
                 }
             },
             "autoload": {
@@ -3370,7 +3349,6 @@
                 "ext-soap": "*",
                 "ext-xdebug": "*",
                 "phpunit/php-invoker": "^2.0.0"
-
             },
             "bin": [
                 "phpunit"
@@ -3378,9 +3356,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "8.5-dev"
-
                 }
             },
             "autoload": {
@@ -3399,7 +3375,6 @@
                     "role": "lead"
                 }
             ],
-
             "description": "The PHP Unit Testing framework.",
             "homepage": "https://phpunit.de/",
             "keywords": [
@@ -3436,7 +3411,6 @@
                 "psr-4": {
                     "Psr\\Container\\": "src/"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3444,7 +3418,6 @@
             ],
             "authors": [
                 {
-
                     "name": "PHP-FIG",
                     "homepage": "http://www.php-fig.org/"
                 }
@@ -3476,12 +3449,10 @@
             },
             "require": {
                 "php": ">=5.3.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.0.x-dev"
                 }
             },
@@ -3489,7 +3460,6 @@
                 "psr-4": {
                     "Psr\\Http\\Message\\": "src/"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3497,7 +3467,6 @@
             ],
             "authors": [
                 {
-
                     "name": "PHP-FIG",
                     "homepage": "http://www.php-fig.org/"
                 }
@@ -3530,12 +3499,10 @@
             },
             "require": {
                 "php": ">=5.3.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.1.x-dev"
                 }
             },
@@ -3543,7 +3510,6 @@
                 "psr-4": {
                     "Psr\\Log\\": "Psr/Log/"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3551,7 +3517,6 @@
             ],
             "authors": [
                 {
-
                     "name": "PHP-FIG",
                     "homepage": "http://www.php-fig.org/"
                 }
@@ -3581,12 +3546,10 @@
             },
             "require": {
                 "php": ">=5.3.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.0.x-dev"
                 }
             },
@@ -3594,7 +3557,6 @@
                 "psr-4": {
                     "Psr\\SimpleCache\\": "src/"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3602,7 +3564,6 @@
             ],
             "authors": [
                 {
-
                     "name": "PHP-FIG",
                     "homepage": "http://www.php-fig.org/"
                 }
@@ -3650,7 +3611,6 @@
                 "ext-posix": "If you have PCNTL, you'll want the POSIX extension as well.",
                 "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history.",
                 "hoa/console": "A pure PHP readline implementation. You'll want this if your PHP install doesn't already support readline or libedit."
-
             },
             "bin": [
                 "bin/psysh"
@@ -3658,9 +3618,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "0.10.x-dev"
-
                 }
             },
             "autoload": {
@@ -3668,9 +3626,7 @@
                     "src/functions.php"
                 ],
                 "psr-4": {
-
                     "Psy\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3679,7 +3635,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Justin Hileman",
                     "email": "justin@justinhileman.info",
                     "homepage": "http://justinhileman.com"
@@ -3717,28 +3672,22 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.7"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.4-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Pusher\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-
             "description": "Library for interacting with the Pusher REST API",
             "keywords": [
                 "events",
@@ -3781,7 +3730,6 @@
                 "files": [
                     "src/getallheaders.php"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3789,7 +3737,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Ralph Khattar",
                     "email": "ralph.khattar@gmail.com"
                 }
@@ -3841,25 +3788,20 @@
                 "paragonie/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
                 "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid",
                 "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.x-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Ramsey\\Uuid\\": "src/"
                 },
                 "files": [
                     "src/functions.php"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3867,7 +3809,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Ben Ramsey",
                     "email": "ben@benramsey.com",
                     "homepage": "https://benramsey.com"
@@ -3927,7 +3868,6 @@
                 "files": [
                     "HighlightUtilities/functions.php"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3935,7 +3875,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Geert Bergman",
                     "homepage": "http://www.scrivo.org/",
                     "role": "Project Author"
@@ -3990,7 +3929,6 @@
             "autoload": {
                 "classmap": [
                     "src/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3999,7 +3937,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
                 }
@@ -4029,15 +3966,12 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.1"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.0-dev"
                 }
-
             },
             "autoload": {
                 "classmap": [
@@ -4050,7 +3984,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
                 },
@@ -4102,7 +4035,6 @@
                 "branch-alias": {
                     "dev-master": "3.0-dev"
                 }
-
             },
             "autoload": {
                 "classmap": [
@@ -4115,7 +4047,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Kore Nordmann",
                     "email": "mail@kore-nordmann.de"
                 },
@@ -4156,14 +4087,11 @@
             },
             "suggest": {
                 "ext-posix": "*"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.2-dev"
-
                 }
             },
             "autoload": {
@@ -4181,7 +4109,6 @@
                     "email": "sebastian@phpunit.de"
                 }
             ],
-
             "description": "Provides functionality to handle HHVM/PHP environments",
             "homepage": "http://www.github.com/sebastianbergmann/environment",
             "keywords": [
@@ -4212,14 +4139,11 @@
             "require-dev": {
                 "ext-mbstring": "*",
                 "phpunit/phpunit": "^6.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.1.x-dev"
-
                 }
             },
             "autoload": {
@@ -4233,12 +4157,10 @@
             ],
             "authors": [
                 {
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
                 },
                 {
-
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
                 },
@@ -4247,7 +4169,6 @@
                     "email": "github@wallbash.com"
                 },
                 {
-
                     "name": "Adam Harvey",
                     "email": "aharvey@php.net"
                 },
@@ -4289,7 +4210,6 @@
             },
             "suggest": {
                 "ext-uopz": "*"
-
             },
             "type": "library",
             "extra": {
@@ -4308,13 +4228,10 @@
             ],
             "authors": [
                 {
-
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
                 }
             ],
-
             "description": "Snapshotting of global state",
             "homepage": "http://www.github.com/sebastianbergmann/global-state",
             "keywords": [
@@ -4343,14 +4260,11 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.0.x-dev"
-
                 }
             },
             "autoload": {
@@ -4367,7 +4281,6 @@
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
                 }
-
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
@@ -4391,15 +4304,12 @@
                 "php": "^7.0"
             },
             "require-dev": {
-
                 "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.1-dev"
-
                 }
             },
             "autoload": {
@@ -4415,7 +4325,6 @@
                 {
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
-
                 }
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
@@ -4441,14 +4350,11 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.0.x-dev"
-
                 }
             },
             "autoload": {
@@ -4462,7 +4368,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
                 },
@@ -4495,14 +4400,11 @@
             },
             "require": {
                 "php": "^7.1"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.0-dev"
-
                 }
             },
             "autoload": {
@@ -4520,7 +4422,6 @@
                     "email": "sebastian@phpunit.de"
                 }
             ],
-
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
             "time": "2018-10-04T04:07:39+00:00"
@@ -4544,7 +4445,6 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.2"
-
             },
             "type": "library",
             "extra": {
@@ -4564,7 +4464,6 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-
                     "email": "sebastian@phpunit.de",
                     "role": "lead"
                 }
@@ -4589,14 +4488,11 @@
             },
             "require": {
                 "php": ">=5.6"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.0.x-dev"
-
                 }
             },
             "autoload": {
@@ -4610,7 +4506,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de",
                     "role": "lead"
@@ -4648,19 +4543,16 @@
             "suggest": {
                 "ext-intl": "Needed to support internationalized email addresses",
                 "true/punycode": "Needed to support internationalized email addresses, if ext-intl is not installed"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "6.2-dev"
                 }
             },
             "autoload": {
                 "files": [
                     "lib/swift_required.php"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4669,7 +4561,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Chris Corbyn"
                 },
                 {
@@ -4730,12 +4621,10 @@
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.4-dev"
                 }
             },
@@ -4745,7 +4634,6 @@
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4754,7 +4642,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
                 },
@@ -4783,12 +4670,10 @@
             },
             "require": {
                 "php": ">=7.2.5"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "5.1-dev"
                 }
             },
@@ -4798,7 +4683,6 @@
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4807,7 +4691,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
                 },
@@ -4848,12 +4731,10 @@
             },
             "require-dev": {
                 "symfony/http-kernel": "^3.4|^4.0|^5.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.4-dev"
                 }
             },
@@ -4863,7 +4744,6 @@
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4872,7 +4752,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
                 },
@@ -4909,7 +4788,6 @@
             "require-dev": {
                 "symfony/http-kernel": "^4.4|^5.0",
                 "symfony/serializer": "^4.4|^5.0"
-
             },
             "type": "library",
             "extra": {
@@ -4919,9 +4797,7 @@
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\ErrorHandler\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -4941,7 +4817,6 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
             "time": "2020-05-28T10:39:14+00:00"
@@ -4983,21 +4858,16 @@
             "suggest": {
                 "symfony/dependency-injection": "",
                 "symfony/http-kernel": ""
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.4-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\EventDispatcher\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -5011,15 +4881,12 @@
                 {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
-
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2020-05-20T08:37:50+00:00"
@@ -5044,22 +4911,17 @@
             "suggest": {
                 "psr/event-dispatcher": "",
                 "symfony/event-dispatcher-implementation": ""
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.1-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Contracts\\EventDispatcher\\": ""
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5067,17 +4929,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Generic abstractions related to dispatching event",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -5106,7 +4965,6 @@
             },
             "require": {
                 "php": "^7.1.3"
-
             },
             "type": "library",
             "extra": {
@@ -5116,9 +4974,7 @@
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\Finder\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -5164,7 +5020,6 @@
             "require-dev": {
                 "predis/predis": "~1.0",
                 "symfony/expression-language": "^3.4|^4.0|^5.0"
-
             },
             "type": "library",
             "extra": {
@@ -5174,9 +5029,7 @@
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\HttpFoundation\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -5196,7 +5049,6 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
             "time": "2020-05-23T09:11:46+00:00"
@@ -5259,25 +5111,20 @@
                 "symfony/config": "",
                 "symfony/console": "",
                 "symfony/dependency-injection": ""
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.4-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\HttpKernel\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
                 ]
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5285,17 +5132,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
             "time": "2020-05-31T05:25:51+00:00"
@@ -5326,21 +5170,16 @@
             "require-dev": {
                 "egulias/email-validator": "^2.1.10",
                 "symfony/dependency-injection": "^4.4|^5.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "5.1-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\Mime\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -5360,7 +5199,6 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "A library to manipulate MIME messages",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -5388,24 +5226,19 @@
             },
             "suggest": {
                 "ext-ctype": "For best performance"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Polyfill\\Ctype\\": ""
                 },
                 "files": [
                     "bootstrap.php"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5414,17 +5247,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Gert de Pagter",
                     "email": "BackEndTea@gmail.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill for ctype functions",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -5447,7 +5277,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/c4de7601eefbf25f9d47190abe07f79fe0a27424",
                 "reference": "c4de7601eefbf25f9d47190abe07f79fe0a27424",
-
                 "shasum": ""
             },
             "require": {
@@ -5459,19 +5288,15 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Polyfill\\Iconv\\": ""
                 },
                 "files": [
                     "bootstrap.php"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5480,17 +5305,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill for the Iconv extension",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -5523,24 +5345,19 @@
             },
             "suggest": {
                 "ext-intl": "For best performance"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Polyfill\\Intl\\Idn\\": ""
                 },
                 "files": [
                     "bootstrap.php"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5549,17 +5366,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Laurent Bassin",
                     "email": "laurent@bassin.info"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -5584,30 +5398,23 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fa79b11539418b02fc5e1897267673ba2c19419c",
                 "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
-
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "suggest": {
-
                 "ext-mbstring": "For best performance"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Polyfill\\Mbstring\\": ""
-
                 },
                 "files": [
                     "bootstrap.php"
@@ -5619,17 +5426,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill for the Mbstring extension",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -5653,25 +5457,20 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/f048e612a3905f34931127360bdd2def19a5e582",
                 "reference": "f048e612a3905f34931127360bdd2def19a5e582",
-
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Polyfill\\Php72\\": ""
-
                 },
                 "files": [
                     "bootstrap.php"
@@ -5691,17 +5490,14 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
             "homepage": "https://symfony.com",
             "keywords": [
                 "compatibility",
-
                 "polyfill",
                 "portable",
                 "shim"
             ],
-
             "time": "2020-05-12T16:47:27+00:00"
         },
         {
@@ -5720,19 +5516,15 @@
             },
             "require": {
                 "php": ">=5.3.3"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Polyfill\\Php73\\": ""
                 },
                 "files": [
@@ -5740,7 +5532,6 @@
                 ],
                 "classmap": [
                     "Resources/stubs"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5749,27 +5540,22 @@
             ],
             "authors": [
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
             "homepage": "https://symfony.com",
             "keywords": [
                 "compatibility",
-
                 "polyfill",
                 "portable",
                 "shim"
             ],
-
             "time": "2020-05-12T16:47:27+00:00"
         },
         {
@@ -5788,19 +5574,15 @@
             },
             "require": {
                 "php": ">=7.0.8"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.17-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Polyfill\\Php80\\": ""
                 },
                 "files": [
@@ -5808,7 +5590,6 @@
                 ],
                 "classmap": [
                     "Resources/stubs"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5817,12 +5598,10 @@
             ],
             "authors": [
                 {
-
                     "name": "Ion Bazan",
                     "email": "ion.bazan@gmail.com"
                 },
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
                 },
@@ -5831,17 +5610,14 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
             "homepage": "https://symfony.com",
             "keywords": [
                 "compatibility",
-
                 "polyfill",
                 "portable",
                 "shim"
             ],
-
             "time": "2020-05-12T16:47:27+00:00"
         },
         {
@@ -5860,24 +5636,19 @@
             },
             "require": {
                 "php": "^7.1.3"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.4-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\Process\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5886,17 +5657,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
             "time": "2020-05-30T20:06:45+00:00"
@@ -5938,24 +5706,19 @@
                 "symfony/expression-language": "For using expression matching",
                 "symfony/http-foundation": "For using a Symfony Request object",
                 "symfony/yaml": "For using the YAML loader"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "4.4-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\Routing\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
-
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5964,17 +5727,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony Routing Component",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -6005,22 +5765,17 @@
             },
             "suggest": {
                 "symfony/service-implementation": ""
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.1-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Contracts\\Service\\": ""
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6028,17 +5783,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Generic abstractions related to writing services",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -6094,7 +5846,6 @@
                 "psr/log-implementation": "To use logging capability in translator",
                 "symfony/config": "",
                 "symfony/yaml": ""
-
             },
             "type": "library",
             "extra": {
@@ -6104,9 +5855,7 @@
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Component\\Translation\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -6126,7 +5875,6 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2020-05-30T20:06:45+00:00"
@@ -6150,21 +5898,16 @@
             },
             "suggest": {
                 "symfony/translation-implementation": ""
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.1-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Symfony\\Contracts\\Translation\\": ""
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6181,9 +5924,7 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Generic abstractions related to translation",
-
             "homepage": "https://symfony.com",
             "keywords": [
                 "abstractions",
@@ -6193,7 +5934,6 @@
                 "interoperability",
                 "standards"
             ],
-
             "time": "2020-05-20T17:43:50+00:00"
         },
         {
@@ -6230,7 +5970,6 @@
                 "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
                 "ext-intl": "To show region name in time zone dump",
                 "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
-
             },
             "bin": [
                 "Resources/bin/var-dump-server"
@@ -6242,13 +5981,11 @@
                 }
             },
             "autoload": {
-
                 "files": [
                     "Resources/functions/dump.php"
                 ],
                 "psr-4": {
                     "Symfony\\Component\\VarDumper\\": ""
-
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -6260,17 +5997,14 @@
             ],
             "authors": [
                 {
-
                     "name": "Nicolas Grekas",
                     "email": "p@tchwork.com"
-
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-
             "description": "Symfony mechanism for exploring and dumping PHP variables",
             "homepage": "https://symfony.com",
             "keywords": [
@@ -6300,7 +6034,6 @@
                 "php": "^7.0"
             },
             "type": "library",
-
             "autoload": {
                 "classmap": [
                     "src/"
@@ -6312,7 +6045,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Arne Blankerts",
                     "email": "arne@blankerts.de",
                     "role": "Developer"
@@ -6343,12 +6075,10 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "2.2.x-dev"
                 }
             },
@@ -6356,7 +6086,6 @@
                 "psr-4": {
                     "TijsVerkoyen\\CssToInlineStyles\\": "src"
                 }
-
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6364,7 +6093,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Tijs Verkoyen",
                     "email": "css_to_inline_styles@verkoyen.eu",
                     "role": "Developer"
@@ -6391,7 +6119,6 @@
             "require": {
                 "illuminate/database": "~4.2|~5.0|~6.0|~7.0",
                 "illuminate/support": "~4.2|~5.0|~6.0|~7.0"
-
             },
             "type": "library",
             "autoload": {
@@ -6405,7 +6132,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Samuel De Backer",
                     "email": "sdebacker@gmail.com"
                 }
@@ -6424,46 +6150,41 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v3.6.5",
+            "version": "v3.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "8b64814b356b96a90d2bc942b152c80d8888b8d4"
+                "reference": "4669484ccbc38fe7c4e0c50456778f2010566aad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/8b64814b356b96a90d2bc942b152c80d8888b8d4",
-                "reference": "8b64814b356b96a90d2bc942b152c80d8888b8d4",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/4669484ccbc38fe7c4e0c50456778f2010566aad",
+                "reference": "4669484ccbc38fe7c4e0c50456778f2010566aad",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.4 || ^7.0 || ^8.0",
-                "phpoption/phpoption": "^1.5",
-                "symfony/polyfill-ctype": "^1.9"
+                "phpoption/phpoption": "^1.5.2",
+                "symfony/polyfill-ctype": "^1.16"
             },
             "require-dev": {
                 "ext-filter": "*",
                 "ext-pcre": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0 || ^7.0"
+                "phpunit/phpunit": "^4.8.35 || ^5.7.27 || ^6.5.6 || ^7.0"
             },
             "suggest": {
                 "ext-filter": "Required to use the boolean validator.",
                 "ext-pcre": "Required to use most of the library."
-
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "3.6-dev"
-
                 }
             },
             "autoload": {
                 "psr-4": {
-
                     "Dotenv\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6472,7 +6193,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Graham Campbell",
                     "email": "graham@alt-three.com",
                     "homepage": "https://gjcampbell.co.uk/"
@@ -6489,7 +6209,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2020-05-23T09:42:03+00:00"
+            "time": "2020-06-02T14:08:54+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -6519,7 +6239,6 @@
             "autoload": {
                 "psr-4": {
                     "Webmozart\\Assert\\": "src/"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6528,7 +6247,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Bernhard Schussek",
                     "email": "bschussek@gmail.com"
                 }
@@ -6577,7 +6295,6 @@
                 ],
                 "psr-4": {
                     "willvincent\\Rateable\\": "src/Rateable"
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6586,7 +6303,6 @@
             ],
             "authors": [
                 {
-
                     "name": "Will Vincent",
                     "email": "tcindie@gmail.com"
                 }
@@ -6623,7 +6339,6 @@
                 "illuminate/support": "5.8.*|^6|^7",
                 "illuminate/view": "5.8.*|^6|^7",
                 "php": "^7.1.3"
-
             },
             "require-dev": {
                 "orchestra/testbench": "^3.8"
@@ -6672,9 +6387,7 @@
                 "jquery",
                 "laravel"
             ],
-
             "time": "2020-05-30T04:43:39+00:00"
-
         }
     ],
     "packages-dev": [],
