@@ -28,7 +28,7 @@
         "@chartisan/chartjs": "^2.0.3",
         "chart.js": "^2.9.3",
         "laravel-echo": "^1.7.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "pusher-js": "^6.0.2",
         "sweetalert": "^2.1.2",
         "vue-swal": "^0.1.0",
